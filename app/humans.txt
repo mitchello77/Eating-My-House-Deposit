@@ -3,11 +3,8 @@
 
 # TEAM
 
-  <name> -- <role> -- <twitter>
-
-# THANKS
-
-  <name>
+  Mitchell Williams -- Project Lead
+  Kelvin O'Shea -- Project Lead
 
 # TECHNOLOGY COLOPHON
 
