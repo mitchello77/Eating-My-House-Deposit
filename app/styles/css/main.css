@@ -11,9 +11,7 @@ html, body {
 
 /*some global styles*/
 
-section {
-  width: 100vw;
-  height: 100vh;
+.container {
   display: flex;
   justify-content: center;
   align-items: center;
