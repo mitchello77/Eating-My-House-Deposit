@@ -34,12 +34,11 @@ input[type="text"] {
   background: none;
   height: 100%;
   border: 2px solid #FFFEF8;
-}
 
-input[type="text"]:focus {
-  border-bottom: 2px solid #8C9958;
+  &:focus {
+      border-bottom: 2px solid #8C9958;
+  }
 }
-
 
 ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
   color: #BFBEBA;
@@ -78,12 +77,13 @@ input[type="text"]:focus {
   width: 100%;
   box-sizing: border-box;
   height: 4rem;
+
+  input {
+    width: 100%;
+    box-sizing: border-box;
+  }
 }
 
-.input-container input {
-  width: 100%;
-  box-sizing: border-box;
-}
 
 .button-container {
   display: flex;
@@ -102,23 +102,23 @@ input[type="text"]:focus {
   border: 2px solid #78A4C0;
   color: #78A4C0;
   border-radius: 4px;
-}
 
-.decision-button:hover {
-  cursor: pointer;
-  box-shadow: 1px 1px 2px #78A4C0;
-}
+  &:hover {
+    cursor: pointer;
+    box-shadow: 1px 1px 2px #78A4C0;
+  }
 
-.decision-button.selected {
-  background-color: #78A4C0;
-  color: #fff;
-}
+  &.selected {
+    background-color: #78A4C0;
+    color: #fff;
 
-.decision-button.selected:hover {
-  box-shadow: none;
-}
+    &:hover {
+      box-shadow: none;
+    }
+  }
 
-.decision-button p {
-  font-size: 1.5rem;
-  font-weight: 600;
+  p {
+    font-size: 1.5rem;
+    font-weight: 600;
+  }
 }
