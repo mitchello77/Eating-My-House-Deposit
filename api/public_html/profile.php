@@ -5,13 +5,12 @@ class profile {
 	 *
 	 * @access protected
 	 *
-	 * @url GET /suburb/{suburb}/postcode/{postcode}
+	 * @url GET /fallback/suburb/{suburb}/postcode/{postcode}
 	 *
 	 * @param string $suburb {@from path}
  	 * @param string $postcode {@from path}
 	 */
-
-	function getInvestorData($suburb, $postcode) {
+	function getFallbackInvestorData($suburb, $postcode) {
 		// validation
 		if (is_null($suburb) or is_null($postcode))
 			throw new RestException(400);
@@ -48,5 +47,30 @@ class profile {
 		$curl_jason = json_decode($resp, true);
 		//echo json_encode($curl_jason, JSON_PRETTY_PRINT);
 		return  $curl_jason;
+	}
+	/**
+	 * Get investor data for RP Data Source
+	 *
+	 * @access protected
+	 *
+	 * @url GET /suburb/{suburb}/postcode/{postcode}
+	 *
+	 * @param string $suburb {@from path}
+	 * @param string $postcode {@from path}
+	 */
+	function getInvestorData($suburb, $postcode) {
+		// validation
+		if (is_null($suburb) or is_null($postcode))
+			throw new RestException(400);
+		if (!is_numeric($postcode) or strlen($postcode) != 4)
+			throw new RestException(400, 'not a valid postcode');
+
+		// Get Data from MySQL
+
+		if( $resp === null || $resp == FALSE || $resp == '' )
+			throw new RestException(204, 'Investor API returned no content');
+
+
+		return  '';
 	}
 }
