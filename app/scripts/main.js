@@ -73,4 +73,8 @@
   }
 
   // Your custom JavaScript goes here
+  $(document).ready(function() {
+    $('#fullpage').fullpage();
+  });
+
 })();

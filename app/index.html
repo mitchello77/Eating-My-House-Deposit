@@ -31,6 +31,14 @@
     <!-- Color the status bar on mobile devices -->
     <meta name="theme-color" content="#2F3BA2">
 
+    <!-- google fonts imports -->
+    <link href="https://fonts.googleapis.com/css?family=Hind+Guntur:400,600" rel="stylesheet">
+
+    <!-- full page stylesheet -->
+    <link rel="stylesheet" type="text/css" href="../styles/jquery.fullPage.css" />
+    <!-- css stylesheet -->
+    <link rel="stylesheet" href="../styles/main.css">
+
     <!-- SEO: If your mobile URL is different from the desktop URL, add a canonical link to the desktop page https://developers.google.com/webmasters/smartphone-sites/feature-phones -->
     <!--
     <link rel="canonical" href="http://www.example.com/">
@@ -39,8 +47,124 @@
     <link rel="stylesheet" href="/styles/main.css">
   </head>
   <body>
-    hi!
 
+    <!-- where do you want to live section -->
+    <div id="fullpage">
+
+      <div class="section">
+        <!-- landing page here -->
+      </div>
+
+      <div class="section">
+          <div class="container">
+            <div class="question-container">
+              <div class="question">
+                <h2>Where do you want to live?</h2>
+              </div>
+              <div class="input-container">
+                <input type="text" placeholder="e.g. Auchenflower"/>
+              </div>
+            </div>
+          </div>
+      </div>
+
+      <div class="section">
+        <div class="container">
+          <div class="question-container">
+            <div class="question">
+              <h2>What industry do you work in, or want to work in?</h2>
+            </div>
+            <div class="input-container">
+              <input type="text" placeholder="e.g. Auchenflower"/>
+              <div class="test-button">Test</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section section2">
+        <div class="container">
+          <div class="question-container">
+            <div class="question">
+              <h2>Do you use a music streaming service?</h2>
+            </div>
+            <div class="button-container">
+              <div class="decision-button">
+                <p>Yes</p>
+                <div class="radio-circle"></div>
+              </div>
+              <div class="decision-button">
+                <p>No</p>
+                <div class="radio-circle"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="container">
+          <div class="question-container">
+            <div class="question">
+              <h2>Do you use a movie/TV show streaming service?</h2>
+            </div>
+            <div class="input-container">
+              <input type="text" placeholder="e.g. Auchenflower"/>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="container">
+          <div class="question-container">
+            <div class="question">
+              <h2>Do you have a gym membership?</h2>
+            </div>
+            <div class="input-container">
+              <input type="text" placeholder="e.g. Auchenflower"/>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="container">
+          <div class="question-container">
+            <div class="question">
+              <h2>Do you drink coffee?</h2>
+            </div>
+            <div class="input-container">
+              <input type="text" placeholder="e.g. Auchenflower"/>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="container">
+          <div class="question-container">
+            <div class="question">
+              <h2>Do you like smashed avo on toast?</h2>
+            </div>
+            <div class="input-container">
+              <input type="text" placeholder="e.g. Auchenflower"/>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <!-- map will go here -->
+      </div>
+
+
+    </div>
+
+    <!-- jquery bois -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- full page js -->
+    <script type="text/javascript" src="../scripts/jquery.fullPage.min.js"></script>
     <!-- build:js scripts/main.min.js -->
     <script src="scripts/main.js"></script>
     <!-- endbuild -->
