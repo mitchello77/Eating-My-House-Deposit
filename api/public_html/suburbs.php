@@ -21,7 +21,6 @@ class suburbs {
 		if($response == FALSE)
 			throw new RestException(204, 'No Suburbs');
 
-    print_r($response);
 		return $response;
 	}
 }
