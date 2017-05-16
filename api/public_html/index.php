@@ -14,5 +14,6 @@ $r = new Restler(); //pass true bool when production ready
 $r->setSupportedFormats('JsonFormat');
 $r->addAPIClass('root', '');
 $r->addAPIClass('profile');
+$r->addAPIClass('suburbs');
 $r->addAuthenticationClass('auth');
 $r->handle();

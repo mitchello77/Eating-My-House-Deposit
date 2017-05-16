@@ -1,17 +1,22 @@
 <?php
+require_once 'MySQLHelper.php';
 class profile {
+	public $dp;
+	function __construct()
+	{
+		$this->dp = new DB_PDO_MySQL();
+	}
 	/**
 	 * Get investor data for RP Data Source
 	 *
 	 * @access protected
 	 *
-	 * @url GET /suburb/{suburb}/postcode/{postcode}
+	 * @url GET /fallback/suburb/{suburb}/postcode/{postcode}
 	 *
 	 * @param string $suburb {@from path}
  	 * @param string $postcode {@from path}
 	 */
-
-	function getInvestorData($suburb, $postcode) {
+	function getFallbackInvestorData($suburb, $postcode) {
 		// validation
 		if (is_null($suburb) or is_null($postcode))
 			throw new RestException(400);
@@ -41,12 +46,41 @@ class profile {
 		// Finish session
 		curl_close($curl);
 
-		if( $resp === null || $resp == FALSE || $resp == '' )
+		if( $resp === null || $resp == FALSE || $resp == ' ' )
     	throw new RestException(204, 'Investor API returned no content');
 
 		//Format data and return
 		$curl_jason = json_decode($resp, true);
-		//echo json_encode($curl_jason, JSON_PRETTY_PRINT);
 		return  $curl_jason;
+	}
+	/**
+	 * Get investor data for RP Data Source
+	 *
+	 * @access protected
+	 *
+	 * @url GET /suburb/{suburb}/postcode/{postcode}
+	 *
+	 * @param string $suburb {@from path}
+	 * @param string $postcode {@from path}
+	 */
+	function getInvestorData($suburb, $postcode) {
+		// validation
+		if (is_null($suburb) or is_null($postcode))
+			throw new RestException(400);
+		if (!is_numeric($postcode) or strlen($postcode) != 4)
+			throw new RestException(400, 'not a valid postcode');
+
+		// Get Data from MySQL
+		$query = "SELECT tblSuburbProfile.tblSuburbProfile_ID, tblSuburbProfile.tblSuburbProfile_JSONData, tblSuburbs.tblSuburbs_Postcode, tblSuburbs.tblSuburbs_Name \n"
+    . "FROM `tblSuburbProfile`\n"
+    . "INNER JOIN tblSuburbs ON tblSuburbProfile.tblSuburbProfile_SuburbID=tblSuburbs.tblSuburbs_ID\n"
+    . "WHERE tblSuburbs.tblSuburbs_Postcode = :postcode AND tblSuburbs.tblSuburbs_Name LIKE :name"; //tblSuburbs_Name = :suburb_name AND
+		$arr_params = array(':postcode' => $postcode, ':name' => str_replace('%20', ' ', $suburb)); //
+		$response = $this->dp->select($query,$arr_params);
+		if($response == FALSE)
+			throw new RestException(204, 'Investor API returned no content. Check Postcode and Suburb Name');
+
+		$json = json_decode($response['tblSuburbProfile_JSONData'], true);
+		return $json;
 	}
 }
