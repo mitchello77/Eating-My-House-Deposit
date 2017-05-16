@@ -73,11 +73,11 @@ nav {
   top: 0;
   bottom: 0;
   padding: $nav-padding;
-  background: #000000;
+  // background: #000000;
   opacity: 0.8;
   transition: all 0.75s;
   z-index: 1000;
-  border-right: 0.2rem solid coral;
+  // border-right: 0.2rem solid coral;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -118,6 +118,7 @@ nav {
     transition: all 0.5s;
     cursor: pointer;
     background-color: inherit;
+    outline: none;
     &:hover {
       transition: all 0.5s;
       border: $button-size/2 solid;
