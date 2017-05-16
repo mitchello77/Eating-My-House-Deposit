@@ -45,7 +45,7 @@ class DB_PDO_MySQL
             } else {
               $sql->execute($arr_params); // array(':id' => '1', ..)
             }
-            $result = $sql->fetch();
+            $result = $sql->fetchAll();
             return $result;
         } catch (PDOException $e) {
             throw new RestException(501, 'MySQL: ' . $e->getMessage());
