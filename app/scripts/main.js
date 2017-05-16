@@ -61,12 +61,13 @@
       var sectionCount = $('.section').length; // Int of how many sections
       var i;
       for (i=0; i<sectionCount; i++) {
-        var newElement = $('<li data-menuanchor="Section-' + (i+1) + '"><button type="button" value="' + (i+1) + '"></button></li>')
+        var newElement = $('<li data-menuanchor="Section-' + (i+1) + '"><button type="button" value="' + (i+1) + '"></button><span>' + $('.section:nth-of-type(' + (i+1) + ')').attr('data-tooltip') + '</span></li>')
         $('nav ul').append(newElement);
-        arrAnchors.push("Section-" + (i+1)) //Add to string array
+        arrAnchors.push("Section-" + (i+1)); //Add to string array
+        arrToolTips.push($('.section:nth-of-type(' + (i+1) + ')').attr('data-tooltip'));
         var navBtnColor = $('.section:nth-of-type(' + (i+1) + ')').attr('data-navcolour'); // get data attribute value
         if (navBtnColor) {
-          newElement.css('border-color', navBtnColor) // add border color to the parent.
+          newElement.css('border-color', navBtnColor); // add border color to the parent.
         }
         else {
           console.log("var navBtnColor undefined");
@@ -87,7 +88,9 @@
         anchors: arrAnchors,
         navigationTooltips: arrToolTips,
         scrollBar: true,
-        slidesNavigation: true
+        slidesNavigation: true,
+        controlArrowes: false,
+
     });
   });
 })();
