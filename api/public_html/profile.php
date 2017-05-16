@@ -1,5 +1,11 @@
 <?php
+require_once 'MySQLHelper.php';
 class profile {
+	public $dp;
+	function __construct()
+	{
+		$this->dp = new DB_PDO_MySQL();
+	}
 	/**
 	 * Get investor data for RP Data Source
 	 *
@@ -40,12 +46,11 @@ class profile {
 		// Finish session
 		curl_close($curl);
 
-		if( $resp === null || $resp == FALSE || $resp == '' )
+		if( $resp === null || $resp == FALSE || $resp == ' ' )
     	throw new RestException(204, 'Investor API returned no content');
 
 		//Format data and return
 		$curl_jason = json_decode($resp, true);
-		//echo json_encode($curl_jason, JSON_PRETTY_PRINT);
 		return  $curl_jason;
 	}
 	/**
@@ -66,11 +71,16 @@ class profile {
 			throw new RestException(400, 'not a valid postcode');
 
 		// Get Data from MySQL
+		$query = "SELECT tblSuburbProfile.tblSuburbProfile_ID, tblSuburbProfile.tblSuburbProfile_JSONData, tblSuburbs.tblSuburbs_Postcode, tblSuburbs.tblSuburbs_Name \n"
+    . "FROM `tblSuburbProfile`\n"
+    . "INNER JOIN tblSuburbs ON tblSuburbProfile.tblSuburbProfile_SuburbID=tblSuburbs.tblSuburbs_ID\n"
+    . "WHERE tblSuburbs.tblSuburbs_Postcode = :postcode AND tblSuburbs.tblSuburbs_Name LIKE :name"; //tblSuburbs_Name = :suburb_name AND
+		$arr_params = array(':postcode' => $postcode, ':name' => str_replace('%20', ' ', $suburb)); //
+		$response = $this->dp->select($query,$arr_params);
+		if($response == FALSE)
+			throw new RestException(204, 'Investor API returned no content. Check Postcode and Suburb Name');
 
-		if( $resp === null || $resp == FALSE || $resp == '' )
-			throw new RestException(204, 'Investor API returned no content');
-
-
-		return  '';
+		$json = json_decode($response['tblSuburbProfile_JSONData'], true);
+		return $json;
 	}
 }
