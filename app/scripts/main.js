@@ -1,22 +1,3 @@
-/*!
- *
- *  Web Starter Kit
- *  Copyright 2015 Google Inc. All rights reserved.
- *
- *  Licensed under the Apache License, Version 2.0 (the "License");
- *  you may not use this file except in compliance with the License.
- *  You may obtain a copy of the License at
- *
- *    https://www.apache.org/licenses/LICENSE-2.0
- *
- *  Unless required by applicable law or agreed to in writing, software
- *  distributed under the License is distributed on an "AS IS" BASIS,
- *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *  See the License for the specific language governing permissions and
- *  limitations under the License
- *
- */
-/* eslint-env browser */
 (function() {
   'use strict';
 
@@ -71,10 +52,42 @@
       console.error('Error during service worker registration:', e);
     });
   }
+  $(document).ready(function() { // loading done
+    var arrAnchors = []; //Stores anchor strings for FullPage.js nav
+    var arrToolTips = []; //Stores tooltips for FullPage.js nav
 
-  // Your custom JavaScript goes here
-  $(document).ready(function() {
-    $('#fullpage').fullpage();
+    //Nav Generator
+    function GenerateNav() {
+      var sectionCount = $('.section').length; // Int of how many sections
+      var i;
+      for (i=0; i<sectionCount; i++) {
+        var newElement = $('<li data-menuanchor="Section-' + (i+1) + '"><button type="button" value="' + (i+1) + '"></button></li>')
+        $('nav ul').append(newElement);
+        arrAnchors.push("Section-" + (i+1)) //Add to string array
+        var navBtnColor = $('.section:nth-of-type(' + (i+1) + ')').attr('data-navcolour'); // get data attribute value
+        if (navBtnColor) {
+          newElement.css('border-color', navBtnColor) // add border color to the parent.
+        }
+        else {
+          console.log("var navBtnColor undefined");
+        }
+      };
+      $('nav li:first-of-type').addClass('active');
+    }
+    GenerateNav();
+    // Nav button Event
+    $('nav button').click(function(){
+      $.fn.fullpage.moveTo($(this).val());
+    });
+
+      // Fullpage JS
+    $('#fullpage').fullpage({
+        lockAnchors: true,
+        menu: '#main-nav',
+        anchors: arrAnchors,
+        navigationTooltips: arrToolTips,
+        scrollBar: true,
+        slidesNavigation: true
+    });
   });
-
 })();

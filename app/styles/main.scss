@@ -58,6 +58,78 @@ input[type="text"] {
   font-family: 'Hind Guntur', sans-serif;
 }
 
+/* Nav */
+//vars
+$button-size: 2rem;
+$nav-padding: 0.5rem;
+$nav-left-indent-percentage: 0.65; // % of how much of nav to show. 0 = nothing - 1 = show full width
+
+body {
+  margin-left: $button-size+$nav-padding !important; //sorry about the important lol
+}
+nav {
+  position: fixed;
+  left: -(($button-size+$nav-padding+0.6rem) - (($button-size+$nav-padding+0.6rem)*$nav-left-indent-percentage));
+  top: 0;
+  bottom: 0;
+  padding: $nav-padding;
+  background: #000000;
+  opacity: 0.8;
+  transition: all 0.75s;
+  z-index: 1000;
+  border-right: 0.2rem solid coral;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &:hover {
+    opacity: 1;
+    transition: all 0.25s;
+    left: 0;
+  }
+  ul {
+    list-style: none;
+    display: block;
+    margin: 0;
+    padding: 0;
+    background-color: inherit;
+    li {
+      cursor: pointer;
+      width: 100%;
+      display: block;
+      background-color: inherit;
+    }
+    li.active button {
+      transition: all 0.5s;
+      border: $button-size/2 solid;
+      border-color: inherit;
+    }
+  }
+  button {
+    height: $button-size;
+    width: $button-size;
+    margin: 4rem auto;
+    padding: 0;
+    border-radius: $button-size;
+    border: none;
+    border: 0.2rem solid;
+    border-color: inherit;
+    display: block;
+    transition: all 0.5s;
+    cursor: pointer;
+    background-color: inherit;
+    &:hover {
+      transition: all 0.5s;
+      border: $button-size/2 solid;
+      border-color: inherit;
+      cursor: pointer;
+    }
+  }
+}
+
+/* sections */
+
+
 /* question styles */
 
 .question-container {
