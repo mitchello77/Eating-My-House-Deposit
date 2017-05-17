@@ -20,7 +20,8 @@ $result = $conn->query($sql);
 if ($result->num_rows > 0) {
     // output data of each row
     while($row = $result->fetch_assoc()) {
-        curl_setopt($curl, CURLOPT_URL,"http://api.ripbrisbane.tk/profile/suburb/".$row["tblSuburbs_Name"]."/postcode/".$row['tblSuburbs_Postcode']."?key=Ca!vin");
+        $url_suburb = str_replace ( ' ', '%20', strtoupper($row["tblSuburbs_Name"]));
+        curl_setopt($curl, CURLOPT_URL,"http://api.ripbrisbane.tk/profile/suburb/".$url_suburb."/postcode/".$row['tblSuburbs_Postcode']."?key=Ca!vin");
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         $resp = curl_exec($curl);
 
@@ -41,8 +42,9 @@ if ($result->num_rows > 0) {
         {
           die('Could not update data: ' . mysqli_error($conn));
         }
+        echo "http://api.ripbrisbane.tk/profile/suburb/".$url_suburb."/postcode/".$row['tblSuburbs_Postcode']."?key=Ca!vin<br/>";
         echo $row["tblSuburbs_Name"]. " " . $row["tblSuburbs_Postcode"]." - $sum<br>";
-        sleep(1);
+        //sleep(1);
     }
 } else {
     echo "0 results";
