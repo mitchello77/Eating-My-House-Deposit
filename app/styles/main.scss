@@ -26,6 +26,9 @@ h2 {
 
 input {
   outline: none;
+  font-family: 'Hind Guntur', sans-serif;
+  font-weight: 400;
+  color: #494B4E
 }
 
 input[type="text"] {
@@ -63,6 +66,7 @@ input[type="text"] {
 $button-size: 2rem;
 $nav-padding: 0.5rem;
 $nav-left-indent-percentage: 0.65; // % of how much of nav to show. 0 = nothing - 1 = show full width
+$tooltip-font-size: 1rem;
 
 body {
   margin-left: $button-size+$nav-padding !important; //sorry about the important lol
@@ -98,6 +102,19 @@ nav {
       width: 100%;
       display: block;
       background-color: inherit;
+      position: relative;
+      span {
+        position: absolute;
+        top: (($button-size - $tooltip-font-size)/2)+0.2rem;
+        left: $button-size+$nav-padding+0.2rem;
+        font-size: $tooltip-font-size;
+        line-height: $tooltip-font-size;
+        display: none;
+        transition: all 0.5s;
+      }
+      &:hover span {
+        display: inline-block;
+      }
     }
     li.active button {
       transition: all 0.5s;
