@@ -2,8 +2,9 @@ var width = 1500,
     height = 700,
     active = d3.select(null);
 
-var projection = d3.geo.albersUsa()
-    .scale(1500)
+var projection = d3.geo.mercator()
+    .center([153.02, -27.45])
+    .scale(25000)
     .translate([width / 2, height / 2]);
 
 var path = d3.geo.path()
@@ -22,18 +23,19 @@ svg.append("rect")
 var g = svg.append("g")
     .style("stroke-width", "1.5px");
 
-d3.json("../us.json", function(error, us) {
+d3.json("brisbane.json", function(error, map) {
   if (error) throw error;
 
   g.selectAll("path")
-      .data(topojson.feature(us, us.objects.states).features)
+      .data(topojson.feature(map, map.objects["Qld-brisbane"]).features)
     .enter().append("path")
+      .attr("id", function(d) { return d.id; })
       .attr("d", path)
       .attr("class", "feature")
       .on("click", clicked);
 
   g.append("path")
-      .datum(topojson.mesh(us, us.objects.states, function(a, b) { return a !== b; }))
+      .datum(topojson.mesh(map, map.objects["Qld-brisbane"], function(a, b) { return a !== b; }))
       .attr("class", "mesh")
       .attr("d", path);
 });
