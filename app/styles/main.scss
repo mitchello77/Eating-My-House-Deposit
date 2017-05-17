@@ -20,6 +20,7 @@ html, body {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+
 }
 
 h2 {
@@ -113,11 +114,12 @@ nav {
         left: $button-size+$nav-padding+0.2rem;
         font-size: $tooltip-font-size;
         line-height: $tooltip-font-size;
-        display: none;
-        transition: all 0.5s;
+        opacity: 0;
+
       }
       &:hover span {
-        display: inline-block;
+        transition: all 0.5s;
+        opacity: 1;
       }
     }
     li.active button {
@@ -151,6 +153,17 @@ nav {
 
 /* sections */
 
+// home section
+
+.home {
+  width: 40rem;
+  text-align: center;
+  height: 70%;
+  display: flex;
+  flex-direction: column;
+  font-size: 1.5rem;
+  line-height: 2rem;
+}
 
 /* question styles */
 
