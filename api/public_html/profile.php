@@ -50,7 +50,7 @@ class profile {
     	throw new RestException(204, 'Investor API returned no content');
 
 		//Format data and return
-		$curl_jason = json_decode($resp[0], true);
+		$curl_jason = json_decode($resp, true);
 		return  $curl_jason;
 	}
 	/**
@@ -79,8 +79,8 @@ class profile {
 		$response = $this->dp->select($query,$arr_params);
 		if($response == FALSE)
 			throw new RestException(204, 'Investor API returned no content. Check Postcode and Suburb Name');
-
-		$json = json_decode($response['tblSuburbProfile_JSONData'], true);
+			
+		$json = json_decode($response[0]['tblSuburbProfile_JSONData'], true);
 		return $json;
 	}
 }
