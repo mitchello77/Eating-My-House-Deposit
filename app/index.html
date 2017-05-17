@@ -149,7 +149,12 @@
 
         </div>
         <div class="section" id="map" data-tooltip="Map" data-navcolour="#78A4C0">
-
+          <div class="overlay">
+            <div class="information hidden">
+              <span class="close">X</span>
+              <h2>Suburb!</h2>
+            </div>
+          </div>
         </div>
 
       </div>
@@ -159,11 +164,9 @@
     <!-- full page js -->
     <script type="text/javascript" src="../scripts/jquery.fullPage.min.js"></script>
     <script type="text/javascript" src="//d3js.org/d3.v3.min.js"></script>
-    <script type="text/javascript" src="//d3js.org/topojson.v1.min.js"></script>
+    <script type="text/javascript" src="//d3js.org/topojson.v3.min.js"></script>
     <!-- build:js scripts/main.min.js -->
     <script src="scripts/main.js"></script>
-    <!-- endbuild -->
-    <!-- build:js scripts/map.min.js -->
     <script src="scripts/map.js"></script>
     <!-- endbuild -->
 

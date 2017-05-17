@@ -92,5 +92,9 @@
         controlArrows: false,
 
     });
+    $('#map .overlay .information .close').click(function(){
+      reset();
+    });
+
   });
 })();
