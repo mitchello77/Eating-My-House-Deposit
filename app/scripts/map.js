@@ -1,10 +1,10 @@
-var width = 1500,
-    height = 700,
+var width = 1800,
+    height = 900,
     active = d3.select(null);
 
 var projection = d3.geo.mercator()
     .center([153.02, -27.45])
-    .scale(100000)
+    .scale(150000)
     .translate([width / 2, height / 2]);
 
 var path = d3.geo.path()
@@ -23,7 +23,7 @@ svg.append("rect")
 var g = svg.append("g")
     .style("stroke-width", "1.5px");
 
-d3.json("../maps/brisbane.json", function(error, map) {
+d3.json("../maps/brisbane_simp.json", function(error, map) {
   if (error) throw error;
 
   g.selectAll("path")
