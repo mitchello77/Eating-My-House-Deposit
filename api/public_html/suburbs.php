@@ -20,7 +20,22 @@ class suburbs {
 		$response = $this->dp->select($query,$arr_params);
 		if($response == FALSE)
 			throw new RestException(204, 'No Suburbs');
+		$result = array();
+		foreach ($response as $row) {
+			$topush = array(
+				"Suburb" => $row['tblSuburbs_Name'],
+				"Details" => array(
+					"Postcode" => $row['tblSuburbs_Postcode'],
+					"Distace" => $row['tblSuburbs_DistanceFromCBD'],
+					"Price" => $row['tblSuburbs_MedianPrice'],
+					"Latitude" => $row['tblSuburbs_Latitude'],
+					"Longitude" => $row['tblSuburbs_Longitude']
+				)
+			);
+			array_push($result, $topush);
+		};
 
-		return $response;
+
+		return json_decode(json_encode($result), FALSE);
 	}
 }
