@@ -11,6 +11,10 @@ html, body {
 
 /*some global styles*/
 
+.hidden {
+  display: none !important;
+}
+
 .container {
   display: flex;
   justify-content: center;
@@ -215,31 +219,69 @@ nav {
 }
 
 #map {
+  position: relative;
+  .overlay {
+    z-index: 100;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    .information {
+      pointer-events: auto;
+      background-color: rgba(255,255,255,0.8);
+      border: 0.2rem solid #333;
+      border-radius: 2rem;
+      min-width: 300px;
+      min-height: 300px;
+      height: 80%;
+      width: 60%;
+      position: relative;
+      padding: 2rem;
+      h2 {
+        text-align: center;
+      }
+      .close {
+        position: absolute;
+        top: 0;
+        right: 0;
+        margin: 1rem;
+        font-size: 4rem;
+        cursor: pointer;
+      }
+    }
+  }
+
   svg {
     width: 100% !important;
     height: 100% !important;
+    .background {
+      fill: none;
+      pointer-events: all;
+    }
+
+    .suburb {
+      fill: #ccc;
+      cursor: pointer;
+    }
+
+    .suburb.active {
+      fill: orange;
+    }
+
+    .mesh {
+      fill: none;
+      stroke: #fff;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
   }
-}
-
-.background {
-  fill: none;
-  pointer-events: all;
-}
-
-.suburb {
-  fill: #ccc;
-  cursor: pointer;
-}
-
-.suburb.active {
-  fill: orange;
-}
-
-.mesh {
-  fill: none;
-  stroke: #fff;
-  stroke-linecap: round;
-  stroke-linejoin: round;
 }
 
 // slider navigation styles

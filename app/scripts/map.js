@@ -42,8 +42,6 @@ d3.json("../maps/brisbane_simp.json", function(error, map) {
 
 function clicked(d) {
   if (active.node() === this) return reset();
-  active.classed("active", false);
-  active = d3.select(this).classed("active", true);
 
   var bounds = path.bounds(d),
       dx = bounds[1][0] - bounds[0][0],
@@ -57,11 +55,16 @@ function clicked(d) {
       .duration(750)
       .style("stroke-width", 1.5 / scale + "px")
       .attr("transform", "translate(" + translate + ")scale(" + scale + ")");
+
+  active.classed("active", false);
+  active = d3.select(this).classed("active", true);
+  $('#map .overlay .information').removeClass('hidden');
 }
 
 function reset() {
   active.classed("active", false);
   active = d3.select(null);
+  $('#map .overlay .information').addClass('hidden');
 
   g.transition()
       .duration(750)
