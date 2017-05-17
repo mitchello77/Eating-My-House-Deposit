@@ -4,7 +4,7 @@ var width = 1500,
 
 var projection = d3.geo.mercator()
     .center([153.02, -27.45])
-    .scale(25000)
+    .scale(100000)
     .translate([width / 2, height / 2]);
 
 var path = d3.geo.path()
@@ -23,15 +23,15 @@ svg.append("rect")
 var g = svg.append("g")
     .style("stroke-width", "1.5px");
 
-d3.json("brisbane.json", function(error, map) {
+d3.json("../maps/brisbane.json", function(error, map) {
   if (error) throw error;
 
   g.selectAll("path")
       .data(topojson.feature(map, map.objects["Qld-brisbane"]).features)
     .enter().append("path")
-      .attr("id", function(d) { return d.id; })
+      .attr("id", function(d) { return d.properties.name; })
       .attr("d", path)
-      .attr("class", "feature")
+      .attr("class", "suburb")
       .on("click", clicked);
 
   g.append("path")
