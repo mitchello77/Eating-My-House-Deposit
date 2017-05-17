@@ -26,33 +26,27 @@
 
     <!-- Tile icon for Win8 (144x144 + tile color) -->
     <meta name="msapplication-TileImage" content="images/touch/ms-touch-icon-144x144-precomposed.png">
-    <meta name="msapplication-TileColor" content="#2F3BA2">
+    <meta name="msapplication-TileColor" content="#78A4C0">
 
     <!-- Color the status bar on mobile devices -->
-    <meta name="theme-color" content="#2F3BA2">
+    <meta name="theme-color" content="#78A4C0">
 
     <!-- google fonts imports -->
     <link href="https://fonts.googleapis.com/css?family=Hind+Guntur:400,600" rel="stylesheet">
 
     <!-- full page stylesheet -->
-    <link rel="stylesheet" type="text/css" href="../styles/jquery.fullPage.css" />
-    <!-- css stylesheet -->
-    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" type="text/css" href="styles/jquery.fullPage.css" />
+    <link rel="stylesheet" type="text/css" href="styles/normalize.css">
+    <link rel="stylesheet" type="text/css" href="styles/main.css">
 
-    <!-- SEO: If your mobile URL is different from the desktop URL, add a canonical link to the desktop page https://developers.google.com/webmasters/smartphone-sites/feature-phones -->
-    <!--
-    <link rel="canonical" href="http://www.example.com/">
-    -->
-    <link rel="stylesheet" href="/styles/normalize.css">
-    <link rel="stylesheet" href="/styles/main.css">
   </head>
   <body>
     <!-- Automatically Generated --><nav><ul id="main-nav"></ul></nav>
       <div id="fullpage">
-        <div class="section" id="landing" data-navcolour="#78A4C0">
+        <div class="section" id="landing" data-tooltip="Home" data-navcolour="#78A4C0">
 
         </div>
-        <div class="section" id="questions" data-navcolour="#78A4C0">
+        <div class="section" id="questions" data-tooltip="Questionair" data-navcolour="#78A4C0">
 
             <div class="slide">
               <div class="container">
@@ -61,7 +55,7 @@
                     <h2>Where do you want to live?</h2>
                   </div>
                   <div class="input-container">
-                    <input type="text" placeholder="e.g. Auchenflower"/>
+                    <input type="text" placeholder="e.g. Auchenflower" />
                   </div>
                 </div>
               </div>
@@ -74,7 +68,7 @@
                     <h2>What industry do you work in, or want to work in?</h2>
                   </div>
                   <div class="input-container">
-                    <input type="text" placeholder="e.g. Auchenflower"/>
+                    <input type="text" placeholder="e.g. Auchenflower" />
                     <div class="test-button">Test</div>
                   </div>
                 </div>
@@ -154,7 +148,7 @@
             </div>
 
         </div>
-        <div class="section" id="map" data-navcolour="#78A4C0">
+        <div class="section" id="map" data-tooltip="Map" data-navcolour="#78A4C0">
 
         </div>
 
