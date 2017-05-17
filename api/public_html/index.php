@@ -10,7 +10,7 @@ Defaults::$throttle = 20; //time in milliseconds for bandwidth throttling
 
 
 //setup restler
-$r = new Restler(); //pass true bool when production ready
+$r = new Restler(true); //pass true bool when production ready
 $r->setSupportedFormats('JsonFormat');
 $r->addAPIClass('root', '');
 $r->addAPIClass('profile');

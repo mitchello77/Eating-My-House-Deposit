@@ -50,7 +50,7 @@ class profile {
     	throw new RestException(204, 'Investor API returned no content');
 
 		//Format data and return
-		$curl_jason = json_decode($resp, true);
+		$curl_jason = json_decode($resp[0], true);
 		return  $curl_jason;
 	}
 	/**

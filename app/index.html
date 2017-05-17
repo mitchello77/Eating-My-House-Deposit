@@ -26,23 +26,169 @@
 
     <!-- Tile icon for Win8 (144x144 + tile color) -->
     <meta name="msapplication-TileImage" content="images/touch/ms-touch-icon-144x144-precomposed.png">
-    <meta name="msapplication-TileColor" content="#2F3BA2">
+    <meta name="msapplication-TileColor" content="#78A4C0">
 
     <!-- Color the status bar on mobile devices -->
-    <meta name="theme-color" content="#2F3BA2">
+    <meta name="theme-color" content="#78A4C0">
 
-    <!-- SEO: If your mobile URL is different from the desktop URL, add a canonical link to the desktop page https://developers.google.com/webmasters/smartphone-sites/feature-phones -->
-    <!--
-    <link rel="canonical" href="http://www.example.com/">
-    -->
-    <link rel="stylesheet" href="/styles/normalize.css">
-    <link rel="stylesheet" href="/styles/main.css">
+    <!-- google fonts imports -->
+    <link href="https://fonts.googleapis.com/css?family=Hind+Guntur:400,600" rel="stylesheet">
+
+    <!-- full page stylesheet -->
+    <link rel="stylesheet" type="text/css" href="styles/jquery.fullPage.css" />
+    <link rel="stylesheet" type="text/css" href="styles/normalize.css">
+    <link rel="stylesheet" type="text/css" href="styles/main.css">
+
   </head>
   <body>
-    hi!
+    <!-- Automatically Generated --><nav><ul id="main-nav"></ul></nav>
+      <div id="fullpage">
+        <div class="section" id="landing" data-tooltip="Home" data-navcolour="#78A4C0">
 
+          <div class="container">
+            <div class="home">
+              <div class="home-image">
+
+              </div>
+              <div class="paragraph">
+                <p>
+                  Young people and prospective first home owners have consistently been told to curb
+                  their spending on <span><a href="http://bit.ly/2qkCHUx" target="_blank">$4 coffees</a></span>, <span><a href="http://bit.ly/2dsybyj" target="_blank">smashed avo on toast at hispter cafes</a></span> and other "luxuries"
+                  if they want to be able to afford a house in the current market. But if we took that advice would it make any difference?
+                </p>
+              </div>
+              <div class="begin-button">
+                Let's find out
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" id="questions" data-tooltip="Questionair" data-navcolour="#78A4C0">
+
+            <div class="slide">
+              <div class="container">
+                <div class="question-container">
+                  <div class="question">
+                    <h2>Where do you want to live?</h2>
+                  </div>
+                  <div class="input-container">
+                    <input type="text" placeholder="e.g. Auchenflower" />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="slide">
+              <div class="container">
+                <div class="question-container">
+                  <div class="question">
+                    <h2>What industry do you work in, or want to work in?</h2>
+                  </div>
+                  <div class="input-container">
+                    <input type="text" placeholder="e.g. Auchenflower" />
+                    <div class="test-button">Test</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="slide">
+              <div class="container">
+                <div class="question-container">
+                  <div class="question">
+                    <h2>Do you use a music streaming service?</h2>
+                  </div>
+                  <div class="button-container">
+                    <div class="decision-button">
+                      <p>Yes</p>
+                      <div class="radio-circle"></div>
+                    </div>
+                    <div class="decision-button">
+                      <p>No</p>
+                      <div class="radio-circle"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="slide">
+              <div class="container">
+                <div class="question-container">
+                  <div class="question">
+                    <h2>Do you use a movie/TV show streaming service?</h2>
+                  </div>
+                  <div class="input-container">
+                    <input type="text" placeholder="e.g. Auchenflower"/>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="slide">
+              <div class="container">
+                <div class="question-container">
+                  <div class="question">
+                    <h2>Do you have a gym membership?</h2>
+                  </div>
+                  <div class="input-container">
+                    <input type="text" placeholder="e.g. Auchenflower"/>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="slide">
+              <div class="container">
+                <div class="question-container">
+                  <div class="question">
+                    <h2>Do you drink coffee?</h2>
+                  </div>
+                  <div class="input-container">
+                    <input type="text" placeholder="e.g. Auchenflower"/>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="slide">
+              <div class="container">
+                <div class="question-container">
+                  <div class="question">
+                    <h2>Do you like smashed avo on toast?</h2>
+                  </div>
+                  <div class="input-container">
+                    <input type="text" placeholder="e.g. Auchenflower"/>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+        </div>
+        <div class="section" id="results" data-tooltip="Results" data-navcolour="#78A4C0">
+
+        </div>
+        <div class="section" id="map" data-tooltip="Map" data-navcolour="#78A4C0">
+          <div class="overlay">
+            <div class="information hidden">
+              <span class="close">X</span>
+              <h2>Suburb!</h2>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    <!-- jquery bois -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- full page js -->
+    <script type="text/javascript" src="../scripts/jquery.fullPage.min.js"></script>
+    <script type="text/javascript" src="//d3js.org/d3.v3.min.js"></script>
+    <script type="text/javascript" src="//d3js.org/topojson.v3.min.js"></script>
     <!-- build:js scripts/main.min.js -->
     <script src="scripts/main.js"></script>
+    <script src="scripts/map.js"></script>
     <!-- endbuild -->
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->

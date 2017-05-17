@@ -1,3 +1,306 @@
+
+
+html, body {
+  font-family: 'Hind Guntur', sans-serif;
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+  background: #FFFEF8;
+  color: #494B4E;
+}
+
+/*some global styles*/
+
+.hidden {
+  display: none !important;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+}
+
+h2 {
+  font-size: 2rem;
+  letter-spacing: 1px;
+  line-height: 1.25
+}
+
+input {
+  outline: none;
+  font-family: 'Hind Guntur', sans-serif;
+  font-weight: 400;
+  color: #494B4E
+}
+
+input[type="text"] {
+  font-size: 2rem;
+  height: 5rem;
+  background: none;
+  height: 100%;
+  border: 2px solid #FFFEF8;
+
+  &:focus {
+      border-bottom: 2px solid #8C9958;
+  }
+}
+
+
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: #BFBEBA;
+  font-family: 'Hind Guntur', sans-serif;
+}
+::-moz-placeholder { /* Firefox 19+ */
+  color: #BFBEBA;
+  font-family: 'Hind Guntur', sans-serif;
+}
+:-ms-input-placeholder { /* IE 10+ */
+  color: #BFBEBA;
+  font-family: 'Hind Guntur', sans-serif;
+}
+:-moz-placeholder { /* Firefox 18- */
+  color: #BFBEBA;
+  font-family: 'Hind Guntur', sans-serif;
+}
+
+/* Nav */
+//vars
+$button-size: 2rem;
+$nav-padding: 0.5rem;
+$nav-left-indent-percentage: 0.65; // % of how much of nav to show. 0 = nothing - 1 = show full width
+$tooltip-font-size: 1rem;
+
 body {
-  background-color: coral !important;
+  margin-left: $button-size+$nav-padding !important; //sorry about the important lol
+}
+nav {
+  position: fixed;
+  left: -(($button-size+$nav-padding+0.6rem) - (($button-size+$nav-padding+0.6rem)*$nav-left-indent-percentage));
+  top: 0;
+  bottom: 0;
+  padding: $nav-padding;
+  // background: #000000;
+  opacity: 0.8;
+  transition: all 0.75s;
+  z-index: 1000;
+  // border-right: 0.2rem solid coral;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &:hover {
+    opacity: 1;
+    transition: all 0.25s;
+    left: 0;
+  }
+  ul {
+    list-style: none;
+    display: block;
+    margin: 0;
+    padding: 0;
+    background-color: inherit;
+    li {
+      cursor: pointer;
+      width: 100%;
+      display: block;
+      background-color: inherit;
+      position: relative;
+      span {
+        position: absolute;
+        top: (($button-size - $tooltip-font-size)/2)+0.2rem;
+        left: $button-size+$nav-padding+0.2rem;
+        font-size: $tooltip-font-size;
+        line-height: $tooltip-font-size;
+        opacity: 0;
+
+      }
+      &:hover span {
+        transition: all 0.5s;
+        opacity: 1;
+      }
+    }
+    li.active button {
+      transition: all 0.5s;
+      border: $button-size/2 solid;
+      border-color: inherit;
+    }
+  }
+  button {
+    height: $button-size;
+    width: $button-size;
+    margin: 4rem auto;
+    padding: 0;
+    border-radius: $button-size;
+    border: none;
+    border: 0.2rem solid;
+    border-color: inherit;
+    display: block;
+    transition: all 0.5s;
+    cursor: pointer;
+    background-color: inherit;
+    outline: none;
+    &:hover {
+      transition: all 0.5s;
+      border: $button-size/2 solid;
+      border-color: inherit;
+      cursor: pointer;
+    }
+  }
+}
+
+/* sections */
+
+// home section
+
+.home {
+  width: 40rem;
+  text-align: center;
+  height: 70%;
+  display: flex;
+  flex-direction: column;
+  font-size: 1.5rem;
+  line-height: 2rem;
+}
+
+/* question styles */
+
+.question-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  width: 40rem;
+  position: relative;
+}
+
+.question {
+  text-align: left;
+  width: 100%;
+}
+
+.input-container {
+  width: 100%;
+  box-sizing: border-box;
+  height: 4rem;
+
+  input {
+    width: 100%;
+    box-sizing: border-box;
+  }
+}
+
+
+.button-container {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
+
+/*button styles*/
+
+.decision-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40%;
+  box-sizing: border-box;
+  border: 2px solid #78A4C0;
+  color: #78A4C0;
+  border-radius: 4px;
+
+  &:hover {
+    cursor: pointer;
+    box-shadow: 1px 1px 2px #78A4C0;
+  }
+
+  &.selected {
+    background-color: #78A4C0;
+    color: #fff;
+
+    &:hover {
+      box-shadow: none;
+    }
+  }
+
+  p {
+    font-size: 1.5rem;
+    font-weight: 600;
+  }
+}
+
+#map {
+  position: relative;
+  .overlay {
+    z-index: 100;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    .information {
+      pointer-events: auto;
+      background-color: rgba(255,255,255,0.8);
+      border: 0.2rem solid #333;
+      border-radius: 2rem;
+      min-width: 300px;
+      min-height: 300px;
+      height: 80%;
+      width: 60%;
+      position: relative;
+      padding: 2rem;
+      h2 {
+        text-align: center;
+      }
+      .close {
+        position: absolute;
+        top: 0;
+        right: 0;
+        margin: 1rem;
+        font-size: 4rem;
+        cursor: pointer;
+      }
+    }
+  }
+
+  svg {
+    width: 100% !important;
+    height: 100% !important;
+    .background {
+      fill: none;
+      pointer-events: all;
+    }
+
+    .suburb {
+      fill: #ccc;
+      cursor: pointer;
+    }
+
+    .suburb.active {
+      fill: orange;
+    }
+
+    .mesh {
+      fill: none;
+      stroke: #fff;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+  }
+}
+
+// slider navigation styles
+
+.fp-slidesNav {
+  ul li a span {
+    background-color: #BFBEBA;
+  }
 }
