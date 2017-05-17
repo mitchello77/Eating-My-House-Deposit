@@ -89,7 +89,7 @@
         navigationTooltips: arrToolTips,
         scrollBar: true,
         slidesNavigation: true,
-        controlArrowes: false,
+        controlArrows: false,
 
     });
   });
