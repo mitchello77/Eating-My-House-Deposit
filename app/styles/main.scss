@@ -1,4 +1,7 @@
+//variables
 
+$selected-blue: #78A4C0;
+$action-green: #8C9958;
 
 html, body {
   font-family: 'Hind Guntur', sans-serif;
@@ -44,7 +47,7 @@ input[type="text"] {
   border: 2px solid #FFFEF8;
 
   &:focus {
-      border-bottom: 2px solid #8C9958;
+      border-bottom: 2px solid $action-green;
   }
 }
 
@@ -153,6 +156,20 @@ nav {
 
 /* sections */
 
+.begin-button {
+  width: 10rem;
+  height: 3rem;
+  border: 2px solid $action-green;
+  border-radius: 4px;
+  color: $action-green;
+
+  &:hover {
+    transition: background .2;
+    background: $action-green;
+    color: #fff;
+  }
+}
+
 // home section
 
 .home {
@@ -207,17 +224,17 @@ nav {
   align-items: center;
   width: 40%;
   box-sizing: border-box;
-  border: 2px solid #78A4C0;
-  color: #78A4C0;
+  border: 2px solid $selected-blue;
+  color: $selected-blue;
   border-radius: 4px;
 
   &:hover {
     cursor: pointer;
-    box-shadow: 1px 1px 2px #78A4C0;
+    box-shadow: 1px 1px 2px $selected-blue;
   }
 
   &.selected {
-    background-color: #78A4C0;
+    background-color: $selected-blue;
     color: #fff;
 
     &:hover {
@@ -282,6 +299,7 @@ nav {
     .suburb {
       fill: #ccc;
       cursor: pointer;
+      border: 5px solid red;
     }
 
     .suburb.active {
