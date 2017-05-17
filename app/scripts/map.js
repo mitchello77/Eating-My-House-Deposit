@@ -8,12 +8,12 @@ var g;
 
 build_map = function() {
 // set vars
-width = 1800;
-height = 900;
+width = $("#map .fp-tableCell").width();
+height = $("#map .fp-tableCell").height();;
 active = d3.select(null);
 projection = d3.geo.mercator()
-    .center([153.02, -27.45])
-    .scale(150000)
+    .center([153.03, -27.46])
+    .scale(350000)
     .translate([width / 2, height / 2]);
 path = d3.geo.path().projection(projection);
 svg = d3.select("#map .fp-tableCell").append("svg").attr("width", width).attr("height", height); // make svg tag
