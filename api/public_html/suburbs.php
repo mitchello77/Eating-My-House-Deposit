@@ -24,13 +24,11 @@ class suburbs {
 		foreach ($response as $row) {
 			$topush = array(
 				"Suburb" => $row['tblSuburbs_Name'],
-				"Details" => array(
-					"Postcode" => $row['tblSuburbs_Postcode'],
-					"Distace" => $row['tblSuburbs_DistanceFromCBD'],
-					"Price" => $row['tblSuburbs_MedianPrice'],
-					"Latitude" => $row['tblSuburbs_Latitude'],
-					"Longitude" => $row['tblSuburbs_Longitude']
-				)
+				"Postcode" => $row['tblSuburbs_Postcode'],
+				"Distace" => $row['tblSuburbs_DistanceFromCBD'],
+				"Price" => $row['tblSuburbs_MedianPrice'],
+				"Latitude" => $row['tblSuburbs_Latitude'],
+				"Longitude" => $row['tblSuburbs_Longitude']
 			);
 			array_push($result, $topush);
 		};

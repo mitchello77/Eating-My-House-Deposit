@@ -302,8 +302,14 @@ $map_suburb-hover-colour: coral;
         fill: $map_suburb-hover-colour;
       }
     }
-    .suburb.active {
+    .suburb.selected {
       fill: orange;
+    }
+    .suburb.active {
+      fill: skyblue;
+      &:hover {
+        fill: $map_suburb-hover-colour;
+      }
     }
     .mesh {
       fill: none;
