@@ -52,6 +52,12 @@
       console.error('Error during service worker registration:', e);
     });
   }
+  $(window).resize(function() {
+       if(this.resizeTO) clearTimeout(this.resizeTO);
+       this.resizeTO = setTimeout(function() {
+           $(this).trigger('resizeEnd');
+       }, 500);
+   });
   $(document).ready(function() { // loading done
     var arrAnchors = []; //Stores anchor strings for FullPage.js nav
     var arrToolTips = []; //Stores tooltips for FullPage.js nav
@@ -68,7 +74,7 @@
 
     });
 
-    build_map(); // init Map
+    build_map(false); // init Map
 
   });
 })();
