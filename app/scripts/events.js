@@ -9,4 +9,7 @@ $(function() { // We are ready!
   $('nav button').click(function(){
     $.fn.fullpage.moveTo($(this).val());
   });
+  $(window).bind('resizeEnd', function() {
+    build_map(true);
+});
 });

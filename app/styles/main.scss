@@ -237,8 +237,19 @@ $map_background-colour: #fff;
 $map_suburb-fill: #ccc;
 $map_suburb-stroke-colour: #fff;
 $map_suburb-stroke-thickness: 2px;
+$map_suburb-hover-colour: coral;
 #map {
   position: relative;
+  .tooltip {
+    position: absolute;
+    background-color: white;
+    border: 1px solid black;
+    color: black;
+    font-weight: bold;
+    padding: 4px 8px;
+    display: none;
+    z-index: 1000;
+  }
   .overlay {
     z-index: 100;
     position: absolute;
@@ -287,6 +298,9 @@ $map_suburb-stroke-thickness: 2px;
     .suburb {
       fill: $map_suburb-fill;
       cursor: pointer;
+      &:hover {
+        fill: $map_suburb-hover-colour;
+      }
     }
     .suburb.active {
       fill: orange;
