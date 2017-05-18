@@ -68,20 +68,20 @@ input[type="text"] {
 
 /* Nav */
 //vars
-$button-size: 2rem;
-$nav-padding: 0.5rem;
-$nav-left-indent-percentage: 0.65; // % of how much of nav to show. 0 = nothing - 1 = show full width
-$tooltip-font-size: 1rem;
+$nav_button-size: 2rem;
+$nav_padding: 0.5rem;
+$nav_left-indent-percentage: 0.65; // % of how much of nav to show. 0 = nothing - 1 = show full width
+$nav_tooltip-font-size: 1rem;
 
 body {
-  margin-left: $button-size+$nav-padding !important; //sorry about the important lol
+  margin-left: $nav_button-size+$nav_padding !important; //sorry about the important lol
 }
 nav {
   position: fixed;
-  left: -(($button-size+$nav-padding+0.6rem) - (($button-size+$nav-padding+0.6rem)*$nav-left-indent-percentage));
+  left: -(($nav_button-size+$nav_padding+0.6rem) - (($nav_button-size+$nav_padding+0.6rem)*$nav_left-indent-percentage));
   top: 0;
   bottom: 0;
-  padding: $nav-padding;
+  padding: $nav_padding;
   // background: #000000;
   opacity: 0.8;
   transition: all 0.75s;
@@ -110,10 +110,10 @@ nav {
       position: relative;
       span {
         position: absolute;
-        top: (($button-size - $tooltip-font-size)/2)+0.2rem;
-        left: $button-size+$nav-padding+0.2rem;
-        font-size: $tooltip-font-size;
-        line-height: $tooltip-font-size;
+        top: (($nav_button-size - $nav_tooltip-font-size)/2)+0.2rem;
+        left: $nav_button-size+$nav_padding+0.2rem;
+        font-size: $nav_tooltip-font-size;
+        line-height: $nav_tooltip-font-size;
         opacity: 0;
 
       }
@@ -124,16 +124,16 @@ nav {
     }
     li.active button {
       transition: all 0.5s;
-      border: $button-size/2 solid;
+      border: $nav_button-size/2 solid;
       border-color: inherit;
     }
   }
   button {
-    height: $button-size;
-    width: $button-size;
+    height: $nav_button-size;
+    width: $nav_button-size;
     margin: 4rem auto;
     padding: 0;
-    border-radius: $button-size;
+    border-radius: $nav_button-size;
     border: none;
     border: 0.2rem solid;
     border-color: inherit;
@@ -144,7 +144,7 @@ nav {
     outline: none;
     &:hover {
       transition: all 0.5s;
-      border: $button-size/2 solid;
+      border: $nav_button-size/2 solid;
       border-color: inherit;
       cursor: pointer;
     }
@@ -231,6 +231,12 @@ nav {
   }
 }
 
+//// Map
+// vars
+$map_background-colour: #fff;
+$map_suburb-fill: #ccc;
+$map_suburb-stroke-colour: #fff;
+$map_suburb-stroke-thickness: 2px;
 #map {
   position: relative;
   .overlay {
@@ -270,27 +276,24 @@ nav {
       }
     }
   }
-
   svg {
-    width: 100% !important;
-    height: 100% !important;
     .background {
-      fill: none;
+      fill: $map_background-colour;
       pointer-events: all;
     }
-
+    .suburbs {
+      stroke-width: $map_suburb-stroke-thickness;
+    }
     .suburb {
-      fill: #ccc;
+      fill: $map_suburb-fill;
       cursor: pointer;
     }
-
     .suburb.active {
       fill: orange;
     }
-
     .mesh {
       fill: none;
-      stroke: #fff;
+      stroke: $map_suburb-stroke-colour;
       stroke-linecap: round;
       stroke-linejoin: round;
     }

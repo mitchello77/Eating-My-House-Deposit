@@ -55,33 +55,8 @@
   $(document).ready(function() { // loading done
     var arrAnchors = []; //Stores anchor strings for FullPage.js nav
     var arrToolTips = []; //Stores tooltips for FullPage.js nav
-
-    //Nav Generator
-    function GenerateNav() {
-      var sectionCount = $('.section').length; // Int of how many sections
-      var i;
-      for (i=0; i<sectionCount; i++) {
-        var newElement = $('<li data-menuanchor="Section-' + (i+1) + '"><button type="button" value="' + (i+1) + '"></button><span>' + $('.section:nth-of-type(' + (i+1) + ')').attr('data-tooltip') + '</span></li>')
-        $('nav ul').append(newElement);
-        arrAnchors.push("Section-" + (i+1)); //Add to string array
-        arrToolTips.push($('.section:nth-of-type(' + (i+1) + ')').attr('data-tooltip'));
-        var navBtnColor = $('.section:nth-of-type(' + (i+1) + ')').attr('data-navcolour'); // get data attribute value
-        if (navBtnColor) {
-          newElement.css('border-color', navBtnColor); // add border color to the parent.
-        }
-        else {
-          console.log("var navBtnColor undefined");
-        }
-      };
-      $('nav li:first-of-type').addClass('active');
-    }
-    GenerateNav();
-    // Nav button Event
-    $('nav button').click(function(){
-      $.fn.fullpage.moveTo($(this).val());
-    });
-
-      // Fullpage JS
+    GenerateNav(arrAnchors, arrToolTips);
+    // Init Fullpage JS
     $('#fullpage').fullpage({
         lockAnchors: true,
         menu: '#main-nav',
@@ -92,9 +67,28 @@
         controlArrows: false,
 
     });
-    $('#map .overlay .information .close').click(function(){
-      reset();
-    });
+
+    build_map(); // init Map
 
   });
 })();
+
+//Nav Generator
+function GenerateNav(arrAnchors, arrToolTips) {
+  var sectionCount = $('.section').length; // Int of how many sections
+  var i;
+  for (i=0; i<sectionCount; i++) {
+    var newElement = $('<li data-menuanchor="Section-' + (i+1) + '"><button type="button" value="' + (i+1) + '"></button><span>' + $('.section:nth-of-type(' + (i+1) + ')').attr('data-tooltip') + '</span></li>')
+    $('nav ul').append(newElement);
+    arrAnchors.push("Section-" + (i+1)); //Add to string array
+    arrToolTips.push($('.section:nth-of-type(' + (i+1) + ')').attr('data-tooltip'));
+    var navBtnColor = $('.section:nth-of-type(' + (i+1) + ')').attr('data-navcolour'); // get data attribute value
+    if (navBtnColor) {
+      newElement.css('border-color', navBtnColor); // add border color to the parent.
+    }
+    else {
+      console.log("var navBtnColor undefined");
+    }
+  };
+  $('nav li:first-of-type').addClass('active');
+}
