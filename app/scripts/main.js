@@ -1,3 +1,6 @@
+// Globals
+var arrSuburbs = [];
+
 (function() {
   'use strict';
 
@@ -74,19 +77,23 @@
 
     });
 
-    build_map(false); // init Map
-    getAPIData('/suburbs', function(jqXHR, settings){
-      /* beforeSend */
-      console.log("here we go!");
-    },function(jqXHR, textStatus){
-    /* error */
-    console.log("it failed!");
-    },function(data, textStatus, jqXHR) {
-    /* success */
-    console.log("it worked!");
-    });
+    init_map()
   });
 })();
+
+init_map = function() {
+  getAPIData('/suburbs', function(jqXHR, settings){
+    /* beforeSend */
+    console.log("here we go!");
+  },function(jqXHR, textStatus){
+  /* error */
+    console.log("Ajax Request Failed: "+jqXHR);
+  },function(data, textStatus, jqXHR) {
+    /* success */
+    arrSuburbs = data;
+    build_map(false); // init Map
+  });
+};
 
 //Nav Generator
 function GenerateNav(arrAnchors, arrToolTips) {
