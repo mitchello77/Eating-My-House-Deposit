@@ -60,7 +60,7 @@ d3.json("../maps/brisbane.json", function(error, map) {
     .on("mouseout",hideTooltip)
     .on("click", OnSuburbClick);
 });
-g.attr("transform", "translate("+width*0.1+",0)"); // center it! kindof...
+g.attr("transform", "translate("+width*0.11+",0)"); // center it! kindof...
 };
 
 //Create a tooltip, hidden at the start
@@ -104,7 +104,7 @@ ResetMap = function(d) {
   g.transition()
       .duration(750)
       .style("stroke-width", "1.5px")
-      .attr("transform", "")
+      .attr("transform", "translate("+width*0.11+",0)")
       .attr('style', null);
 };
 
