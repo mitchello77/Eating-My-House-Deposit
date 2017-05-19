@@ -85,9 +85,6 @@ var SuburbKmFilter = 5.0; // (decimal) filter active suburbs by this
 init_map = function() {
   getAPIData('/suburbs?filter=5', function(jqXHR, settings){
     /* beforeSend */
-  },function(jqXHR, textStatus){
-  /* error */
-    console.log("Ajax Request Failed: "+jqXHR);
   },function(data, textStatus, jqXHR) {
     /* success */
     arrSuburbs = data;

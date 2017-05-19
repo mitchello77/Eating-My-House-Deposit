@@ -56,6 +56,13 @@ gulp.task('images', () =>
     .pipe($.size({title: 'images'}))
 );
 
+// Handle Maps
+gulp.task('maps', () =>
+  gulp.src('app/maps/*.json')
+    .pipe(gulp.dest('dist/maps'))
+    .pipe($.size({title: 'maps'}))
+);
+
 // Copy all files at the root level (app)
 gulp.task('copy', () =>
   gulp.src([
@@ -110,7 +117,11 @@ gulp.task('scripts', () =>
       // Note: Since we are not using useref in the scripts build pipeline,
       //       you need to explicitly list your scripts here in the right order
       //       to be correctly concatenated
-      './app/scripts/main.js'
+      './app/scripts/main.js',
+      './app/scripts/ajax.js',
+      './app/scripts/map.js',
+      './app/scripts/events.js'
+
       // Other scripts
     ])
       .pipe($.newer('.tmp/scripts'))
@@ -119,6 +130,24 @@ gulp.task('scripts', () =>
       .pipe($.sourcemaps.write())
       .pipe(gulp.dest('.tmp/scripts'))
       .pipe($.concat('main.min.js'))
+      .pipe($.uglify({preserveComments: 'some'}))
+      // Output files
+      .pipe($.size({title: 'scripts'}))
+      .pipe($.sourcemaps.write('.'))
+      .pipe(gulp.dest('dist/scripts'))
+      .pipe(gulp.dest('.tmp/scripts'))
+);
+
+// scripts we dont want to concat
+gulp.task('other_scripts', () =>
+    gulp.src([
+      './app/scripts/init.js'
+    ])
+      .pipe($.newer('.tmp/scripts'))
+      .pipe($.sourcemaps.init())
+      .pipe($.babel())
+      .pipe($.sourcemaps.write())
+      .pipe(gulp.dest('.tmp/scripts'))
       .pipe($.uglify({preserveComments: 'some'}))
       // Output files
       .pipe($.size({title: 'scripts'}))
@@ -156,7 +185,7 @@ gulp.task('html', () => {
 gulp.task('clean', () => del(['.tmp', 'dist/*', '!dist/.git'], {dot: true}));
 
 // Watch files for changes & reload
-gulp.task('serve', ['scripts', 'styles'], () => {
+gulp.task('serve', ['other_scripts','scripts', 'styles'], () => {
   browserSync({
     notify: false,
     // Customize the Browsersync console logging prefix
@@ -173,7 +202,7 @@ gulp.task('serve', ['scripts', 'styles'], () => {
 
   gulp.watch(['app/**/*.html'], reload);
   gulp.watch(['app/styles/**/*.{scss,css}'], ['styles', reload]);
-  gulp.watch(['app/scripts/**/*.js'], ['lint', 'scripts', reload]);
+  gulp.watch(['app/scripts/**/*.js'], ['other_scripts', 'scripts', reload]);//  gulp.watch(['app/scripts/**/*.js'], ['lint', 'scripts', reload]);
   gulp.watch(['app/images/**/*'], reload);
 });
 
@@ -197,7 +226,7 @@ gulp.task('serve:dist', ['default'], () =>
 gulp.task('default', ['clean'], cb =>
   runSequence(
     'styles',
-    ['lint', 'html', 'scripts', 'images', 'copy'],
+    ['html','other_scripts', 'scripts', 'images', 'maps', 'copy'], //['lint', 'html', 'scripts', 'images', 'copy'],
     'generate-service-worker',
     cb
   )
@@ -206,7 +235,7 @@ gulp.task('default', ['clean'], cb =>
 // Run PageSpeed Insights
 gulp.task('pagespeed', cb =>
   // Update the below URL to the public URL of your site
-  pagespeed('example.com', {
+  pagespeed('ripbrisbane.tk', {
     strategy: 'mobile'
     // By default we use the PageSpeed Insights free (no API key) tier.
     // Use a Google Developer API key if you have one: http://goo.gl/RkN0vE
@@ -242,6 +271,7 @@ gulp.task('generate-service-worker', ['copy-sw-scripts'], () => {
       `${rootDir}/images/**/*`,
       `${rootDir}/scripts/**/*.js`,
       `${rootDir}/styles/**/*.css`,
+      `${rootDir}/maps/**/*.json`,
       `${rootDir}/*.{html,json}`
     ],
     // Translates a static file path to the relative URL that it's served from.
