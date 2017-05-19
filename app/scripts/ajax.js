@@ -3,6 +3,9 @@
 var getAPIData = function(query, bs, er, cb) {
   var url_prefix = "https://api.ripbrisbane.tk";
   var key = "?key=Ca!vin"
+  if (query.indexOf('?') !== -1) {
+    key = "&key=Ca!vin"
+  }
   if (query.charAt(0) != '/') {
     query = '/'+query
   }
