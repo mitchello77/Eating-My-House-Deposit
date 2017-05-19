@@ -123,7 +123,6 @@ OnSuburbClick = function(d) {
   active.classed("selected", false);
   active = d3.select(this).classed("selected", true);
   $('#map .overlay .information').removeClass('hidden');
-  console.log(this);
 };
 
 ResetMap = function(d) {
