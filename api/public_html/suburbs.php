@@ -11,12 +11,11 @@ class suburbs {
 	 *
 	 * @access protected
 	 *
-	 * @url GET /
-	 *
+   * @param float $filter
 	 */
-	function getSuburbs() {
+	function get($filter) {
 		// Get Data from MySQL
-		$query = "SELECT * FROM `tblSuburbs` WHERE tblSuburbs_InUse = 1";
+		$query = "SELECT * FROM `tblSuburbs` WHERE `tblSuburbs_InUse` = 1 AND `tblSuburbs_DistanceFromCBD` <= $filter";
 		$response = $this->dp->select($query,$arr_params);
 		if($response == FALSE)
 			throw new RestException(204, 'No Suburbs');

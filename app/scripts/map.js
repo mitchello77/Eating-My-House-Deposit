@@ -18,8 +18,8 @@ width = $("#map .fp-tableCell").width();
 height = $("#map .fp-tableCell").height();;
 active = d3.select(null);
 projection = d3.geo.mercator()
-    .center([153.05, -27.47])
-    .scale(130*width)
+    .center([153.075, -27.465])
+    .scale(170*width)
     .translate([width / 2, height / 2]);
 path = d3.geo.path().projection(projection);
 svg = d3.select("#map .fp-tableCell").append("svg").attr("width", width).attr("height", height); // make svg tag
