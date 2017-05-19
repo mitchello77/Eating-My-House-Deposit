@@ -87,7 +87,19 @@ init_map = function() {
     /* beforeSend */
   },function(data, textStatus, jqXHR) {
     /* success */
-    arrSuburbs = data;
+    $.each(data, function(index, item) {
+      var obj = new Object();
+      obj.SuburbName = item.Suburb;
+      obj.Postcode = item.Postcode;
+      obj.HousePrice = item.HousePrice;
+      obj.UnitPrice = item.UnitPrice;
+      obj.MedianPrice = toInteger((obj.HousePrice+obj.UnitPrice)/2);
+      obj.Distance = item.Distance;
+      obj.Latitude = item.Latitude;
+      obj.Longitude = item.Longitude;
+      obj.active = false;
+      arrSuburbs.push(obj);
+    });
     build_map(false); // init Map
   });
 };
@@ -111,3 +123,9 @@ function GenerateNav(arrAnchors, arrToolTips) {
   };
   $('nav li:first-of-type').addClass('active');
 }
+
+function toInteger(number){
+  return Math.round(  // round to nearest integer
+    Number(number)    // type cast your input
+  );
+};

@@ -25,7 +25,8 @@ class suburbs {
 				"Suburb" => $row['tblSuburbs_Name'],
 				"Postcode" => $row['tblSuburbs_Postcode'],
 				"Distace" => $row['tblSuburbs_DistanceFromCBD'],
-				"Price" => $row['tblSuburbs_MedianPrice'],
+				"HousePrice" => $row['tblSuburbs_HouseMedianPrice'],
+				"UnitPrice" => $row['tblSuburbs_UnitMedianPrice'],
 				"Latitude" => $row['tblSuburbs_Latitude'],
 				"Longitude" => $row['tblSuburbs_Longitude']
 			);

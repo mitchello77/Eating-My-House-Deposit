@@ -286,6 +286,9 @@ $map_suburb-hover-colour: coral;
         cursor: pointer;
       }
     }
+    .information.loading{
+      cursor: wait;
+    }
   }
   svg {
     .background {
@@ -297,7 +300,7 @@ $map_suburb-hover-colour: coral;
     }
     .suburb {
       fill: $map_suburb-fill;
-      cursor: pointer;
+      cursor: not-allowed;
       &:hover {
         fill: $map_suburb-hover-colour;
       }
@@ -307,6 +310,7 @@ $map_suburb-hover-colour: coral;
     }
     .suburb.active {
       fill: skyblue;
+      cursor: pointer;
       &:hover {
         fill: $map_suburb-hover-colour;
       }

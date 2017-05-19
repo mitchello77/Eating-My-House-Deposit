@@ -63,16 +63,23 @@ d3.json("../maps/brisbane.json", function(error, map) {
     g.selectAll('path').each(function(d,i) {
       var name = $(this).attr("data-suburbname");
       var post = "0";
-      var price = "0";
-      var obj = arrSuburbs.filter(function(obj){ return obj.Suburb === name })[0];
+      var HousePrice = "0";
+      var UnitPrice = "0";
+      var MedianPrice = "0";
+      var obj = arrSuburbs.filter(function(obj){ return obj.SuburbName === name })[0];
       if (obj !== undefined) {
           // suburb exists!
           $(this).addClass('active');
           post = obj.Postcode;
-          price = obj.Price;
+          HousePrice = obj.HousePrice;
+          UnitPrice = obj.UnitPrice;
+          MedianPrice = obj.MedianPrice;
+          obj.active = true;
       };
       $(this).attr("data-postcode", post);
-      $(this).attr("data-price", price);
+      $(this).attr("data-medianprice", MedianPrice);
+      $(this).attr("data-houseprice", HousePrice);
+      $(this).attr("data-unitprice", UnitPrice);
     });
 });
 g.attr("transform", "translate("+width*0.11+",0)"); // center it! kindof...
@@ -82,7 +89,7 @@ g.attr("transform", "translate("+width*0.11+",0)"); // center it! kindof...
 
 IsActiveSuburb = function(name) {
   var result = false;
-  var obj = arrSuburbs.filter(function(obj){ return obj.Suburb === name })[0];
+  var obj = arrSuburbs.filter(function(obj){ return obj.SuburbName === name })[0];
   if (obj !== undefined) {
     // suburb exists!
     result = true;
@@ -95,8 +102,9 @@ showTooltip = function(d) {
   moveTooltip();
   var suburbname = d3.select(this).attr("data-suburbname");
   var postcode = d3.select(this).attr("data-postcode");
-  var price = d3.select(this).attr("data-price");
-  tooltip.style("display","block").text(suburbname+" - "+postcode+": $"+price);
+  var houseprice = d3.select(this).attr("data-houseprice");
+  var unitprice = d3.select(this).attr("data-unitprice");
+  tooltip.style("display","block").text(suburbname+" - "+postcode+": H$"+houseprice+" U$"+unitprice);
 }
 moveTooltip = function(d) {
 tooltip.style("left", (d3.event.pageX-10) + "px").style("top", (d3.event.pageY-($("#map").offset().top)-5) + "px");
