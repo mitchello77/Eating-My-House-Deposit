@@ -31,17 +31,16 @@ d3.json("../maps/brisbane.json", function(error, map) {
   if (error) throw error;
 
   g.selectAll("path")
-      .data(topojson.feature(map, map.objects["collection"]).features)
+    .data(topojson.feature(map, map.objects["collection"]).features)
     .enter().append("path")
-      .attr("id", function(d) { return d.properties.SuburbName; })
-      .attr("d", path)
-      .attr("class", "suburb")
-      .attr("data-postcode", GetSuburbPostcode(function(d) { return d.properties.SuburbName; }))
-      .attr("data-suburbname", function(d) { return d.properties.SuburbName; })
-      .on("mouseover",showTooltip)
-      .on("mousemove",moveTooltip)
-      .on("mouseout",hideTooltip)
-      .on("click", OnSuburbClick);
+    .attr("d", path)
+    .attr("class", "suburb")
+    .attr("data-suburbname", function(d) { return d.properties.SuburbName; })
+    .filter(function(d) { return IsActiveSuburb(d.properties.SuburbName);})
+    .on("mouseover",showTooltip)
+    .on("mousemove",moveTooltip)
+    .on("mouseout",hideTooltip)
+    .on("click", OnSuburbClick);
 
   g.append("path")
       .datum(topojson.mesh(map, map.objects["collection"], function(a, b) { return a !== b; }))
@@ -51,7 +50,7 @@ d3.json("../maps/brisbane.json", function(error, map) {
   g.append("path") // Merge brisbane CBD. Oringally its split up.
     .datum(topojson.merge(map, map.objects["collection"].geometries.filter(function(d) { return selected.has(d.id); })))
     .attr("class", "suburb")
-    .attr("id", "Brisbane City")
+    .attr("id", "Brisbane_City")
     .attr("d", path)
     .attr("data-postcode", "4000")
     .attr("data-suburbname", "Brisbane City")
@@ -59,21 +58,50 @@ d3.json("../maps/brisbane.json", function(error, map) {
     .on("mousemove",moveTooltip)
     .on("mouseout",hideTooltip)
     .on("click", OnSuburbClick);
+
+    // add extra attributes
+    g.selectAll('path').each(function(d,i) {
+      var name = $(this).attr("data-suburbname");
+      var post = "0";
+      var price = "0";
+      var obj = arrSuburbs.filter(function(obj){ return obj.Suburb === name })[0];
+      if (obj !== undefined) {
+          // suburb exists!
+          $(this).addClass('active');
+          post = obj.Postcode;
+          price = obj.Price;
+      };
+      $(this).attr("data-postcode", post);
+      $(this).attr("data-price", price);
+    });
 });
-g.attr("transform", "translate("+width*0.1+",0)"); // center it! kindof...
+g.attr("transform", "translate("+width*0.11+",0)"); // center it! kindof...
+
+
 };
 
+IsActiveSuburb = function(name) {
+  var result = false;
+  var obj = arrSuburbs.filter(function(obj){ return obj.Suburb === name })[0];
+  if (obj !== undefined) {
+    // suburb exists!
+    result = true;
+  };
+  return result;
+}
+
 //Create a tooltip, hidden at the start
-function showTooltip(d) {
+showTooltip = function(d) {
   moveTooltip();
   var suburbname = d3.select(this).attr("data-suburbname");
   var postcode = d3.select(this).attr("data-postcode");
-  tooltip.style("display","block").text(suburbname+" - "+postcode);
+  var price = d3.select(this).attr("data-price");
+  tooltip.style("display","block").text(suburbname+" - "+postcode+": $"+price);
 }
-function moveTooltip(d) {
+moveTooltip = function(d) {
 tooltip.style("left", (d3.event.pageX-10) + "px").style("top", (d3.event.pageY-($("#map").offset().top)-5) + "px");
 }
-function hideTooltip(d) {
+hideTooltip = function(d) {
   tooltip.style("display","none");
 }
 
@@ -92,22 +120,19 @@ OnSuburbClick = function(d) {
       .style("stroke-width", 2 / scale + "px")
       .attr("transform", "translate(" + translate + ")scale(" + scale + ")");
 
-  active.classed("active", false);
-  active = d3.select(this).classed("active", true);
+  active.classed("selected", false);
+  active = d3.select(this).classed("selected", true);
   $('#map .overlay .information').removeClass('hidden');
+  console.log(this);
 };
 
 ResetMap = function(d) {
-  active.classed("active", false);
+  active.classed("selected", false);
   active = d3.select(null);
   $('#map .overlay .information').addClass('hidden');
   g.transition()
       .duration(750)
       .style("stroke-width", "1.5px")
-      .attr("transform", "")
+      .attr("transform", "translate("+width*0.11+",0)")
       .attr('style', null);
-};
-
-GetSuburbPostcode = function(name) {
-  return '4000';
 };

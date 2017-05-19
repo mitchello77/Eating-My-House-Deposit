@@ -7,6 +7,8 @@ use Luracast\Restler\Defaults;
 
 //set the defaults
 Defaults::$throttle = 20; //time in milliseconds for bandwidth throttling
+Defaults::$crossOriginResourceSharing = true;
+Defaults::$accessControlAllowOrigin = '*';
 
 
 //setup restler
