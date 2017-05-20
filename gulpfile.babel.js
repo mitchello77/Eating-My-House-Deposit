@@ -37,6 +37,8 @@ import pkg from './package.json';
 const $ = gulpLoadPlugins();
 const reload = browserSync.reload;
 
+var pump = require('pump');
+
 // Lint JavaScript
 gulp.task('lint', () =>
   gulp.src(['app/scripts/**/*.js','!node_modules/**'])
@@ -113,29 +115,31 @@ gulp.task('styles', () => {
 // to enable ES2015 support remove the line `"only": "gulpfile.babel.js",` in the
 // `.babelrc` file.
 gulp.task('scripts', () =>
-    gulp.src([
-      // Note: Since we are not using useref in the scripts build pipeline,
-      //       you need to explicitly list your scripts here in the right order
-      //       to be correctly concatenated
-      './app/scripts/main.js',
-      './app/scripts/ajax.js',
-      './app/scripts/map.js',
-      './app/scripts/events.js'
+    pump([
+      gulp.src([
+        // Note: Since we are not using useref in the scripts build pipeline,
+        //       you need to explicitly list your scripts here in the right order
+        //       to be correctly concatenated
+        './app/scripts/main.js',
+        './app/scripts/ajax.js',
+        './app/scripts/map.js',
+        './app/scripts/events.js'
 
-      // Other scripts
-    ])
-      .pipe($.newer('.tmp/scripts'))
-      .pipe($.sourcemaps.init())
-      .pipe($.babel())
-      .pipe($.sourcemaps.write())
-      .pipe(gulp.dest('.tmp/scripts'))
-      .pipe($.concat('main.min.js'))
-      .pipe($.uglify({preserveComments: 'some'}))
-      // Output files
-      .pipe($.size({title: 'scripts'}))
-      .pipe($.sourcemaps.write('.'))
-      .pipe(gulp.dest('dist/scripts'))
-      .pipe(gulp.dest('.tmp/scripts'))
+        // Other scripts
+      ]),
+      $.newer('.tmp/scripts'),
+      $.sourcemaps.init(),
+      $.babel(),
+      $.sourcemaps.write(),
+      gulp.dest('.tmp/scripts'),
+      $.concat('main.min.js'),
+      $.uglify({preserveComments: 'some'}),
+      $.size({title: 'scripts'}),
+      $.sourcemaps.write('.'),
+      gulp.dest('dist/scripts'),
+      gulp.dest('.tmp/scripts')
+    ]
+  )
 );
 
 // scripts we dont want to concat
@@ -150,7 +154,7 @@ gulp.task('other_scripts', () =>
       .pipe(gulp.dest('.tmp/scripts'))
       .pipe($.uglify({preserveComments: 'some'}))
       // Output files
-      .pipe($.size({title: 'scripts'}))
+      .pipe($.size({title: 'other-scripts'}))
       .pipe($.sourcemaps.write('.'))
       .pipe(gulp.dest('dist/scripts'))
       .pipe(gulp.dest('.tmp/scripts'))
@@ -169,12 +173,12 @@ gulp.task('html', () => {
       removeComments: true,
       collapseWhitespace: true,
       collapseBooleanAttributes: true,
-      removeAttributeQuotes: true,
-      removeRedundantAttributes: true,
+      removeAttributeQuotes: false,
+      removeRedundantAttributes: false,
       removeEmptyAttributes: true,
       removeScriptTypeAttributes: true,
       removeStyleLinkTypeAttributes: true,
-      removeOptionalTags: true
+      removeOptionalTags: false
     })))
     // Output files
     .pipe($.if('*.html', $.size({title: 'html', showFiles: true})))
@@ -202,7 +206,7 @@ gulp.task('serve', ['other_scripts','scripts', 'styles'], () => {
 
   gulp.watch(['app/**/*.html'], reload);
   gulp.watch(['app/styles/**/*.{scss,css}'], ['styles', reload]);
-  gulp.watch(['app/scripts/**/*.js'], ['other_scripts', 'scripts', reload]);//  gulp.watch(['app/scripts/**/*.js'], ['lint', 'scripts', reload]);
+  gulp.watch(['app/scripts/**/*.js'], ['lint', 'other_scripts', 'scripts', reload]);//  gulp.watch(['app/scripts/**/*.js'], ['lint', 'scripts', reload]);
   gulp.watch(['app/images/**/*'], reload);
 });
 
@@ -226,7 +230,7 @@ gulp.task('serve:dist', ['default'], () =>
 gulp.task('default', ['clean'], cb =>
   runSequence(
     'styles',
-    ['html','other_scripts', 'scripts', 'images', 'maps', 'copy'], //['lint', 'html', 'scripts', 'images', 'copy'],
+    ['lint', 'html','other_scripts', 'scripts', 'images', 'maps', 'copy'], //['lint', 'html', 'scripts', 'images', 'copy'],
     'generate-service-worker',
     cb
   )
@@ -236,7 +240,7 @@ gulp.task('default', ['clean'], cb =>
 gulp.task('pagespeed', cb =>
   // Update the below URL to the public URL of your site
   pagespeed('ripbrisbane.tk', {
-    strategy: 'mobile'
+    strategy: 'desktop'
     // By default we use the PageSpeed Insights free (no API key) tier.
     // Use a Google Developer API key if you have one: http://goo.gl/RkN0vE
     // key: 'YOUR_API_KEY'

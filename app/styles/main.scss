@@ -1,4 +1,6 @@
-
+// import other scripts into sass. So they get optimised!
+@import "normalize";
+@import "jqueryfullPage";
 
 html, body {
   font-family: 'Hind Guntur', sans-serif;
@@ -231,6 +233,19 @@ nav {
   }
 }
 
+// 404
+#notfound {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  span {
+    display: block;
+    font-size: 4rem;
+  }
+}
+
 //// Map
 // vars
 $map_background-colour: #fff;
@@ -238,6 +253,7 @@ $map_suburb-fill: #ccc;
 $map_suburb-stroke-colour: #fff;
 $map_suburb-stroke-thickness: 2px;
 $map_suburb-hover-colour: coral;
+$map_suburb-selected-colour: green;
 #map {
   position: relative;
   .tooltip {
@@ -286,6 +302,9 @@ $map_suburb-hover-colour: coral;
         cursor: pointer;
       }
     }
+    .information.loading{
+      cursor: wait;
+    }
   }
   svg {
     .background {
@@ -297,18 +316,18 @@ $map_suburb-hover-colour: coral;
     }
     .suburb {
       fill: $map_suburb-fill;
-      cursor: pointer;
+      cursor: not-allowed;
       &:hover {
-        fill: $map_suburb-hover-colour;
+        fill: $map_suburb-hover-colour !important;
       }
     }
-    .suburb.selected {
-      fill: orange;
+    .suburb.active.selected {
+      fill: $map_suburb-selected-colour !important;
     }
     .suburb.active {
-      fill: skyblue;
+      cursor: pointer;
       &:hover {
-        fill: $map_suburb-hover-colour;
+        fill: $map_suburb-hover-colour !important;
       }
     }
     .mesh {
@@ -321,7 +340,6 @@ $map_suburb-hover-colour: coral;
 }
 
 // slider navigation styles
-
 .fp-slidesNav {
   ul li a span {
     background-color: #BFBEBA;

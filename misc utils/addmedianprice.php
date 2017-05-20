@@ -36,14 +36,13 @@ if ($result->num_rows > 0) {
         if ($price_house == '' or $price_house === NULL) {
             $price_house = 0;
         }
-        $sum = (int)$price_house + $price_unit;
-        $result2 = $conn->query("UPDATE `tblSuburbs` SET `tblSuburbs_MedianPrice`=$sum WHERE `tblSuburbs_ID`=".$row["tblSuburbs_ID"]);
+        $result2 = $conn->query("UPDATE `tblSuburbs` SET `tblSuburbs_HouseMedianPrice`=$price_house, `tblSuburbs_UnitMedianPrice`=$price_unit WHERE `tblSuburbs_ID`=".$row["tblSuburbs_ID"]);
         if(! $result2 )
         {
           die('Could not update data: ' . mysqli_error($conn));
         }
         echo "http://api.ripbrisbane.tk/profile/suburb/".$url_suburb."/postcode/".$row['tblSuburbs_Postcode']."?key=Ca!vin<br/>";
-        echo $row["tblSuburbs_Name"]. " " . $row["tblSuburbs_Postcode"]." - $sum<br>";
+        echo $row["tblSuburbs_Name"]. " " . $row["tblSuburbs_Postcode"]." - H$$price_house U$$price_unit<br>";
         //sleep(1);
     }
 } else {
@@ -51,4 +50,5 @@ if ($result->num_rows > 0) {
 }
 $conn->close();
 curl_close($curl);
+echo "All done!";
  ?>
