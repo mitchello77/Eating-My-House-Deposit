@@ -1,3 +1,6 @@
+/* global build_map, getAPIData */
+/* exported SuburbKmFilter */
+
 // Globals
 var arrSuburbs = [];
 var SuburbKmFilter = 5.0; // (decimal) filter active suburbs by this
@@ -56,16 +59,59 @@ var SuburbKmFilter = 5.0; // (decimal) filter active suburbs by this
       console.error('Error during service worker registration:', e);
     });
   }
-  $(window).resize(function() {
-       if(this.resizeTO) clearTimeout(this.resizeTO);
-       this.resizeTO = setTimeout(function() {
-           $(this).trigger('resizeEnd');
-       }, 500);
-   });
+
+   init_map = function() {
+     getAPIData('/suburbs?filter=5', function(jqXHR, settings) {
+       /* beforeSend */
+     }, function(data, textStatus, jqXHR) {
+       /* success */
+       $.each(data, function(index, item) {
+         var obj = new {}();
+         obj.SuburbName = item.Suburb;
+         obj.Postcode = item.Postcode;
+         obj.HousePrice = item.HousePrice;
+         obj.UnitPrice = item.UnitPrice;
+         obj.MedianPrice = toInteger((obj.HousePrice + obj.UnitPrice) / 2);
+         obj.Distance = item.Distance;
+         obj.Latitude = item.Latitude;
+         obj.Longitude = item.Longitude;
+         obj.active = false;
+         obj.color = "#000";
+         arrSuburbs.push(obj);
+       });
+       build_map(false); // init Map
+     });
+   };
+
+   // Nav Generator
+   function generate_nav(arrAnchors, arrToolTips) {
+     var sectionCount = $('.section').length; // Int of how many sections
+     var i;
+     for (i = 0; i < sectionCount; i++) {
+       var newElement = $('<li data-menuanchor="Section-' + (i + 1) + '"><button type="button" value="' + (i + 1) + '"></button><span>' + $('.section:nth-of-type(' + (i + 1) + ')').attr('data-tooltip') + '</span></li>');
+       $('nav ul').append(newElement);
+       arrAnchors.push("Section-" + (i + 1)); // Add to string array
+       arrToolTips.push($('.section:nth-of-type(' + (i + 1) + ')').attr('data-tooltip'));
+       var navBtnColor = $('.section:nth-of-type(' + (i + 1) + ')').attr('data-navcolour'); // get data attribute value
+       if (navBtnColor) {
+         newElement.css('border-color', navBtnColor); // add border color to the parent.
+       } else {
+         console.log("var navBtnColor undefined");
+       }
+     }
+     $('nav li:first-of-type').addClass('active');
+   }
+
+   function toInteger(number) {
+     return Math.round(  // round to nearest integer
+       Number(number)    // type cast your input
+     );
+   }
+
   $(document).ready(function() { // loading done
-    var arrAnchors = []; //Stores anchor strings for FullPage.js nav
-    var arrToolTips = []; //Stores tooltips for FullPage.js nav
-    GenerateNav(arrAnchors, arrToolTips);
+    var arrAnchors = []; // Stores anchor strings for FullPage.js nav
+    var arrToolTips = []; // Stores tooltips for FullPage.js nav
+    generate_nav(arrAnchors, arrToolTips);
     // Init Fullpage JS
     $('#fullpage').fullpage({
         lockAnchors: true,
@@ -74,59 +120,10 @@ var SuburbKmFilter = 5.0; // (decimal) filter active suburbs by this
         navigationTooltips: arrToolTips,
         scrollBar: true,
         slidesNavigation: true,
-        controlArrows: false,
+        controlArrows: false
 
     });
-
-    init_map()
+    /* exported init_map */
+    init_map();
   });
 })();
-
-init_map = function() {
-  getAPIData('/suburbs?filter=5', function(jqXHR, settings){
-    /* beforeSend */
-  },function(data, textStatus, jqXHR) {
-    /* success */
-    $.each(data, function(index, item) {
-      var obj = new Object();
-      obj.SuburbName = item.Suburb;
-      obj.Postcode = item.Postcode;
-      obj.HousePrice = item.HousePrice;
-      obj.UnitPrice = item.UnitPrice;
-      obj.MedianPrice = toInteger((obj.HousePrice+obj.UnitPrice)/2);
-      obj.Distance = item.Distance;
-      obj.Latitude = item.Latitude;
-      obj.Longitude = item.Longitude;
-      obj.active = false;
-      obj.color = "#000";
-      arrSuburbs.push(obj);
-    });
-    build_map(false); // init Map
-  });
-};
-
-//Nav Generator
-function GenerateNav(arrAnchors, arrToolTips) {
-  var sectionCount = $('.section').length; // Int of how many sections
-  var i;
-  for (i=0; i<sectionCount; i++) {
-    var newElement = $('<li data-menuanchor="Section-' + (i+1) + '"><button type="button" value="' + (i+1) + '"></button><span>' + $('.section:nth-of-type(' + (i+1) + ')').attr('data-tooltip') + '</span></li>')
-    $('nav ul').append(newElement);
-    arrAnchors.push("Section-" + (i+1)); //Add to string array
-    arrToolTips.push($('.section:nth-of-type(' + (i+1) + ')').attr('data-tooltip'));
-    var navBtnColor = $('.section:nth-of-type(' + (i+1) + ')').attr('data-navcolour'); // get data attribute value
-    if (navBtnColor) {
-      newElement.css('border-color', navBtnColor); // add border color to the parent.
-    }
-    else {
-      console.log("var navBtnColor undefined");
-    }
-  };
-  $('nav li:first-of-type').addClass('active');
-}
-
-function toInteger(number){
-  return Math.round(  // round to nearest integer
-    Number(number)    // type cast your input
-  );
-};
