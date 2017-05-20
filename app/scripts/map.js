@@ -1,4 +1,5 @@
-/* global d3, topojson, chroma */
+/* global d3, topojson, chroma, arrSuburbs */
+
 var width;
 var height;
 var active;
@@ -77,27 +78,28 @@ var build_map = function(destroy) {
     d3.select("#map .fp-tableCell svg").remove();
     d3.select("#map .fp-tableCell .tooltip").remove();
   }
-// set vars
-width = $("#map .fp-tableCell").width();
-height = $("#map .fp-tableCell").height();
-active = d3.select(null);
-projection = d3.geo.mercator()
-    .center([153.075, -27.465])
-    .scale(170 * width)
-    .translate([width / 2, height / 2]);
-path = d3.geo.path().projection(projection);
-svg = d3.select("#map .fp-tableCell").append("svg").attr("width", width).attr("height", height); // make svg tag
-svg.append("rect").attr("class", "background").attr("width", width).attr("height", height).on("click", ResetMap); // add background
-g = svg.append("g").attr("class", "suburbs"); // add path group
-var selected = d3.set([305011143, 305011146]);
-tooltip = d3.select("#map .fp-tableCell").append("div").attr("class", "tooltip");
-values = [];
-d3.json("../maps/brisbane.json", function(error, map) {
-  if (error) {
-    throw error;
-  }
+  // set vars
+  width = $("#map .fp-tableCell").width();
+  height = $("#map .fp-tableCell").height();
+  active = d3.select(null);
+  projection = d3.geo.mercator()
+  .center([153.075, -27.465])
+  .scale(170 * width)
+  .translate([width / 2, height / 2]);
+  path = d3.geo.path().projection(projection);
+  svg = d3.select("#map .fp-tableCell").append("svg").attr("width", width).attr("height", height); // make svg tag
+  svg.append("rect").attr("class", "background").attr("width", width).attr("height", height).on("click", reset_map); // add background
+  g = svg.append("g").attr("class", "suburbs"); // add path group
+  var selected = d3.set([305011143, 305011146]);
+  tooltip = d3.select("#map .fp-tableCell").append("div").attr("class", "tooltip");
+  values = [];
+  // done
 
-  g.selectAll("path")
+  d3.json("../maps/brisbane.json", function(error, map) {
+    if (error) {
+      throw error;
+    }
+    g.selectAll("path")
     .data(topojson.feature(map, map.objects.collection).features)
     .enter().append("path")
     .attr("d", path)
@@ -113,14 +115,14 @@ d3.json("../maps/brisbane.json", function(error, map) {
     .on("mouseout", hideTooltip)
     .on("click", OnSuburbClick);
 
-  g.append("path")
-      .datum(topojson.mesh(map, map.objects.collection, function(a, b) {
-        return a !== b;
-      }))
-      .attr("class", "mesh")
-      .attr("d", path);
+    g.append("path")
+    .datum(topojson.mesh(map, map.objects.collection, function(a, b) {
+      return a !== b;
+    }))
+    .attr("class", "mesh")
+    .attr("d", path);
 
-  g.append("path") // Merge brisbane CBD. Oringally its split up.
+    g.append("path") // Merge brisbane CBD. Oringally its split up.
     .datum(topojson.merge(map, map.objects.collection.geometries.filter(function(d) {
       return selected.has(d.id);
     })))
@@ -145,17 +147,19 @@ d3.json("../maps/brisbane.json", function(error, map) {
         return obj.SuburbName === name;
       })[0];
       if (obj !== undefined) {
-          // suburb exists!
-          $(this).addClass('active');
-          post = obj.Postcode;
-          HousePrice = obj.HousePrice;
-          UnitPrice = obj.UnitPrice;
-          MedianPrice = obj.MedianPrice;
-          obj.active = true;
-          var obj2 = new {}();
-          obj2.value = MedianPrice;
-          obj2.index = arrSuburbs.findIndex(x => x.SuburbName === name);
-          values.push(obj2);
+        // suburb exists!
+        $(this).addClass('active');
+        post = obj.Postcode;
+        HousePrice = obj.HousePrice;
+        UnitPrice = obj.UnitPrice;
+        MedianPrice = obj.MedianPrice;
+        obj.active = true;
+        var obj2 = new {}();
+        obj2.value = MedianPrice;
+        obj2.index = arrSuburbs.findIndex(function(x) {
+          return x.SuburbName === name;
+        });
+        values.push(obj2);
       }
       $(this).attr("data-postcode", post);
       $(this).attr("data-medianprice", MedianPrice);
@@ -175,10 +179,12 @@ d3.json("../maps/brisbane.json", function(error, map) {
     console.log("Colours");
     console.log(colours);
     console.log("Loop Active");
+
     g.selectAll('.active').each(function(d, i) {
       // console.log($(this));
       $(this).css("fill", colours[i]);
     });
-});
+  });
+
 g.attr("transform", "translate(" + width * 0.11 + ",0)"); // center it! kindof...
 };

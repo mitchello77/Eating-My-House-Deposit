@@ -60,7 +60,7 @@ var SuburbKmFilter = 5.0; // (decimal) filter active suburbs by this
     });
   }
 
-   init_map = function() {
+  var init_map = function() {
      getAPIData('/suburbs?filter=5', function(jqXHR, settings) {
        /* beforeSend */
      }, function(data, textStatus, jqXHR) {
@@ -84,7 +84,7 @@ var SuburbKmFilter = 5.0; // (decimal) filter active suburbs by this
    };
 
    // Nav Generator
-   function generate_nav(arrAnchors, arrToolTips) {
+   var generate_nav = function(arrAnchors, arrToolTips) {
      var sectionCount = $('.section').length; // Int of how many sections
      var i;
      for (i = 0; i < sectionCount; i++) {
@@ -100,7 +100,7 @@ var SuburbKmFilter = 5.0; // (decimal) filter active suburbs by this
        }
      }
      $('nav li:first-of-type').addClass('active');
-   }
+   };
 
    function toInteger(number) {
      return Math.round(  // round to nearest integer

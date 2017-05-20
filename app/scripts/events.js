@@ -1,4 +1,6 @@
 /* exported init_map, build_map, reset_map */
+/* global init_map, build_map, reset_map */
+
 // All events
 $(function() { // We are ready!
   // Suburb overlay close button Event
