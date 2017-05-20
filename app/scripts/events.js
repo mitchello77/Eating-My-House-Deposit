@@ -11,5 +11,5 @@ $(function() { // We are ready!
   });
   $(window).bind('resizeEnd', function() {
     build_map(true);
-});
+  });
 });

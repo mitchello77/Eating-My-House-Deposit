@@ -6,6 +6,7 @@ var path;
 var svg;
 var g;
 var tooltip;
+var values;
 
 build_map = function(destroy) {
 
@@ -27,6 +28,7 @@ svg.append("rect").attr("class", "background").attr("width", width).attr("height
 g = svg.append("g").attr("class", "suburbs"); // add path group
 var selected = d3.set([305011143, 305011146]);
 tooltip = d3.select("#map .fp-tableCell").append("div").attr("class","tooltip");
+values = [];
 d3.json("../maps/brisbane.json", function(error, map) {
   if (error) throw error;
 
@@ -75,11 +77,31 @@ d3.json("../maps/brisbane.json", function(error, map) {
           UnitPrice = obj.UnitPrice;
           MedianPrice = obj.MedianPrice;
           obj.active = true;
+          var obj2 = new Object()
+          obj2.value = MedianPrice;
+          obj2.index = arrSuburbs.findIndex(x => x.SuburbName===name);;
+          values.push(obj2);
       };
       $(this).attr("data-postcode", post);
       $(this).attr("data-medianprice", MedianPrice);
       $(this).attr("data-houseprice", HousePrice);
       $(this).attr("data-unitprice", UnitPrice);
+    });
+
+    // add extra attributes
+    console.log("Values");
+    console.log(values);
+    //generate colours
+    // create 1 colour for every active suburb
+    var colours = chroma.scale(['#fafa6e','#2A4858'])
+    .mode('lch').colors(arrSuburbs.filter(function(obj){ return obj.active === true }).length);
+
+    console.log("Colours");
+    console.log(colours);
+    console.log("Loop Active");
+    g.selectAll('.active').each(function(d,i) {
+      //console.log($(this));
+      $(this).css("fill", colours[i]);
     });
 });
 g.attr("transform", "translate("+width*0.11+",0)"); // center it! kindof...

@@ -202,7 +202,7 @@ gulp.task('serve', ['other_scripts','scripts', 'styles'], () => {
 
   gulp.watch(['app/**/*.html'], reload);
   gulp.watch(['app/styles/**/*.{scss,css}'], ['styles', reload]);
-  gulp.watch(['app/scripts/**/*.js'], ['other_scripts', 'scripts', reload]);//  gulp.watch(['app/scripts/**/*.js'], ['lint', 'scripts', reload]);
+  gulp.watch(['app/scripts/**/*.js'], ['lint', 'other_scripts', 'scripts', reload]);//  gulp.watch(['app/scripts/**/*.js'], ['lint', 'scripts', reload]);
   gulp.watch(['app/images/**/*'], reload);
 });
 
@@ -226,7 +226,7 @@ gulp.task('serve:dist', ['default'], () =>
 gulp.task('default', ['clean'], cb =>
   runSequence(
     'styles',
-    ['html','other_scripts', 'scripts', 'images', 'maps', 'copy'], //['lint', 'html', 'scripts', 'images', 'copy'],
+    ['lint', 'html','other_scripts', 'scripts', 'images', 'maps', 'copy'], //['lint', 'html', 'scripts', 'images', 'copy'],
     'generate-service-worker',
     cb
   )

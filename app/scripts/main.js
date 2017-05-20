@@ -98,6 +98,7 @@ init_map = function() {
       obj.Latitude = item.Latitude;
       obj.Longitude = item.Longitude;
       obj.active = false;
+      obj.color = "#000";
       arrSuburbs.push(obj);
     });
     build_map(false); // init Map

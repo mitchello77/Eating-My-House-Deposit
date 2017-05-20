@@ -238,6 +238,7 @@ $map_suburb-fill: #ccc;
 $map_suburb-stroke-colour: #fff;
 $map_suburb-stroke-thickness: 2px;
 $map_suburb-hover-colour: coral;
+$map_suburb-selected-colour: green;
 #map {
   position: relative;
   .tooltip {
@@ -302,17 +303,16 @@ $map_suburb-hover-colour: coral;
       fill: $map_suburb-fill;
       cursor: not-allowed;
       &:hover {
-        fill: $map_suburb-hover-colour;
+        fill: $map_suburb-hover-colour !important;
       }
     }
-    .suburb.selected {
-      fill: orange;
+    .suburb.active.selected {
+      fill: $map_suburb-selected-colour !important;
     }
     .suburb.active {
-      fill: skyblue;
       cursor: pointer;
       &:hover {
-        fill: $map_suburb-hover-colour;
+        fill: $map_suburb-hover-colour !important;
       }
     }
     .mesh {
@@ -325,7 +325,6 @@ $map_suburb-hover-colour: coral;
 }
 
 // slider navigation styles
-
 .fp-slidesNav {
   ul li a span {
     background-color: #BFBEBA;
