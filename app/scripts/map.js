@@ -52,7 +52,7 @@ var reset_map = function(d) {
 };
 
 var load_suburbprofile = function(item) {
-    var objSuburb = arrSuburbs[item.index]; 
+    var objSuburb = arrSuburbs[item.index];
     // animate box in
     $('#map .overlay .information').removeClass('hidden');
 
