@@ -4,6 +4,7 @@
 // Globals
 var arrSuburbs = [];
 var SuburbKmFilter = 5.0; // (decimal) filter active suburbs by this
+var arrMapColours = ['#fafa6e', '#2A4858', '#000'];
 
 (function() {
   'use strict';

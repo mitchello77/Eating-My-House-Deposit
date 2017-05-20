@@ -1,4 +1,4 @@
-/* global d3, topojson, chroma, arrSuburbs */
+/* global d3, topojson, chroma, arrSuburbs, arrMapColours */
 
 var width;
 var height;
@@ -51,6 +51,14 @@ var reset_map = function(d) {
       .attr('style', null);
 };
 
+var load_suburbprofile = function(item) {
+    var objSuburb = arrSuburbs[item.index]; 
+    // animate box in
+    $('#map .overlay .information').removeClass('hidden');
+
+    // make a request and show loading animation on pre-thingo. Also add the class for css stuff
+};
+
 var OnSuburbClick = function(d) {
   if (active.node() === this) {
     return reset_map();
@@ -70,7 +78,11 @@ var OnSuburbClick = function(d) {
 
   active.classed("selected", false);
   active = d3.select(this).classed("selected", true);
-  $('#map .overlay .information').removeClass('hidden');
+  var item = new Object();
+  item.name = active.attr('data-suburbname');
+  item.postcode = active.attr('data-postcode');
+  item.index = active.attr('data-index');
+  load_suburbprofile(item);
 };
 
 var build_map = function(destroy) {
@@ -143,11 +155,15 @@ var build_map = function(destroy) {
       var HousePrice = "0";
       var UnitPrice = "0";
       var MedianPrice = "0";
+      var currentindex = 0;
       var obj = arrSuburbs.filter(function(obj) {
         return obj.SuburbName === name;
       })[0];
       if (obj !== undefined) {
         // suburb exists!
+        currentindex = arrSuburbs.findIndex(function(x) {
+          return x.SuburbName === name;
+        });
         $(this).addClass('active');
         post = obj.Postcode;
         HousePrice = obj.HousePrice;
@@ -156,33 +172,49 @@ var build_map = function(destroy) {
         obj.active = true;
         var obj2 = new Object();
         obj2.value = MedianPrice;
-        obj2.index = arrSuburbs.findIndex(function(x) {
-          return x.SuburbName === name;
-        });
+        obj2.index = currentindex;
         values.push(obj2);
       }
       $(this).attr("data-postcode", post);
       $(this).attr("data-medianprice", MedianPrice);
       $(this).attr("data-houseprice", HousePrice);
       $(this).attr("data-unitprice", UnitPrice);
+      $(this).attr("data-index", currentindex);
     });
 
-    // add extra attributes
-    console.log("Values");
-    console.log(values);
+    function sortValues(a, b) {
+      return a.value - b.value;
+    }
+    // sort values in order
+    values.sort(sortValues);
     // generate colours
     // create 1 colour for every active suburb
-    var colours = chroma.scale(['#fafa6e', '#2A4858'])
-    .mode('lch').colors(arrSuburbs.filter(function(obj) {
+    var colours = chroma.scale(arrMapColours)
+    .mode('lch').correctLightness().colors(arrSuburbs.filter(function(obj) {
       return obj.active === true;
     }).length);
-    console.log("Colours");
-    console.log(colours);
-    console.log("Loop Active");
 
+    // match colour to suburb!
+    if (colours.length === values.length) {
+      var i;
+      for (i = 0; i < colours.length; i++) {
+        var obj = arrSuburbs[values[i].index];
+        obj.color = colours[i];
+      }
+    } else {
+      console.log("colours.length !== values.length");
+    }
+    // apply those colours!
     g.selectAll('.active').each(function(d, i) {
-      // console.log($(this));
-      $(this).css("fill", colours[i]);
+      var colour = "#000";
+      var name = $(this).attr("data-suburbname");
+      var obj = arrSuburbs.filter(function(obj) {
+        return obj.SuburbName === name;
+      })[0];
+      if (obj !== undefined) {
+        colour = obj.color;
+      }
+      $(this).css("fill", colour);
     });
   });
 
