@@ -1,4 +1,6 @@
-
+// import other scripts into sass. So they get optimised!
+@import "normalize";
+@import "jqueryfullPage";
 
 html, body {
   font-family: 'Hind Guntur', sans-serif;
@@ -228,6 +230,19 @@ nav {
   p {
     font-size: 1.5rem;
     font-weight: 600;
+  }
+}
+
+// 404
+#notfound {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  span {
+    display: block;
+    font-size: 4rem;
   }
 }
 

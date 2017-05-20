@@ -66,7 +66,7 @@ var SuburbKmFilter = 5.0; // (decimal) filter active suburbs by this
      }, function(data, textStatus, jqXHR) {
        /* success */
        $.each(data, function(index, item) {
-         var obj = new {}();
+         var obj = new Object();
          obj.SuburbName = item.Suburb;
          obj.Postcode = item.Postcode;
          obj.HousePrice = item.HousePrice;

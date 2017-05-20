@@ -154,7 +154,7 @@ var build_map = function(destroy) {
         UnitPrice = obj.UnitPrice;
         MedianPrice = obj.MedianPrice;
         obj.active = true;
-        var obj2 = new {}();
+        var obj2 = new Object();
         obj2.value = MedianPrice;
         obj2.index = arrSuburbs.findIndex(function(x) {
           return x.SuburbName === name;
