@@ -25,28 +25,6 @@
     position: relative;
   }
 
-  .svg-container {
-    position: relative;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-
-    svg {
-      fill: $selected_blue;
-      position: absolute;
-      animation: bounce 1.5s ease infinite;
-      width: 25px;
-      height: 25px;
-    }
-
-    @keyframes bounce {
-      0% {top: 10px}
-      50% {top: 6px}
-      75% {top: 10px}
-      100% {top: 0px}
-    }
-  }
-
 }
 
 .begin-button {

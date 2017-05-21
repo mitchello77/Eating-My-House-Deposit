@@ -18,7 +18,11 @@ html, body {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  position: relative;
+
 }
+
+
 
 h2 {
   font-size: 2rem;
@@ -37,6 +41,53 @@ a {
 
   &:visited {
     color: $selected_blue;
+  }
+}
+
+// arrow containers
+
+.down-arrow-container {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+
+  svg {
+    fill: $selected_blue;
+    position: absolute;
+    animation: bounceDown 1.5s ease infinite;
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+  }
+
+  @keyframes bounceDown {
+    0% {top: 10px}
+    50% {top: 6px}
+    75% {top: 10px}
+    100% {top: 0px}
+  }
+}
+
+.right-arrow-container{
+  position: absolute;
+  right: 50px;
+
+  svg {
+    fill: $selected_blue;
+    position: absolute;
+    animation: bounceRight 1.5s ease infinite;
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+    transform: rotate(270deg);
+  }
+
+  @keyframes bounceRight {
+    0% {left: 10px}
+    50% {left: 6px}
+    75% {left: 10px}
+    100% {left: 0px}
   }
 }
 
