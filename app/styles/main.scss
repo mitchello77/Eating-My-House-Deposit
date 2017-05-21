@@ -1,13 +1,18 @@
 // import other scripts into sass. So they get optimised!
 @import "normalize";
 @import "jqueryfullPage";
+@import "firstSection";
+
+// global variables
+
+$background: #FFFEF8;
 
 html, body {
   font-family: 'Hind Guntur', sans-serif;
   margin: 0;
   padding: 0;
   font-size: 16px;
-  background: #FFFEF8;
+  background: $background;
   color: #494B4E;
 }
 
@@ -43,7 +48,7 @@ input[type="text"] {
   height: 5rem;
   background: none;
   height: 100%;
-  border: 2px solid #FFFEF8;
+  border: 2px solid $background;
 
   &:focus {
       border-bottom: 2px solid #8C9958;
@@ -249,7 +254,7 @@ nav {
 //// Map
 // vars
 $map_background-colour: #fff;
-$map_suburb-fill: #ccc;
+$map_suburb-fill: $background;
 $map_suburb-stroke-colour: #fff;
 $map_suburb-stroke-thickness: 2px;
 $map_suburb-hover-colour: coral;
