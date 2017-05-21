@@ -40,17 +40,17 @@
   align-items: center;
   width: 40%;
   box-sizing: border-box;
-  border: 2px solid #78A4C0;
-  color: #78A4C0;
+  border: 2px solid $selected_blue;
+  color: $selected_blue;
   border-radius: 4px;
 
   &:hover {
     cursor: pointer;
-    box-shadow: 1px 1px 2px #78A4C0;
+    box-shadow: 1px 1px 2px $selected_blue;
   }
 
   &.selected {
-    background-color: #78A4C0;
+    background-color: $selected_blue;
     color: #fff;
 
     &:hover {
@@ -81,7 +81,7 @@ input[type="text"] {
   border: 2px solid $background;
 
   &:focus {
-      border-bottom: 2px solid #8C9958;
+      border-bottom: 2px solid $action_green;
   }
 }
 
@@ -101,4 +101,11 @@ input[type="text"] {
 :-moz-placeholder { /* Firefox 18- */
   color: #BFBEBA;
   font-family: 'Hind Guntur', sans-serif;
+}
+
+// slider navigation styles
+.fp-slidesNav {
+  ul li a span {
+    background-color: #BFBEBA;
+  }
 }
