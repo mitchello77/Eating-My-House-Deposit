@@ -1,0 +1,84 @@
+/* Nav */
+//vars
+$nav_button-size: 2rem;
+$nav_padding: 0.5rem;
+$nav_left-indent-percentage: 0.65; // % of how much of nav to show. 0 = nothing - 1 = show full width
+$nav_tooltip-font-size: 1rem;
+
+body {
+  margin-left: $nav_button-size+$nav_padding !important; //sorry about the important lol
+}
+nav {
+  position: fixed;
+  left: -(($nav_button-size+$nav_padding+0.6rem) - (($nav_button-size+$nav_padding+0.6rem)*$nav_left-indent-percentage));
+  top: 0;
+  bottom: 0;
+  padding: $nav_padding;
+  // background: #000000;
+  opacity: 0.8;
+  transition: all 0.75s;
+  z-index: 1000;
+  // border-right: 0.2rem solid coral;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &:hover {
+    opacity: 1;
+    transition: all 0.25s;
+    left: 0;
+  }
+  ul {
+    list-style: none;
+    display: block;
+    margin: 0;
+    padding: 0;
+    background-color: inherit;
+    li {
+      cursor: pointer;
+      width: 100%;
+      display: block;
+      background-color: inherit;
+      position: relative;
+      span {
+        position: absolute;
+        top: (($nav_button-size - $nav_tooltip-font-size)/2)+0.2rem;
+        left: $nav_button-size+$nav_padding+0.2rem;
+        font-size: $nav_tooltip-font-size;
+        line-height: $nav_tooltip-font-size;
+        opacity: 0;
+
+      }
+      &:hover span {
+        transition: all 0.5s;
+        opacity: 1;
+      }
+    }
+    li.active button {
+      transition: all 0.5s;
+      border: $nav_button-size/2 solid;
+      border-color: inherit;
+    }
+  }
+  button {
+    height: $nav_button-size;
+    width: $nav_button-size;
+    margin: 4rem auto;
+    padding: 0;
+    border-radius: $nav_button-size;
+    border: none;
+    border: 0.2rem solid;
+    border-color: inherit;
+    display: block;
+    transition: all 0.5s;
+    cursor: pointer;
+    background-color: inherit;
+    outline: none;
+    &:hover {
+      transition: all 0.5s;
+      border: $nav_button-size/2 solid;
+      border-color: inherit;
+      cursor: pointer;
+    }
+  }
+}
