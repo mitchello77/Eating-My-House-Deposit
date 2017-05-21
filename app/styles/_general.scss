@@ -1,0 +1,55 @@
+html, body {
+  font-family: 'Hind Guntur', sans-serif;
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+  background: $background;
+  color: $colour;
+}
+
+/*some global styles*/
+
+.hidden {
+  display: none !important;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+h2 {
+  font-size: 2rem;
+  letter-spacing: 1px;
+  line-height: 1.25
+}
+
+a {
+  text-decoration: none;
+  color: $selected_blue;
+
+  &:hover {
+    transition: .2s;
+    text-decoration: underline;
+  }
+
+  &:visited {
+    color: $selected_blue;
+  }
+}
+
+
+// 404
+#notfound {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  span {
+    display: block;
+    font-size: 4rem;
+  }
+}

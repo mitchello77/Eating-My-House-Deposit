@@ -1,0 +1,24 @@
+// global variables
+
+$background: #FFFEF8;
+$colour: #494B4E;
+$selected_blue: #78A4C0;
+$action_green: #8C9958;
+$grey: #BFBEBA;
+
+
+// map variables
+
+$map_background-colour: #fff;
+$map_suburb-fill: $background;
+$map_suburb-stroke-colour: #FFF6E5;
+$map_suburb-stroke-thickness: 2px;
+$map_suburb-hover-colour: coral;
+$map_suburb-selected-colour: green;
+
+/* Nav */
+//vars
+$nav_button-size: 2rem;
+$nav_padding: 0.5rem;
+$nav_left-indent-percentage: 0.65; // % of how much of nav to show. 0 = nothing - 1 = show full width
+$nav_tooltip-font-size: 1rem;
