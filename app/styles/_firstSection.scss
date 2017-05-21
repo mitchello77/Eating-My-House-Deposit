@@ -4,9 +4,9 @@
   height: 70%;
   display: flex;
   flex-direction: column;
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   font-weight: 300;
-  line-height: 2.5rem;
+  line-height: 2.25rem;
 
   .paragraph {
     text-align: justify;
@@ -14,8 +14,37 @@
 
   hr {
     width: 5rem;
-    
+    border: 0;
+    border-bottom: 1px solid $grey;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
   }
+
+  .prompt {
+    text-align: center;
+    position: relative;
+  }
+
+  .svg-container {
+    position: relative;
+    width: 100%;
+
+    svg {
+      fill: $selected_blue;
+      position: absolute;
+      animation: bounce 1.5s ease infinite;
+      width: 25px;
+      height: 25px;
+    }
+
+    @keyframes bounce {
+      0% {top: 10px}
+      50% {top: 6px}
+      75% {top: 10px}
+      100% {top: 0px}
+    }
+  }
+
 }
 
 .begin-button {
