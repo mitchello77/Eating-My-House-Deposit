@@ -72,7 +72,11 @@ var arrMapColours = ['#fafa6e', '#2A4858', '#000'];
          obj.Postcode = item.Postcode;
          obj.HousePrice = item.HousePrice;
          obj.UnitPrice = item.UnitPrice;
-         obj.MedianPrice = toInteger((obj.HousePrice + obj.UnitPrice) / 2);
+         if (obj.HousePrice === 0 || obj.UnitPrice === 0) {
+          obj.MedianPrice = toInteger(obj.HousePrice + obj.UnitPrice);
+         } else {
+          obj.MedianPrice = toInteger((obj.HousePrice + obj.UnitPrice) / 2);
+         }
          obj.Distance = item.Distance;
          obj.Latitude = item.Latitude;
          obj.Longitude = item.Longitude;

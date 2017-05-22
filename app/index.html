@@ -218,10 +218,24 @@
 
         </div>
         <div class="section" id="map" data-tooltip="Map" data-navcolour="#78A4C0">
-          <div class="overlay">
-            <div class="information hidden">
-              <span class="close">x</span>
-              <h2>Suburb!</h2>
+          <header>
+            <h2>Suburb Overview!</h2>
+            <span class="subheading">Maps and stuff. Suburb profile. Hover = average of house price and unit sold price. Explain what the map does!</span>
+          </header>
+          <div class="map-container">
+            <div class="overlay">
+              <div class="loader">
+                <span class="message">Loading...</span>
+              </div>
+              <div class="information hidden">
+                <span class="close">x</span>
+                <h2>Suburb!</h2>
+              </div>
+              <div class="legend">
+                <div class="bar"></div>
+                <span class="range"></span>
+                <span class="range"></span>
+              </div>
             </div>
           </div>
         </div>

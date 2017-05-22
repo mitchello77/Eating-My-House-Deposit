@@ -9,6 +9,7 @@ var svg;
 var g;
 var tooltip;
 var values;
+var colours;
 
 var isActiveSuburb = function(name) {
   var result = false;
@@ -23,7 +24,7 @@ var isActiveSuburb = function(name) {
 };
 
 var moveTooltip = function(d) {
-  tooltip.style("left", (d3.event.pageX - 10) + "px").style("top", (d3.event.pageY - ($("#map").offset().top) - 5) + "px");
+  tooltip.style("left", (d3.event.pageX - 10) + "px").style("top", (d3.event.pageY - ($("#map .map-container").offset().top) - 5) + "px");
 };
 
 // Create a tooltip, hidden at the start
@@ -43,7 +44,7 @@ var hideTooltip = function(d) {
 var reset_map = function(d) {
   active.classed("selected", false);
   active = d3.select(null);
-  $('#map .overlay .information').addClass('hidden');
+  $('#map .map-container .overlay .information').addClass('hidden');
   g.transition()
       .duration(750)
       .style("stroke-width", "1.5px")
@@ -58,6 +59,17 @@ var load_suburbprofile = function(item) {
 
     // make a request and show loading animation on pre-thingo. Also add the class for css stuff
 };
+var show_maploader = function() {
+  $('#map .map-container .overlay .loader').removeClass('hidden');
+};
+
+var hide_maploader = function() {
+  $('#map .map-container .overlay .loader').addClass('hidden');
+};
+
+function round_number(num, dec) {
+    return Math.round(num * Math.pow(10, dec)) / Math.pow(10, dec);
+}
 
 var OnSuburbClick = function(d) {
   if (active.node() === this) {
@@ -86,24 +98,25 @@ var OnSuburbClick = function(d) {
 };
 
 var build_map = function(destroy) {
+  show_maploader();
   if (destroy) {
-    d3.select("#map .fp-tableCell svg").remove();
-    d3.select("#map .fp-tableCell .tooltip").remove();
+    d3.select("#map .fp-tableCell .map-container svg").remove();
+    d3.select("#map .fp-tableCell .map-container .tooltip").remove();
   }
   // set vars
-  width = $("#map .fp-tableCell").width();
-  height = $("#map .fp-tableCell").height();
+  width = $("#map .fp-tableCell .map-container").width();
+  height = $("#map .fp-tableCell .map-container").height();
   active = d3.select(null);
   projection = d3.geo.mercator()
-  .center([153.075, -27.465])
-  .scale(170 * width)
+  .center([153.075, -27.467])
+  .scale(190 * width)
   .translate([width / 2, height / 2]);
   path = d3.geo.path().projection(projection);
-  svg = d3.select("#map .fp-tableCell").append("svg").attr("width", width).attr("height", height); // make svg tag
+  svg = d3.select("#map .fp-tableCell .map-container").append("svg").attr("width", width).attr("height", height); // make svg tag
   svg.append("rect").attr("class", "background").attr("width", width).attr("height", height).on("click", reset_map); // add background
   g = svg.append("g").attr("class", "suburbs"); // add path group
   var selected = d3.set([305011143, 305011146]);
-  tooltip = d3.select("#map .fp-tableCell").append("div").attr("class", "tooltip");
+  tooltip = d3.select("#map .fp-tableCell .map-container").append("div").attr("class", "tooltip");
   values = [];
   // done
 
@@ -189,11 +202,12 @@ var build_map = function(destroy) {
     values.sort(sortValues);
     // generate colours
     // create 1 colour for every active suburb
-    var colours = chroma.scale(arrMapColours)
-    .mode('lch').correctLightness().colors(arrSuburbs.filter(function(obj) {
-      return obj.active === true;
-    }).length);
-
+    if (!destroy) {
+      colours = chroma.scale(arrMapColours)
+      .mode('lch').correctLightness().colors(arrSuburbs.filter(function(obj) {
+        return obj.active === true;
+      }).length);
+    }
     // match colour to suburb!
     if (colours.length === values.length) {
       var i;
@@ -216,6 +230,19 @@ var build_map = function(destroy) {
       }
       $(this).css("fill", colour);
     });
+
+    // Make the legend!
+    var ranges = $('#map .map-container .overlay .legend .range');
+    $(ranges["0"]).html('$' + values[0].value);
+    $(ranges["1"]).html('$' + values[values.length - 1].value);
+    // Fill colour bar
+    var bar_width = 100 / values.length;
+    $.each(colours, function(d, i) {
+      $('#map .map-container .overlay .legend .bar').append('<span style="width: ' + bar_width + '%; background-color: ' + i + '"></span>');
+    });
+
+    // Map Ready!
+    hide_maploader();
   });
 
 g.attr("transform", "translate(" + width * 0.11 + ",0)"); // center it! kindof...
