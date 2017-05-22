@@ -34,7 +34,9 @@ var showTooltip = function(d) {
   var postcode = d3.select(this).attr("data-postcode");
   var houseprice = d3.select(this).attr("data-houseprice");
   var unitprice = d3.select(this).attr("data-unitprice");
-  tooltip.style("display", "block").text(suburbname + " - " + postcode + ": H$" + houseprice + " U$" + unitprice);
+  var medianprice = d3.select(this).attr("data-medianprice");
+
+  tooltip.style("display", "block").text(suburbname + " " + postcode + ": $" + medianprice);
 };
 
 var hideTooltip = function(d) {
