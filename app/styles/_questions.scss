@@ -1,5 +1,8 @@
 /* question styles */
 #questions {
+  .fp-slidesNav {
+    pointer-events: none;
+  }
   datalist {
     background-color: #000;
   }
@@ -91,7 +94,7 @@
     height: 100%;
     border: 2px solid $background;
     text-align: center;
-    border-bottom: 2px solid lighten($action_green, 40%);
+    border-bottom: 2px solid $action_green;
     transition: .4s;
 
     &:focus {
