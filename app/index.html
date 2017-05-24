@@ -84,8 +84,9 @@
                     <h2>Where do you want to live?</h2>
                   </div>
                   <div class="input-container">
-                    <input type="text" name="suburb" data-list="#listsuburbs" placeholder="e.g. Newstead" onfocus="this.placeholder = ''" onblur="this.placeholder = 'e.g. Newstead'" required />
-                    <ul id="listsuburbs"></ul>
+                    <input type="text" class="dropdown-input" id="input_suburbname" data-list="#listsuburbs" name="suburb" placeholder="e.g. Newstead" onfocus="this.placeholder = ''" onblur="this.placeholder = 'e.g. Newstead'" required />
+                    <button type="button" name="button" class="dropdown-btn">Show</button> <!-- This does not need to be a button. Just make sure it has the class .dropdown-btn -->
+                    <ul id="listsuburbs" class="hidden"></ul>
                   </div>
                 </div>
                 <div class="right-arrow-container">

@@ -1,10 +1,11 @@
-/* global build_map, getAPIData */
+/* global build_map, getAPIData, Awesomplete */
 /* exported SuburbKmFilter */
 
 // Globals
 var arrSuburbs = [];
 var SuburbKmFilter = 5.0; // (decimal) filter active suburbs by this
 var arrMapColours = ['#fafa6e', '#2A4858', '#000'];
+var suburbcombo;
 
 (function() {
   'use strict';
@@ -90,10 +91,19 @@ var arrMapColours = ['#fafa6e', '#2A4858', '#000'];
      });
    };
 
-   var setup_validation = function() {
+   function setup_validation() {
     // Input suburb list into
+    var strPattern = "";
     $.each(arrSuburbs, function(index, item) {
-      $("#questions .input-container #listsuburbs").append("<option>" + item.SuburbName + "</option>");
+      $("#questions .input-container #listsuburbs").append("<li>" + item.SuburbName + "</li>");
+      strPattern = strPattern + item.SuburbName + "|";
+    });
+    strPattern = strPattern.slice(0, -1); // trim last |
+    var suburbInput = document.getElementById("input_suburbname");
+    $(suburbInput).attr("pattern", strPattern);
+    suburbcombo = new Awesomplete(suburbInput, {
+      list: "#listsuburbs",
+      minChars: 1
     });
    }
 
