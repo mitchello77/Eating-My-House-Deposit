@@ -61,7 +61,7 @@ var arrMapColours = ['#fafa6e', '#2A4858', '#000'];
     });
   }
 
-  var init_map = function() {
+  var get_suburb_data = function() {
      getAPIData('/suburbs?filter=5', function(jqXHR, settings) {
        /* beforeSend */
      }, function(data, textStatus, jqXHR) {
@@ -84,9 +84,18 @@ var arrMapColours = ['#fafa6e', '#2A4858', '#000'];
          obj.color = "#000";
          arrSuburbs.push(obj);
        });
+       // Dropdown validation
+       setup_validation();
        build_map(false); // init Map
      });
    };
+
+   var setup_validation = function() {
+    // Input suburb list into
+    $.each(arrSuburbs, function(index, item) {
+      $("#questions .input-container #listsuburbs").append("<option>" + item.SuburbName + "</option>");
+    });
+   }
 
    // Nav Generator
    var generate_nav = function(arrAnchors, arrToolTips) {
@@ -128,7 +137,6 @@ var arrMapColours = ['#fafa6e', '#2A4858', '#000'];
         controlArrows: false
 
     });
-    /* exported init_map */
-    init_map();
+    get_suburb_data();
   });
 })();

@@ -82,7 +82,8 @@
                     <h2>Where do you want to live?</h2>
                   </div>
                   <div class="input-container">
-                    <input type="text" placeholder="e.g. Newstead" onfocus="this.placeholder = ''" onblur="this.placeholder = 'e.g. Newstead'"/>
+                    <input type="text" name="suburb" list="listsuburbs" placeholder="e.g. Newstead" onfocus="this.placeholder = ''" onblur="this.placeholder = 'e.g. Newstead'" required />
+                    <datalist id="listsuburbs"></datalist>
                   </div>
                 </div>
                 <div class="right-arrow-container">
