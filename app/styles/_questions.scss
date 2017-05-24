@@ -22,9 +22,13 @@ img {
   width: 100%;
   box-sizing: border-box;
   height: 4rem;
+  display: flex;
+  justify-content: center;
 
   input {
-    width: 100%;
+    position: relative;
+    margin: 0 auto;
+    width: 25rem;
     box-sizing: border-box;
   }
 }
