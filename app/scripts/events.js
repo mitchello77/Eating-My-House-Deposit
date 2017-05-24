@@ -1,5 +1,5 @@
 /* exported init_map, build_map, reset_map */
-/* global init_map, build_map, reset_map */
+/* global init_map, build_map, reset_map suburbcombo */
 
 // All events
 $(function() { // We are ready!
@@ -19,6 +19,29 @@ $(function() { // We are ready!
 
   $('.right-arrow-container svg').click(function() {
     $.fn.fullpage.moveSlideRight();
+  });
+
+  $('#questions .dropdown-btn').click(function() {
+    var input = document.getElementById("input_suburbname");
+    if (suburbcombo !== undefined && input !== undefined) {
+      if (suburbcombo.ul.childNodes.length === 0) {
+        console.log('1');
+        if (input.validity.patternMismatch && !input.validity.valueMissing) {
+          input.value = "";
+          suburbcombo.minChars = 0;
+          suburbcombo.evaluate();
+        } else {
+          suburbcombo.minChars = 0;
+          suburbcombo.evaluate();
+        }
+      } else if (suburbcombo.ul.hasAttribute('hidden')) {
+        console.log('3');
+        suburbcombo.open();
+      } else {
+        console.log('4');
+        suburbcombo.close();
+      }
+    }
   });
 
   $(window).bind('resizeEnd', function() {
