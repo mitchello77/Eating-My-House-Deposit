@@ -1,122 +1,126 @@
 /* question styles */
-
-.question-container {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
-  width: 40rem;
-  position: relative;
-}
-
-img {
-  margin-bottom: 1rem;
-}
-
-.question {
-  text-align: center;
-  width: 100%;
-}
-
-.input-container {
-  width: 100%;
-  box-sizing: border-box;
-  height: 4rem;
-  display: flex;
-  justify-content: center;
-
-  input {
+#questions {
+  datalist {
+    background-color: #000;
+  }
+  .question-container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    width: 40rem;
     position: relative;
-    margin: 0 auto;
-    width: 25rem;
+  }
+
+  img {
+    margin-bottom: 1rem;
+  }
+
+  .question {
+    text-align: center;
+    width: 100%;
+  }
+
+  .input-container {
+    width: 100%;
     box-sizing: border-box;
-  }
-}
+    height: 4rem;
+    display: flex;
+    justify-content: center;
 
-
-.button-container {
-  display: flex;
-  justify-content: space-around;
-  width: 100%;
-}
-
-/*button styles*/
-
-.decision-button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 40%;
-  box-sizing: border-box;
-  border: 2px solid $selected_blue;
-  color: $selected_blue;
-  border-radius: 4px;
-
-  &:hover {
-    cursor: pointer;
-    box-shadow: 0px 1px 2px $selected_blue;
-  }
-
-  &.selected {
-    background-color: $selected_blue;
-    color: #fff;
-
-    &:hover {
-      box-shadow: none;
+    input {
+      position: relative;
+      margin: 0 auto;
+      width: 25rem;
+      box-sizing: border-box;
     }
   }
 
-  p {
-    font-size: 1.5rem;
-    font-weight: 600;
+
+  .button-container {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
   }
-}
 
-// inputs
+  /*button styles*/
 
-input {
-  outline: none;
-  font-family: 'Hind Guntur', sans-serif;
-  font-weight: 300;
-  color: #494B4E
-}
+  .decision-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40%;
+    box-sizing: border-box;
+    border: 2px solid $selected_blue;
+    color: $selected_blue;
+    border-radius: 4px;
 
-input[type="text"] {
-  font-size: 2rem;
-  height: 5rem;
-  background: none;
-  height: 100%;
-  border: 2px solid $background;
-  text-align: center;
-  border-bottom: 2px solid lighten($action_green, 40%);
-  transition: .4s;
+    &:hover {
+      cursor: pointer;
+      box-shadow: 0px 1px 2px $selected_blue;
+    }
 
-  &:focus {
-    border-bottom: 2px solid $action_green;
+    &.selected {
+      background-color: $selected_blue;
+      color: #fff;
+
+      &:hover {
+        box-shadow: none;
+      }
+    }
+
+    p {
+      font-size: 1.5rem;
+      font-weight: 600;
+    }
   }
-}
+
+  // inputs
+
+  input {
+    outline: none;
+    font-family: 'Hind Guntur', sans-serif;
+    font-weight: 300;
+    color: #494B4E
+  }
+
+  input[type="text"] {
+    font-size: 2rem;
+    height: 5rem;
+    background: none;
+    height: 100%;
+    border: 2px solid $background;
+    text-align: center;
+    border-bottom: 2px solid lighten($action_green, 40%);
+    transition: .4s;
+
+    &:focus {
+      border-bottom: 2px solid $action_green;
+    }
+  }
 
 
-::-webkit-input-placeholder { /* Chrome/Opera/Safari */
-  color: $grey;
-  font-family: 'Hind Guntur', sans-serif;
-}
-::-moz-placeholder { /* Firefox 19+ */
-  color: $grey;
-  font-family: 'Hind Guntur', sans-serif;
-}
-:-ms-input-placeholder { /* IE 10+ */
-  color: $grey;
-  font-family: 'Hind Guntur', sans-serif;
-}
-:-moz-placeholder { /* Firefox 18- */
-  color: $grey;
-  font-family: 'Hind Guntur', sans-serif;
-}
+  ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+    color: $grey;
+    font-family: 'Hind Guntur', sans-serif;
+  }
+  ::-moz-placeholder { /* Firefox 19+ */
+    color: $grey;
+    font-family: 'Hind Guntur', sans-serif;
+  }
+  :-ms-input-placeholder { /* IE 10+ */
+    color: $grey;
+    font-family: 'Hind Guntur', sans-serif;
+  }
+  :-moz-placeholder { /* Firefox 18- */
+    color: $grey;
+    font-family: 'Hind Guntur', sans-serif;
+  }
 
-// slider navigation styles
-.fp-slidesNav {
-  ul li a span {
-    background-color: $grey;
+  // slider navigation styles
+  .fp-slidesNav {
+    ul li a span {
+      background-color: $grey;
+    }
   }
 }
