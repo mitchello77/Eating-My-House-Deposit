@@ -77,12 +77,7 @@
 
   // inputs
 
-  input {
-    outline: none;
-    font-family: 'Hind Guntur', sans-serif;
-    font-weight: 300;
-    color: #494B4E
-  }
+
 
   input[type="text"] {
     font-size: 2rem;
@@ -93,9 +88,10 @@
     text-align: center;
     border-bottom: 2px solid lighten($action_green, 40%);
     transition: .4s;
+    outline: none;
 
     &:focus {
-      border-bottom: 2px solid $red;
+      border-bottom: 2px solid $action_green;
     }
 
     &:invalid {
