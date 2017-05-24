@@ -79,7 +79,6 @@ var suburbcombo;
          } else {
           obj.MedianPrice = toInteger((parseInt(obj.HousePrice) + parseInt(obj.UnitPrice)) / 2);
          }
-         console.log(obj.MedianPrice);
          obj.Distance = item.Distance;
          obj.Latitude = item.Latitude;
          obj.Longitude = item.Longitude;
