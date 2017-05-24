@@ -94,6 +94,10 @@ input[type="text"] {
   &:focus {
     border-bottom: 2px solid $action_green;
   }
+
+  &:invalid {
+    border-bottom: 2px solid red;
+  }
 }
 
 

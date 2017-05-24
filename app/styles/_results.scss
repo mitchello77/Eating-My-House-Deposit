@@ -1,0 +1,35 @@
+.expenses-list {
+  display: flex;
+  flex-direction: column;
+  width: 20rem;
+  height: 70vh;
+  justify-content: space-between;
+
+  .expense {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 3.5rem;
+    font-weight: 400;
+    padding: 1rem;
+
+    img {
+      width: 5rem;
+    }
+  }
+
+  .expense:last-of-type {
+    border-top: 2px solid lighten($colour, 50%);
+    border-bottom: 2px solid lighten($colour, 50%);
+  }
+
+  .total-label, .total-amount {
+    display: flex;;
+    align-items: center;
+  }
+
+  .total-amount {
+    font-weight: 600;
+
+  }
+}
