@@ -84,19 +84,23 @@
     color: #494B4E
   }
 
-  input[type="text"] {
-    font-size: 2rem;
-    height: 5rem;
-    background: none;
-    height: 100%;
-    border: 2px solid $background;
-    text-align: center;
-    border-bottom: 2px solid lighten($action_green, 40%);
-    transition: .4s;
+input[type="text"] {
+  font-size: 2rem;
+  height: 5rem;
+  background: none;
+  height: 100%;
+  border: 2px solid $background;
+  text-align: center;
+  border-bottom: 2px solid lighten($action_green, 40%);
+  transition: .4s;
 
-    &:focus {
-      border-bottom: 2px solid $action_green;
-    }
+  &:focus {
+    border-bottom: 2px solid $red;
+  }
+
+  &:invalid {
+    border-bottom: 2px solid $red;
+
   }
 
 
