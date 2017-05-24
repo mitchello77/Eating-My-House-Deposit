@@ -75,9 +75,9 @@ var suburbcombo;
          obj.HousePrice = item.HousePrice;
          obj.UnitPrice = item.UnitPrice;
          if (obj.HousePrice === 0 || obj.UnitPrice === 0) {
-          obj.MedianPrice = toInteger(parseInt(obj.HousePrice) + parseInt(obj.UnitPrice));
+          obj.MedianPrice = toInteger(parseInt(obj.HousePrice, 10) + parseInt(obj.UnitPrice, 10));
          } else {
-          obj.MedianPrice = toInteger((parseInt(obj.HousePrice) + parseInt(obj.UnitPrice)) / 2);
+          obj.MedianPrice = toInteger((parseInt(obj.HousePrice, 10) + parseInt(obj.UnitPrice, 10)) / 2);
          }
          obj.Distance = item.Distance;
          obj.Latitude = item.Latitude;
