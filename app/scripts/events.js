@@ -13,6 +13,14 @@ $(function() { // We are ready!
     $.fn.fullpage.moveTo($(this).val());
   });
 
+  $('.down-arrow-container svg').click(function() {
+    $.fn.fullpage.moveSectionDown();
+  });
+
+  $('.right-arrow-container svg').click(function() {
+    $.fn.fullpage.moveSlideRight();
+  });
+
   $(window).bind('resizeEnd', function() {
     build_map(true);
   });
