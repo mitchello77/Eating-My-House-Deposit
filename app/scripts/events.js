@@ -24,7 +24,7 @@ $(function() { // We are ready!
         // another button selected
         $(parent).find('.selected').removeClass('selected');
       }
-      $(this).addClass('selected')
+      $(this).addClass('selected');
     }
   });
 
@@ -40,7 +40,7 @@ $(function() { // We are ready!
       // has button
       var selected_button = $(parentslider).find(".button-container .selected");
       value = false;
-      if ($(selected_button).find("p").html() == "Yes") {
+      if ($(selected_button).find("p").html() === "Yes") {
         value = true;
       }
     }
