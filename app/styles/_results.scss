@@ -1,3 +1,8 @@
+.results-title {
+  margin-bottom: 2rem;
+  font-size: 2rem;
+}
+
 .expenses-list {
   display: flex;
   flex-direction: column;
@@ -7,7 +12,7 @@
 
   .expense {
     display: flex;
-    align-items: center;
+    align-items: flex-end;
     justify-content: space-between;
     font-size: 3.5rem;
     font-weight: 400;
@@ -16,6 +21,13 @@
     img {
       width: 5rem;
     }
+
+    hr {
+      width: 1rem;
+      border: 0;
+      border-bottom: 2px solid lighten($colour, 50%);
+    }
+
   }
 
   .expense:last-of-type {
