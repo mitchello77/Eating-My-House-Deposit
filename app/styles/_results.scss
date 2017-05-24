@@ -3,6 +3,17 @@
   font-size: 2rem;
 }
 
+.expense-container {
+  display: flex;
+  position: relative;
+}
+
+.income-graph {
+  width: 4rem;
+  height: 100%;
+  background: red;
+}
+
 .expenses-list {
   display: flex;
   flex-direction: column;
@@ -33,6 +44,7 @@
   .expense:last-of-type {
     border-top: 2px solid lighten($colour, 50%);
     border-bottom: 2px solid lighten($colour, 50%);
+    align-items: flex-start;
   }
 
   .total-label, .total-amount {
