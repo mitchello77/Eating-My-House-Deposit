@@ -8,6 +8,16 @@ var SuburbKmFilter = 5.0; // (decimal) filter active suburbs by this
 var arrMapColours = ['#fafa6e', '#2A4858', '#000'];
 var suburbcombo;
 
+var build_results = function() {
+  $('#questions .slide').each(function(index, item) {
+    if (this === undefined) {
+    console.log("Missing data-contect on slide");
+    } else {
+      userResults[$(this).attr('data-context')] = null;
+    }
+  });
+};
+
 (function() {
   'use strict';
 
@@ -112,16 +122,6 @@ var suburbcombo;
     });
    }
 
-   var build_results = function() {
-    $('#questions .slide').each(function(index, item) {
-      if (this === undefined) {
-      console.log("Missing data-contect on slide");
-      } else {
-        userResults[$(this).attr('data-context')] = null;
-      }
-    });
-  };
-
    // Nav Generator
    var generate_nav = function(arrAnchors, arrToolTips) {
      var sectionCount = $('.section').length; // Int of how many sections
@@ -159,7 +159,8 @@ var suburbcombo;
         navigationTooltips: arrToolTips,
         scrollBar: true,
         slidesNavigation: true,
-        controlArrows: false
+        controlArrows: false,
+        loopHorizontal: true
     });
     get_suburb_data();
     build_results();

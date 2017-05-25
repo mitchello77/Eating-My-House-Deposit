@@ -1,5 +1,5 @@
 /* exported init_map, build_map, reset_map */
-/* global init_map, build_map, reset_map, suburbcombo, userResults */
+/* global init_map, build_map, reset_map, suburbcombo, userResults, build_results */
 
 // All events
 $(function() { // We are ready!
@@ -15,6 +15,12 @@ $(function() { // We are ready!
 
   $('.down-arrow-container svg').click(function() {
     $.fn.fullpage.moveSectionDown();
+  });
+
+  $('#questions .reset-button').click(function() {
+    userResults = {};
+    build_results();
+    $.fn.fullpage.moveSlideRight();
   });
 
   $('#questions .decision-button').click(function() {
@@ -53,6 +59,7 @@ $(function() { // We are ready!
       // has input
       var input = $(parentslider).find(".input-container input");
       value = input.val();
+      input.val("");
     } else if ($(parentslider).find(".button-container").length) {
       // has button
       var selected_button = $(parentslider).find(".button-container .selected");
@@ -60,6 +67,7 @@ $(function() { // We are ready!
       if ($(selected_button).find("p").html() === "Yes") {
         value = true;
       }
+      $(selected_button).removeClass('selected');
     }
     userResults[$(parentslider).attr('data-context')] = value || null;
     // Move on
