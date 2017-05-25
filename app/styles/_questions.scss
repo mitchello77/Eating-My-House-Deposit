@@ -1,5 +1,8 @@
 /* question styles */
 #questions {
+  .fp-slidesNav {
+    pointer-events: none;
+  }
   datalist {
     background-color: #000;
   }
@@ -77,12 +80,7 @@
 
   // inputs
 
-  input {
-    outline: none;
-    font-family: 'Hind Guntur', sans-serif;
-    font-weight: 300;
-    color: #494B4E
-  }
+
 
   input[type="text"] {
     font-size: 2rem;
@@ -91,11 +89,17 @@
     height: 100%;
     border: 2px solid $background;
     text-align: center;
-    border-bottom: 2px solid lighten($action_green, 40%);
+    border-bottom: 2px solid $action_green;
     transition: .4s;
+    outline: none;
 
     &:focus {
       border-bottom: 2px solid $action_green;
+    }
+
+    &:invalid {
+      border-bottom: 2px solid $red;
+
     }
   }
 

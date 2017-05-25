@@ -1,0 +1,68 @@
+.results-title {
+  font-size: 2rem;
+}
+
+.result-hr {
+  width: 5rem;
+  border: 0;
+  border-bottom: 1px solid #bfbeba;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.expense-container {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  height: 70vh;
+  width: 35rem;
+}
+
+.income-graph {
+  width: 4rem;
+  height: 100%;
+  background: red;
+}
+
+.expenses-list {
+  display: flex;
+  flex-direction: column;
+  width: 20rem;
+  justify-content: space-between;
+
+  .expense {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    font-size: 3.5rem;
+    font-weight: 400;
+    padding: 1rem;
+
+    img {
+      width: 5rem;
+    }
+
+    hr {
+      width: 1rem;
+      border: 0;
+      border-bottom: 2px solid lighten($colour, 50%);
+    }
+
+  }
+
+  .expense:last-of-type {
+    border-top: 2px solid lighten($colour, 50%);
+    border-bottom: 2px solid lighten($colour, 50%);
+    align-items: flex-start;
+  }
+
+  .total-label, .total-amount {
+    display: flex;;
+    align-items: center;
+  }
+
+  .total-amount {
+    font-weight: 600;
+
+  }
+}

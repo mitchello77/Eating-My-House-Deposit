@@ -3,6 +3,7 @@
 
 // Globals
 var arrSuburbs = [];
+var userResults = {};
 var SuburbKmFilter = 5.0; // (decimal) filter active suburbs by this
 var arrMapColours = ['#fafa6e', '#2A4858', '#000'];
 var suburbcombo;
@@ -74,9 +75,9 @@ var suburbcombo;
          obj.HousePrice = item.HousePrice;
          obj.UnitPrice = item.UnitPrice;
          if (obj.HousePrice === 0 || obj.UnitPrice === 0) {
-          obj.MedianPrice = toInteger(obj.HousePrice + obj.UnitPrice);
+          obj.MedianPrice = toInteger(parseInt(obj.HousePrice, 10) + parseInt(obj.UnitPrice, 10));
          } else {
-          obj.MedianPrice = toInteger((obj.HousePrice + obj.UnitPrice) / 2);
+          obj.MedianPrice = toInteger((parseInt(obj.HousePrice, 10) + parseInt(obj.UnitPrice, 10)) / 2);
          }
          obj.Distance = item.Distance;
          obj.Latitude = item.Latitude;
@@ -106,6 +107,16 @@ var suburbcombo;
       minChars: 1
     });
    }
+
+   var build_results = function() {
+    $('#questions .slide').each(function(index, item) {
+      if (this === undefined) {
+      console.log("Missing data-contect on slide");
+      } else {
+        userResults[$(this).attr('data-context')] = null;
+      }
+    });
+  };
 
    // Nav Generator
    var generate_nav = function(arrAnchors, arrToolTips) {
@@ -145,8 +156,8 @@ var suburbcombo;
         scrollBar: true,
         slidesNavigation: true,
         controlArrows: false
-
     });
     get_suburb_data();
+    build_results();
   });
 })();
