@@ -18,13 +18,30 @@ $(function() { // We are ready!
   });
 
   $('#questions .decision-button').click(function() {
+    var parentslider = $(this).parents(".slide");
+    var parent = $(this).parent();
     if (!$(this).hasClass('selected')) {
-      var parent = $(this).parent();
       if ($(parent).find('.selected').length) {
         // another button selected
         $(parent).find('.selected').removeClass('selected');
       }
       $(this).addClass('selected');
+    }
+    // Unhide button
+    if ($(parentslider).find('.right-arrow-container').length) {
+      $(parentslider).find('.right-arrow-container').removeClass('hidden');
+    }
+  });
+
+  $('#input_suburbname').on('input', function() {
+    var input = document.getElementById("input_suburbname");
+    var parentslider = $(this).parents(".slide");
+    if (input.validity.valid) {
+      // valid input
+      $(parentslider).find(".right-arrow-container").removeClass('hidden');
+    } else if (!input.validity.valid) {
+      // not valid input
+      $(parentslider).find(".right-arrow-container").addClass('hidden');
     }
   });
 

@@ -106,6 +106,10 @@ var suburbcombo;
       list: "#listsuburbs",
       minChars: 1
     });
+    // on selection force event fire
+    $('#input_suburbname').on('awesomplete-selectcomplete', function() {
+      $('#input_suburbname').trigger('input');
+    });
    }
 
    var build_results = function() {
