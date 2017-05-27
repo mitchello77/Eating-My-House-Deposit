@@ -68,6 +68,10 @@ $(function() { // We are ready!
         value = true;
       }
       $(selected_button).removeClass('selected');
+    } else if ($(parentslider).find(".slider-container").length) {
+      // has slider
+      var slider = $(parentslider).find(".slider");
+      value = slider[0].noUiSlider.get();
     }
     userResults[$(parentslider).attr('data-context')] = value || null;
     // Move on

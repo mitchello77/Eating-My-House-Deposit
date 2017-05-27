@@ -39,6 +39,26 @@
     }
   }
 
+  .slider-container {
+    width: 100%;
+    box-sizing: border-box;
+    height: 8rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .slider {
+      width: 100%;
+    }
+    .value {
+      width: 5rem;
+      border: 1px solid #ccc;
+      font-size: 18px;
+      text-align: center;
+      margin-top: 4rem;
+    }
+  }
 
   .button-container {
     display: flex;
@@ -109,9 +129,6 @@
   }
 
   // inputs
-
-
-
   input[type="text"] {
     font-size: 2rem;
     height: 5rem;

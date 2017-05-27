@@ -4,6 +4,8 @@
 // Globals
 var arrSuburbs = [];
 var userResults = {};
+var arrAnchors = []; // Stores anchor strings for FullPage.js nav
+var arrToolTips = []; // Stores tooltips for FullPage.js nav
 var SuburbKmFilter = 5.0; // (decimal) filter active suburbs by this
 var arrMapColours = ['#fafa6e', '#2A4858', '#000'];
 var suburbcombo;
@@ -141,6 +143,36 @@ var build_results = function() {
      $('nav li:first-of-type').addClass('active');
    };
 
+    var build_sliders = function() {
+    var rangeSalary = document.getElementById('rangeSalary');
+
+    noUiSlider.create(rangeSalary, {
+      start: 5000,
+      step: 5000,
+      range: {
+        'min': 5000,
+        'max': 200000
+      },
+      pips: {
+        mode: 'range',
+        density: 3,
+        format: wNumb({
+          decimals: 0,
+          prefix: '$'
+        })
+      },
+      format: wNumb({
+        decimals: 0,
+        thousand: ',',
+        prefix: '$ '
+      })
+    });
+      rangeSalary.noUiSlider.on('update', function(values, handle) {
+        var parent = $(rangeSalary).parent();
+        $(parent).find('.value').html(values[handle]);
+      });
+    };
+
    function toInteger(number) {
      return Math.round(  // round to nearest integer
        Number(number)    // type cast your input
@@ -148,8 +180,6 @@ var build_results = function() {
    }
 
   $(document).ready(function() { // loading done
-    var arrAnchors = []; // Stores anchor strings for FullPage.js nav
-    var arrToolTips = []; // Stores tooltips for FullPage.js nav
     generate_nav(arrAnchors, arrToolTips);
     // Init Fullpage JS
     $('#fullpage').fullpage({
@@ -164,5 +194,6 @@ var build_results = function() {
     });
     get_suburb_data();
     build_results();
+    build_sliders();
   });
 })();
