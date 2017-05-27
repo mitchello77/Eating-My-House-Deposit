@@ -1,5 +1,5 @@
-body {
-  margin-left: $nav_button-size+$nav_padding !important; //sorry about the important lol
+#fullpage {
+  padding-left: $nav_button-size+$nav_padding; 
 }
 nav {
   position: fixed;

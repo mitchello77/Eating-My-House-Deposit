@@ -20,6 +20,11 @@ var build_results = function() {
   });
 };
 
+var hide_preloader = function() {
+  $('body').removeClass('loading');
+  $('#pre-loader').addClass('hidden');
+};
+
 (function() {
   'use strict';
 
@@ -101,6 +106,7 @@ var build_results = function() {
        // Dropdown validation
        setup_validation();
        build_map(false); // init Map
+       hide_preloader();
      });
    };
 
@@ -150,8 +156,8 @@ var build_results = function() {
       start: 5000,
       step: 5000,
       range: {
-        'min': 5000,
-        'max': 200000
+        min: 5000,
+        max: 200000
       },
       pips: {
         mode: 'range',

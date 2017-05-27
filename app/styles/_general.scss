@@ -5,6 +5,13 @@ html, body {
   font-size: 16px;
   background: $background;
   color: $colour;
+  overflow-x: hidden !important; // fullpage is a litte shit and overides this
+}
+
+body.loading {
+  margin: 0;
+  padding: 0;
+  overflow-y: hidden !important;
 }
 
 /*some global styles*/
@@ -101,7 +108,6 @@ a {
   }
 }
 
-
 // 404
 #notfound {
   width: 100vw;
@@ -113,4 +119,19 @@ a {
     display: block;
     font-size: 4rem;
   }
+}
+
+// preloader
+#pre-loader {
+  z-index: 9999999;
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+
 }
