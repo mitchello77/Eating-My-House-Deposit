@@ -112,32 +112,13 @@
   }
 
   .reset-button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 40%;
-    box-sizing: border-box;
-    border: 2px solid $reset_colour;
-    color: $reset_colour;
-    border-radius: 4px;
+    margin-top: 1.5rem;
+    font-size: 1rem;
+    color: $red;
+    cursor: pointer;
 
     &:hover {
-      cursor: pointer;
-      box-shadow: 0px 1px 2px $reset_colour;
-    }
-
-    &.selected {
-      background-color: $reset_colour;
-      color: #fff;
-
-      &:hover {
-        box-shadow: none;
-      }
-    }
-
-    p {
-      font-size: 1.5rem;
-      font-weight: 600;
+      color: darken($red, 20%)
     }
   }
 

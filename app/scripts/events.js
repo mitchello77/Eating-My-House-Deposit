@@ -13,7 +13,7 @@ $(function() { // We are ready!
     $.fn.fullpage.moveTo($(this).val());
   });
 
-  $('.down-arrow-container svg').click(function() {
+  $('.down-arrow-container svg, .proceed-button').click(function() {
     $.fn.fullpage.moveSectionDown();
   });
 
