@@ -42,11 +42,14 @@
     <script src="scripts/init.js" defer></script>
 
   </head>
-  <body>
+  <body class="loading">
+    <div id="pre-loader">
+      Loading boiis.. Plz Style me kelvinon. I want a sexy spinner or something. http://tobiasahlin.com/spinkit/ are pretty cool.
+    </div>
+    <a href="https://github.com/#"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>
     <!-- Automatically Generated --><nav><ul id="main-nav"></ul></nav>
       <div id="fullpage">
         <div class="section" id="landing" data-tooltip="Home" data-navcolour="#78A4C0">
-
           <div class="container">
             <div class="home">
               <div class="home-image">
@@ -56,7 +59,7 @@
                 <p>
                   Young people and prospective first home owners have consistently been told to curb
                   their spending on <span><a href="http://bit.ly/2qkCHUx" target="_blank">$4 coffees</a></span>, <span><a href="http://bit.ly/2dsybyj" target="_blank">smashed avo on toast at hispter cafes</a></span> and other "luxuries"
-                  if they want to be able to afford a house in the current market. But if we took that advice would it make any difference?
+                  if they want to be able to afford a house in the current market. We're bringing it on ourselves right? If we took that advice would it make any difference?
                 </p>
                 <hr>
               <div class="prompt">
@@ -76,8 +79,11 @@
 
         <div class="section" id="questions" data-tooltip="Questionair" data-navcolour="#78A4C0">
 
-            <div class="slide">
+            <div class="slide" data-context="ideallocation">
               <div class="container">
+                <header>
+                  In 10 short questions. You'll understand how our "exuberant" lifestyle is a "direct correlation" to impending homelessness.(ps Words inside quotations may also directly correlate with bullshit)
+                </header>
                 <div class="question-container">
                   <img src="./images/pin.png" alt="">
                   <div class="question">
@@ -93,7 +99,7 @@
                     <ul id="listsuburbs" class="hidden"></ul>
                   </div>
                 </div>
-                <div class="right-arrow-container">
+                <div class="right-arrow-container hidden">
                   <?xml version="1.0" encoding="utf-8"?> <!-- Generator: IcoMoon.io --> <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
                   <svg width="512" height="512" viewBox="0 0 512 512" preserveA xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M 96.00,96.00l-96.00,96.00l 256.00,256.00l 256.00-256.00l-96.00-96.00L 256.00,256.00L 96.00,96.00z" >
                   </path></svg>
@@ -101,14 +107,17 @@
               </div>
             </div>
 
-            <div class="slide">
+            <div class="slide" data-context="salary">
               <div class="container">
                 <div class="question-container">
                   <img src="./images/suitcase.png" alt="">
                   <div class="question">
-                    <h2>What industry do you work in, or want to work in?</h2>
+                    <h2>What is your annual salary?</h2>
                   </div>
-                  <div class="input-container">
+                  <div class="slider-container">
+                    <div id="rangeSalary" class="slider">
+                    </div>
+                    <div class="value"></div>
                   </div>
                 </div>
                 <div class="right-arrow-container">
@@ -119,7 +128,7 @@
               </div>
             </div>
 
-            <div class="slide">
+            <div class="slide" data-context="use_musicstream">
               <div class="container">
                 <div class="question-container">
                   <img src="./images/music.png" alt="">
@@ -136,7 +145,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="right-arrow-container">
+                <div class="right-arrow-container  hidden">
                   <?xml version="1.0" encoding="utf-8"?> <!-- Generator: IcoMoon.io --> <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
                   <svg width="512" height="512" viewBox="0 0 512 512" preserveA xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M 96.00,96.00l-96.00,96.00l 256.00,256.00l 256.00-256.00l-96.00-96.00L 256.00,256.00L 96.00,96.00z" >
                   </path></svg>
@@ -144,7 +153,7 @@
               </div>
             </div>
 
-            <div class="slide">
+            <div class="slide" data-context="use_moviestream">
               <div class="container">
                 <div class="question-container">
                   <img src="./images/flat-screen.png" alt="">
@@ -160,7 +169,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="right-arrow-container">
+                <div class="right-arrow-container  hidden">
                   <?xml version="1.0" encoding="utf-8"?> <!-- Generator: IcoMoon.io --> <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
                   <svg width="512" height="512" viewBox="0 0 512 512" preserveA xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M 96.00,96.00l-96.00,96.00l 256.00,256.00l 256.00-256.00l-96.00-96.00L 256.00,256.00L 96.00,96.00z" >
                   </path></svg>
@@ -168,7 +177,7 @@
               </div>
             </div>
 
-            <div class="slide">
+            <div class="slide"  data-context="use_gym">
               <div class="container">
                 <div class="question-container">
                   <img src="./images/arm.png" alt="">
@@ -184,7 +193,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="right-arrow-container">
+                <div class="right-arrow-container  hidden">
                   <?xml version="1.0" encoding="utf-8"?> <!-- Generator: IcoMoon.io --> <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
                   <svg width="512" height="512" viewBox="0 0 512 512" preserveA xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M 96.00,96.00l-96.00,96.00l 256.00,256.00l 256.00-256.00l-96.00-96.00L 256.00,256.00L 96.00,96.00z" >
                   </path></svg>
@@ -192,7 +201,7 @@
               </div>
             </div>
 
-            <div class="slide">
+            <div class="slide" data-context="use_coffee">
               <div class="container">
                 <div class="question-container">
                   <img src="./images/coffee.png" alt="">
@@ -208,7 +217,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="right-arrow-container">
+                <div class="right-arrow-container  hidden">
                   <?xml version="1.0" encoding="utf-8"?> <!-- Generator: IcoMoon.io --> <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
                   <svg width="512" height="512" viewBox="0 0 512 512" preserveA xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M 96.00,96.00l-96.00,96.00l 256.00,256.00l 256.00-256.00l-96.00-96.00L 256.00,256.00L 96.00,96.00z" >
                   </path></svg>
@@ -216,7 +225,7 @@
               </div>
             </div>
 
-            <div class="slide">
+            <div class="slide" data-context="use_avo">
               <div class="container">
                 <div class="question-container">
                   <img src="./images/avo.png" alt="">
@@ -232,10 +241,34 @@
                     </div>
                   </div>
                 </div>
-                <div class="down-arrow-container">
+                <div class="right-arrow-container  hidden">
                   <?xml version="1.0" encoding="utf-8"?> <!-- Generator: IcoMoon.io --> <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
                   <svg width="512" height="512" viewBox="0 0 512 512" preserveA xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M 96.00,96.00l-96.00,96.00l 256.00,256.00l 256.00-256.00l-96.00-96.00L 256.00,256.00L 96.00,96.00z" >
                   </path></svg>
+                </div>
+              </div>
+            </div>
+
+            <div class="slide" data-context="finish">
+              <div class="container">
+                <div class="question-container">
+                  <img src="./images/avo.png" alt="">
+                  Put smiley face here maybe?
+                  <div class="question">
+                    <h2>All Done! See your results below.</h2>
+                  </div>
+                  <div class="button-container">
+                    <div class="reset-button">
+                      <p>Reset Questionair</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="down-arrow-container">
+                  <div>
+                    <?xml version="1.0" encoding="utf-8"?> <!-- Generator: IcoMoon.io --> <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+                    <svg width="512" height="512" viewBox="0 0 512 512" preserveA xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M 96.00,96.00l-96.00,96.00l 256.00,256.00l 256.00-256.00l-96.00-96.00L 256.00,256.00L 96.00,96.00z" >
+                    </path></svg>
+                  </div>
                 </div>
               </div>
             </div>
@@ -306,6 +339,12 @@
             </div>
           </div>
         </div>
+        <div class="section" id="conclusion" data-tooltip="Conclusion" data-navcolour="#78A4C0">
+          <p>closing thoughts. Stacked bar of housing/unit prices.</p>
+        </div>
+        <div class="section" id="about" data-tooltip="About" data-navcolour="#78A4C0">
+          <p>about project. Uni assdignment, data visual. Addressing problem of brisbane housing crisis. Check out code on git hub. Authors: Mitch and Kel. Link to their git, portfolio, twitter ect</p>
+        </div>
       </div>
 
     <!-- full page js -->
@@ -314,6 +353,9 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.0/topojson.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/chroma-js/1.3.3/chroma.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/9.2.0/nouislider.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/wnumb/1.1.0/wNumb.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
     <!-- build:js scripts/main.min.js -->
     <script src="scripts/main.js"></script>
     <script src="scripts/ajax.js"></script>

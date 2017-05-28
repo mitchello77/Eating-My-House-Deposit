@@ -3,9 +3,27 @@
 
 // Globals
 var arrSuburbs = [];
+var userResults = {};
+var arrAnchors = []; // Stores anchor strings for FullPage.js nav
+var arrToolTips = []; // Stores tooltips for FullPage.js nav
 var SuburbKmFilter = 5.0; // (decimal) filter active suburbs by this
 var arrMapColours = ['#fafa6e', '#2A4858', '#000'];
 var suburbcombo;
+
+var build_results = function() {
+  $('#questions .slide').each(function(index, item) {
+    if (this === undefined) {
+    console.log("Missing data-contect on slide");
+    } else {
+      userResults[$(this).attr('data-context')] = null;
+    }
+  });
+};
+
+var hide_preloader = function() {
+  $('body').removeClass('loading');
+  $('#pre-loader').addClass('hidden');
+};
 
 (function() {
   'use strict';
@@ -74,9 +92,9 @@ var suburbcombo;
          obj.HousePrice = item.HousePrice;
          obj.UnitPrice = item.UnitPrice;
          if (obj.HousePrice === 0 || obj.UnitPrice === 0) {
-          obj.MedianPrice = toInteger(obj.HousePrice + obj.UnitPrice);
+          obj.MedianPrice = toInteger(parseInt(obj.HousePrice, 10) + parseInt(obj.UnitPrice, 10));
          } else {
-          obj.MedianPrice = toInteger((obj.HousePrice + obj.UnitPrice) / 2);
+          obj.MedianPrice = toInteger((parseInt(obj.HousePrice, 10) + parseInt(obj.UnitPrice, 10)) / 2);
          }
          obj.Distance = item.Distance;
          obj.Latitude = item.Latitude;
@@ -88,6 +106,7 @@ var suburbcombo;
        // Dropdown validation
        setup_validation();
        build_map(false); // init Map
+       hide_preloader();
      });
    };
 
@@ -104,6 +123,10 @@ var suburbcombo;
     suburbcombo = new Awesomplete(suburbInput, {
       list: "#listsuburbs",
       minChars: 1
+    });
+    // on selection force event fire
+    $('#input_suburbname').on('awesomplete-selectcomplete', function() {
+      $('#input_suburbname').trigger('input');
     });
    }
 
@@ -126,6 +149,36 @@ var suburbcombo;
      $('nav li:first-of-type').addClass('active');
    };
 
+    var build_sliders = function() {
+    var rangeSalary = document.getElementById('rangeSalary');
+
+    noUiSlider.create(rangeSalary, {
+      start: 5000,
+      step: 5000,
+      range: {
+        min: 5000,
+        max: 200000
+      },
+      pips: {
+        mode: 'range',
+        density: 3,
+        format: wNumb({
+          decimals: 0,
+          prefix: '$'
+        })
+      },
+      format: wNumb({
+        decimals: 0,
+        thousand: ',',
+        prefix: '$ '
+      })
+    });
+      rangeSalary.noUiSlider.on('update', function(values, handle) {
+        var parent = $(rangeSalary).parent();
+        $(parent).find('.value').html(values[handle]);
+      });
+    };
+
    function toInteger(number) {
      return Math.round(  // round to nearest integer
        Number(number)    // type cast your input
@@ -133,8 +186,6 @@ var suburbcombo;
    }
 
   $(document).ready(function() { // loading done
-    var arrAnchors = []; // Stores anchor strings for FullPage.js nav
-    var arrToolTips = []; // Stores tooltips for FullPage.js nav
     generate_nav(arrAnchors, arrToolTips);
     // Init Fullpage JS
     $('#fullpage').fullpage({
@@ -144,9 +195,11 @@ var suburbcombo;
         navigationTooltips: arrToolTips,
         scrollBar: true,
         slidesNavigation: true,
-        controlArrows: false
-
+        controlArrows: false,
+        loopHorizontal: true
     });
     get_suburb_data();
+    build_results();
+    build_sliders();
   });
 })();

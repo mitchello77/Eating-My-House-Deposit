@@ -1,5 +1,8 @@
 /* question styles */
 #questions {
+  .fp-slidesNav {
+    pointer-events: none;
+  }
   datalist {
     background-color: #000;
   }
@@ -50,6 +53,26 @@
     }
   }
 
+  .slider-container {
+    width: 100%;
+    box-sizing: border-box;
+    height: 8rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .slider {
+      width: 100%;
+    }
+    .value {
+      width: 5rem;
+      border: 1px solid #ccc;
+      font-size: 18px;
+      text-align: center;
+      margin-top: 4rem;
+    }
+  }
 
   .button-container {
     display: flex;
@@ -89,10 +112,37 @@
     }
   }
 
+  .reset-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40%;
+    box-sizing: border-box;
+    border: 2px solid $reset_colour;
+    color: $reset_colour;
+    border-radius: 4px;
+
+    &:hover {
+      cursor: pointer;
+      box-shadow: 0px 1px 2px $reset_colour;
+    }
+
+    &.selected {
+      background-color: $reset_colour;
+      color: #fff;
+
+      &:hover {
+        box-shadow: none;
+      }
+    }
+
+    p {
+      font-size: 1.5rem;
+      font-weight: 600;
+    }
+  }
+
   // inputs
-
-
-
   input[type="text"] {
     font-size: 2rem;
     height: 5rem;
@@ -100,7 +150,7 @@
     height: 100%;
     border: 2px solid $background;
     text-align: center;
-    border-bottom: 2px solid lighten($action_green, 40%);
+    border-bottom: 2px solid $action_green;
     transition: .4s;
     outline: none;
 

@@ -17,6 +17,9 @@
     "no-unused-vars": 1,
     "no-unused-vars": 0,
     "require-jsdoc": 0,
-    "no-new-object": 0
+    "no-new-object": 0,
+    "no-native-reassign": 0,
+    "no-undef": 0
+
   }
 }
