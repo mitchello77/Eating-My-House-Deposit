@@ -153,6 +153,8 @@
     border-bottom: 2px solid $action_green;
     transition: .4s;
     outline: none;
+    font-family: 'Hind Guntur', sans-serif;
+    color: $colour;
 
     &:focus {
       border-bottom: 2px solid $action_green;

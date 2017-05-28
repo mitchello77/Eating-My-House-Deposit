@@ -81,11 +81,13 @@
 		position: relative;
 		padding: .5em;
 		cursor: pointer;
+		font-family: 'Hind Guntur', sans-serif;
+		color: $colour;
 	}
 
 	.awesomplete > ul > li:hover {
-		background: hsl(200, 40%, 80%);
-		color: black;
+		background: $selected_blue;
+		color: #fff;
 	}
 
 	.awesomplete > ul > li[aria-selected="true"] {
@@ -94,11 +96,12 @@
 	}
 
 		.awesomplete mark {
-			background: hsl(65, 100%, 50%);
+			background: none;
 		}
 
 		.awesomplete li:hover mark {
-			background: hsl(68, 100%, 41%);
+			color: #fff;
+
 		}
 
 		.awesomplete li[aria-selected="true"] mark {
