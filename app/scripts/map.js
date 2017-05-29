@@ -208,7 +208,7 @@ var build_map = function(destroy) {
     // generate colours
     // create 1 colour for every active suburb
     if (!destroy) {
-      colours = chroma.scale(arrMapColours)
+      colours = chroma.scale(arrMapFillColours)
       .mode('lch').correctLightness().colors(arrSuburbs.filter(function(obj) {
         return obj.active === true;
       }).length);
