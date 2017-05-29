@@ -7,9 +7,8 @@ var userResults = {};
 var arrAnchors = []; // Stores anchor strings for FullPage.js nav
 var arrToolTips = []; // Stores tooltips for FullPage.js nav
 var SuburbKmFilter = 5.0; // (decimal) filter active suburbs by this
-// var arrMapColours = ['#FFECBA', '#A10054','#001F52'];
 var arrMapFillColours = ['#FFE1B6', '#7A9EB1', '#415865'];
-var arrMapStrokeColours = ['#FFECBA', '#A10054', '#001F52'];
+var arrMapStrokeColours = ['#F05941', '#872341'];
 var suburbcombo;
 
 var build_results = function() {

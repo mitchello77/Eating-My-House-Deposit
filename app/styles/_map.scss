@@ -112,6 +112,7 @@
         stroke-width: $map_suburb-stroke-thickness;
       }
       .suburb {
+        padding: 1rem;
         fill: $map_suburb-fill;
         stroke-width: 2px;
         // cursor: not-allowed;
@@ -121,8 +122,9 @@
       }
 
       .suburb.active.selected {
-        // fill: $map_suburb-selected-colour !important;
+        position: absolute;
         opacity: 1 !important;
+        z-index: 99999;
       }
       .suburb.active {
         cursor: pointer;
