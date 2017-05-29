@@ -47,6 +47,7 @@ var reset_map = function(d) {
   active.classed("selected", false);
   active = d3.select(null);
   $('#map .map-container .overlay .information').addClass('hidden');
+  $('.suburb.active').removeClass("dull")
   g.transition()
       .duration(750)
       .style("stroke-width", "1.5px")
@@ -84,6 +85,7 @@ var OnSuburbClick = function(d) {
   var y = (bounds[0][1] + bounds[1][1]) / 2;
   var scale = 0.9 / Math.max(dx / width, dy / height);
   var translate = [width / 2 - scale * x, height / 2 - scale * y];
+  var other_suburbs = $('.suburb.active');
 
   g.transition()
       .duration(750)
@@ -97,6 +99,7 @@ var OnSuburbClick = function(d) {
   item.postcode = active.attr('data-postcode');
   item.index = active.attr('data-index');
   load_suburbprofile(item);
+  other_suburbs.addClass('dull');
 };
 
 var build_map = function(destroy) {
@@ -205,7 +208,7 @@ var build_map = function(destroy) {
     // generate colours
     // create 1 colour for every active suburb
     if (!destroy) {
-      colours = chroma.scale(arrMapColours)
+      colours = chroma.scale(arrMapFillColours)
       .mode('lch').correctLightness().colors(arrSuburbs.filter(function(obj) {
         return obj.active === true;
       }).length);
