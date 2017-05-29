@@ -5,13 +5,16 @@ html, body {
   font-size: 16px;
   background: $background;
   color: $colour;
-  overflow-x: hidden !important; // fullpage is a litte shit and overides this
 }
 
 body.loading {
   margin: 0;
   padding: 0;
   overflow-y: hidden !important;
+}
+
+#fullpage {
+  overflow: hidden;
 }
 
 /*some global styles*/
@@ -139,10 +142,6 @@ a {
     font-size: $preloader-message-textsize;
     color: $preloader-message-colour;
   }
-}
-
-#about {
-  background: #fff;
 }
 
 /*button styles*/
