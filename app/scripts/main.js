@@ -151,6 +151,8 @@ var hide_preloader = function() {
 
     var build_sliders = function() {
     var rangeSalary = document.getElementById('rangeSalary');
+    var rangeCoffee = document.getElementById('rangeCoffee');
+    var rangeAvo = document.getElementById('rangeAvo');
 
     noUiSlider.create(rangeSalary, {
       start: 5000,
@@ -177,7 +179,62 @@ var hide_preloader = function() {
         var parent = $(rangeSalary).parent();
         $(parent).find('.value').html(values[handle]);
       });
-    };
+
+      noUiSlider.create(rangeCoffee, {
+        start: 0,
+        step: 1,
+        range: {
+          min: 0,
+          max: 20
+        },
+        pips: {
+          mode: 'range',
+          density: 3,
+          format: wNumb({
+            decimals: 0,
+          })
+        },
+        format: wNumb({
+          decimals: 0,
+          thousand: ','
+        })
+      });
+        rangeCoffee.noUiSlider.on('update', function(values, handle) {
+          var parent = $(rangeCoffee).parent();
+          $(parent).find('.value').html(values[handle]);
+        });
+
+      noUiSlider.create(rangeAvo, {
+        start: 0,
+        step: 1,
+        range: {
+          min: 0,
+          max: 20
+        },
+        pips: {
+          mode: 'range',
+          density: 3,
+          format: wNumb({
+            decimals: 0,
+          })
+        },
+        format: wNumb({
+          decimals: 0,
+          thousand: ','
+        })
+      });
+        rangeAvo.noUiSlider.on('update', function(values, handle) {
+          var parent = $(rangeAvo).parent();
+          $(parent).find('.value').html(values[handle]);
+        });
+      };
+
+
+
+    // slider for coffee
+
+
+
 
    function toInteger(number) {
      return Math.round(  // round to nearest integer
