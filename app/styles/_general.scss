@@ -139,3 +139,35 @@ a {
 #about {
   background: #fff;
 }
+
+/*button styles*/
+
+.decision-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40%;
+  box-sizing: border-box;
+  border: 2px solid $selected_blue;
+  color: $selected_blue;
+  border-radius: 4px;
+
+  &:hover {
+    cursor: pointer;
+    box-shadow: 0px 1px 2px $selected_blue;
+  }
+
+  &.selected {
+    background-color: $selected_blue;
+    color: #fff;
+
+    &:hover {
+      box-shadow: none;
+    }
+  }
+
+  p {
+    font-size: 1.5rem;
+    font-weight: 600;
+  }
+}
