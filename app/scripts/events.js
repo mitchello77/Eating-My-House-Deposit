@@ -63,9 +63,12 @@ $(function() { // We are ready!
     } else if ($(parentslider).find(".button-container").length) {
       // has button
       var selected_button = $(parentslider).find(".button-container .selected");
-      value = false;
       if ($(selected_button).find("p").html() === "Yes") {
         value = true;
+      } else if ($(selected_button).find("p").html() === "No") {
+        value = false;
+      } else {
+        value = $(selected_button).find("p").html();
       }
       $(selected_button).removeClass('selected');
     } else if ($(parentslider).find(".slider-container").length) {
