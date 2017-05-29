@@ -223,7 +223,7 @@ var hide_preloader = function() {
           thousand: ','
         })
       });
-        rangeCoffee.noUiSlider.on('update', function(values, handle) {
+        rangeAvo.noUiSlider.on('update', function(values, handle) {
           var parent = $(rangeAvo).parent();
           $(parent).find('.value').html(values[handle]);
         });
