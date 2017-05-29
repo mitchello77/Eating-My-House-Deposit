@@ -24,3 +24,12 @@ $nav_button-size: 2rem;
 $nav_padding: 0.5rem;
 $nav_left-indent-percentage: 0.65; // % of how much of nav to show. 0 = nothing - 1 = show full width
 $nav_tooltip-font-size: 1rem;
+/* pre-loader */
+// Message vars
+$preloader-message-colour: #000;
+$preloader-message-textsize: 1.5rem;
+
+// Spinner vars
+$spinkit-spinner-margin: 40px auto;
+$spinkit-size: 40px;
+$spinkit-spinner-color: blue;

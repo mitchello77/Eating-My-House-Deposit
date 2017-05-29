@@ -71,8 +71,7 @@ gulp.task('maps', () =>
 gulp.task('copy', () =>
   gulp.src([
     'app/*',
-    '!app/*.html',
-    'node_modules/apache-server-configs/dist/.htaccess'
+    '!app/*.html'
   ], {
     dot: true
   }).pipe(gulp.dest('dist'))

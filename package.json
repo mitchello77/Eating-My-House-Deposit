@@ -27,6 +27,7 @@
     "psi": "^3.0.0",
     "pump": "^1.0.2",
     "run-sequence": "^1.0.1",
+    "spinkit": "^1.2.5",
     "sw-precache": "^5.1.1",
     "sw-toolbox": "^3.2.1"
   },

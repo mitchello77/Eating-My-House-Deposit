@@ -128,12 +128,17 @@ a {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   position: absolute;
   top: 0;
   right: 0;
   left: 0;
   bottom: 0;
-
+  .message {
+    text-align: center;
+    font-size: $preloader-message-textsize;
+    color: $preloader-message-colour;
+  }
 }
 
 #about {
