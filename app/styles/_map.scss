@@ -113,6 +113,7 @@
       }
       .suburb {
         fill: $map_suburb-fill;
+        stroke-width: 0px;
         // cursor: not-allowed;
         // &:hover {
         //   fill: $map_suburb-hover-colour !important;
