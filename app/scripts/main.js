@@ -106,7 +106,7 @@ var hide_preloader = function() {
        // Dropdown validation
        setup_validation();
        build_map(false); // init Map
-       hide_preloader();
+       // hide_preloader();
      });
    };
 
