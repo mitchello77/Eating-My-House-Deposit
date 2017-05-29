@@ -122,7 +122,8 @@ var hide_preloader = function() {
     $(suburbInput).attr("pattern", strPattern);
     suburbcombo = new Awesomplete(suburbInput, {
       list: "#listsuburbs",
-      minChars: 1
+      minChars: 1,
+      maxItems: 8
     });
     // on selection force event fire
     $('#input_suburbname').on('awesomplete-selectcomplete', function() {
