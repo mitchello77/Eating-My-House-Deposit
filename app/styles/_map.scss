@@ -121,11 +121,17 @@
 
       .suburb.active.selected {
         // fill: $map_suburb-selected-colour !important;
+        opacity: 1 !important;
       }
       .suburb.active {
         cursor: pointer;
+        transition: opacity .75s;
         &:hover {
           fill: $map_suburb-hover-colour !important;
+        }
+
+        &.dull {
+          opacity: .4;
         }
       }
       .mesh {

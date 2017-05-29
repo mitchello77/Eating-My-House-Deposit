@@ -7,7 +7,8 @@ var userResults = {};
 var arrAnchors = []; // Stores anchor strings for FullPage.js nav
 var arrToolTips = []; // Stores tooltips for FullPage.js nav
 var SuburbKmFilter = 5.0; // (decimal) filter active suburbs by this
-var arrMapColours = ['#fafa6e', '#2A4858', '#000'];
+// var arrMapColours = ['#FFECBA', '#A10054','#001F52'];
+var arrMapColours = ['#FFE1B6', '#7A9EB1','#415865'];
 var suburbcombo;
 
 var build_results = function() {
@@ -23,6 +24,15 @@ var build_results = function() {
 var hide_preloader = function() {
   $('body').removeClass('loading');
   $('#pre-loader').addClass('hidden');
+};
+
+var emphasise_selected_suburb = function() {
+  var selected_suburb = $('.suburb.active').not()
+  var other_suburbs = $('.suburb.active')
+
+  if (other_suburbs.has("selected")) {
+    other_suburbs.addClass("dull")
+  } else { other_suburbs.removeClass("dull") }
 };
 
 (function() {
@@ -258,5 +268,6 @@ var hide_preloader = function() {
     get_suburb_data();
     build_results();
     build_sliders();
+    emphasise_selected_suburb();
   });
 })();
