@@ -38,6 +38,7 @@ const $ = gulpLoadPlugins();
 const reload = browserSync.reload;
 
 var pump = require('pump');
+var jsonminify = require('gulp-jsonminify');
 
 // Lint JavaScript
 gulp.task('lint', () =>
@@ -61,6 +62,7 @@ gulp.task('images', () =>
 // Handle Maps
 gulp.task('maps', () =>
   gulp.src('app/maps/*.json')
+    .pipe(jsonminify())
     .pipe(gulp.dest('dist/maps'))
     .pipe($.size({title: 'maps'}))
 );
