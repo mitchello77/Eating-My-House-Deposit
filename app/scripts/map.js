@@ -9,7 +9,8 @@ var svg;
 var g;
 var tooltip;
 var values;
-var colours;
+var fillcolours;
+var strokecolours;
 
 var isActiveSuburb = function(name) {
   var result = false;
@@ -35,8 +36,9 @@ var showTooltip = function(d) {
   var houseprice = d3.select(this).attr("data-houseprice");
   var unitprice = d3.select(this).attr("data-unitprice");
   var medianprice = d3.select(this).attr("data-medianprice");
+  var payofftime = d3.select(this).attr("data-payoff");
 
-  tooltip.style("display", "block").text(suburbname + " " + postcode + ": $" + medianprice);
+  tooltip.style("display", "block").text(suburbname + " " + postcode + ": $" + medianprice + " - PayOff: " + payofftime);
 };
 
 var hideTooltip = function(d) {
@@ -122,7 +124,8 @@ var build_map = function(destroy) {
   g = svg.append("g").attr("class", "suburbs"); // add path group
   var selected = d3.set([305011143, 305011146]);
   tooltip = d3.select("#map .fp-tableCell .map-container").append("div").attr("class", "tooltip");
-  values = [];
+  price_values = [];
+  paytimevalues = [];
   // done
 
   d3.json("../maps/brisbane.json", function(error, map) {
@@ -174,10 +177,13 @@ var build_map = function(destroy) {
       var UnitPrice = "0";
       var MedianPrice = "0";
       var currentindex = 0;
+      var payofftime = 0;
+      var temp_paytime;
       var obj = arrSuburbs.filter(function(obj) {
         return obj.SuburbName === name;
       })[0];
       if (obj !== undefined) {
+        temp_paytime = (Math.random() * 11).toFixed(2);
         // suburb exists!
         currentindex = arrSuburbs.findIndex(function(x) {
           return x.SuburbName === name;
@@ -187,62 +193,92 @@ var build_map = function(destroy) {
         HousePrice = obj.HousePrice;
         UnitPrice = obj.UnitPrice;
         MedianPrice = obj.MedianPrice;
+        payofftime = temp_paytime; // replace with object
         obj.active = true;
         var obj2 = new Object();
         obj2.value = MedianPrice;
         obj2.index = currentindex;
-        values.push(obj2);
+        price_values.push(obj2);
+        var obj3 = new Object();
+        obj3.value = payofftime;
+        obj3.index = currentindex;
+        paytimevalues.push(obj3);
       }
       $(this).attr("data-postcode", post);
       $(this).attr("data-medianprice", MedianPrice);
       $(this).attr("data-houseprice", HousePrice);
       $(this).attr("data-unitprice", UnitPrice);
       $(this).attr("data-index", currentindex);
+      $(this).attr("data-payoff", payofftime);
     });
 
     function sortValues(a, b) {
       return a.value - b.value;
     }
-    // sort values in order
-    values.sort(sortValues);
+    // sort price_values in order
+    price_values.sort(sortValues);
+
+    // sort paytimevalues in order
+    paytimevalues.sort(sortValues);
+
     // generate colours
     // create 1 colour for every active suburb
     if (!destroy) {
-      colours = chroma.scale(arrMapFillColours)
+      fillcolours = chroma.scale(arrMapFillColours)
+      .mode('lch').correctLightness().colors(arrSuburbs.filter(function(obj) {
+        return obj.active === true;
+      }).length);
+      strokecolours = chroma.scale(arrMapStrokeColours)
       .mode('lch').correctLightness().colors(arrSuburbs.filter(function(obj) {
         return obj.active === true;
       }).length);
     }
-    // match colour to suburb!
-    if (colours.length === values.length) {
+
+    // match fill colour to suburb!
+    if (fillcolours.length === price_values.length) {
       var i;
-      for (i = 0; i < colours.length; i++) {
-        var obj = arrSuburbs[values[i].index];
-        obj.color = colours[i];
+      for (i = 0; i < fillcolours.length; i++) {
+        var obj = arrSuburbs[price_values[i].index];
+        obj.fillcolor = fillcolours[i];
       }
     } else {
-      console.log("colours.length !== values.length");
+      console.log("colours.length !== price_values.length");
     }
+
+    // match stroke colour to suburb!
+    if (strokecolours.length === paytimevalues.length) {
+      var i;
+      for (i = 0; i < strokecolours.length; i++) {
+        var obj = arrSuburbs[paytimevalues[i].index];
+        obj.strokecolor = strokecolours[i];
+      }
+    } else {
+      console.log("colours.length !== paytimevalues.length");
+    }
+
     // apply those colours!
     g.selectAll('.active').each(function(d, i) {
-      var colour = "#000";
+      var fillcolour = "#000";
+      var strokecolor = "#000";
       var name = $(this).attr("data-suburbname");
       var obj = arrSuburbs.filter(function(obj) {
         return obj.SuburbName === name;
       })[0];
       if (obj !== undefined) {
-        colour = obj.color;
+        fillcolour = obj.fillcolor;
+        strokecolor = obj.strokecolor;
       }
-      $(this).css("fill", colour);
+      $(this).css("fill", fillcolour);
+      $(this).css("stroke", strokecolor);
     });
 
     // Make the legend!
     var ranges = $('#map .map-container .overlay .legend .range');
-    $(ranges["0"]).html('$' + values[0].value);
-    $(ranges["1"]).html('$' + values[values.length - 1].value);
+    $(ranges["0"]).html('$' + price_values[0].value);
+    $(ranges["1"]).html('$' + price_values[price_values.length - 1].value);
     // Fill colour bar
-    var bar_width = 100 / values.length;
-    $.each(colours, function(d, i) {
+    var bar_width = 100 / price_values.length;
+    $.each(fillcolours, function(d, i) {
       $('#map .map-container .overlay .legend .bar').append('<span style="width: ' + bar_width + '%; background-color: ' + i + '"></span>');
     });
 
