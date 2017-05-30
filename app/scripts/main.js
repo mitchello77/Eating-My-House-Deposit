@@ -4,6 +4,8 @@
 // Globals
 var arrSuburbs = [];
 var userResults = {};
+var expense_prices = {};
+var arrExpenses = []; // array of objects that hold the expenses for the user
 var arrAnchors = []; // Stores anchor strings for FullPage.js nav
 var arrToolTips = []; // Stores tooltips for FullPage.js nav
 var SuburbKmFilter = 5.0; // (decimal) filter active suburbs by this
@@ -15,12 +17,22 @@ var arrMapFillColours = ['#EEEEEE', '#90B2E4', '#222831'];
 var arrMapStrokeColours = ['#FFD7E9', '#8B2F97', '#F03861'];
 var suburbcombo;
 
+// set up prices
+// $cost per month or cost of 1 item
+expense_prices['musicstream'] = 12;
+expense_prices['moviestream'] = 12;
+expense_prices['gym'] = 68;
+expense_prices['coffee'] = 'i4'; // single
+expense_prices['avo'] = 'i17'; // single
+
 var build_results = function() {
   $('#questions .slide').each(function(index, item) {
     if (this === undefined) {
     console.log("Missing data-contect on slide");
     } else {
-      userResults[$(this).attr('data-context')] = null;
+      if (!$(this).attr('data-context') === "finish") {
+        userResults[$(this).attr('data-context')] = null;
+      }
     }
   });
 };
@@ -165,7 +177,7 @@ var emphasise_selected_suburb = function() {
        if (navBtnColor) {
          newElement.css('border-color', navBtnColor); // add border color to the parent.
        } else {
-         console.log("var navBtnColor undefined");
+         console.log("var navBtnColor undefined. Number: ") + i.toString();
        }
      }
      $('nav li:first-of-type').addClass('active');
@@ -181,7 +193,7 @@ var emphasise_selected_suburb = function() {
       step: 10000,
       range: {
         min: 10000,
-        max: 200000
+        max: 150000
       },
       pips: {
         mode: 'range',
@@ -193,8 +205,6 @@ var emphasise_selected_suburb = function() {
       },
       format: wNumb({
         decimals: 0,
-        thousand: ',',
-        prefix: '$ '
       })
     });
       rangeSalary.noUiSlider.on('update', function(values, handle) {
@@ -218,7 +228,6 @@ var emphasise_selected_suburb = function() {
         },
         format: wNumb({
           decimals: 0,
-          thousand: ','
         })
       });
         rangeCoffee.noUiSlider.on('update', function(values, handle) {
@@ -242,7 +251,6 @@ var emphasise_selected_suburb = function() {
         },
         format: wNumb({
           decimals: 0,
-          thousand: ','
         })
       });
         rangeAvo.noUiSlider.on('update', function(values, handle) {
@@ -280,7 +288,6 @@ var emphasise_selected_suburb = function() {
     get_suburb_data();
     build_results();
     build_sliders();
-    generate_incomegraph_percentage();
     emphasise_selected_suburb();
     handle_toggle();
   });
