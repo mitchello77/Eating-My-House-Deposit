@@ -109,10 +109,14 @@
         pointer-events: all;
       }
       .suburbs {
-        stroke-width: $map_suburb-stroke-thickness;
+
       }
       .suburb {
+        padding: 1rem;
         fill: $map_suburb-fill;
+        stroke-width: 2px;
+        stroke-linecap: round;
+        stroke-linejoin: round;
         // cursor: not-allowed;
         // &:hover {
         //   fill: $map_suburb-hover-colour !important;
@@ -120,8 +124,9 @@
       }
 
       .suburb.active.selected {
-        // fill: $map_suburb-selected-colour !important;
+        position: absolute;
         opacity: 1 !important;
+        z-index: 99999;
       }
       .suburb.active {
         cursor: pointer;
@@ -131,12 +136,13 @@
         }
 
         &.dull {
-          opacity: .3;
+          opacity: .2;
         }
       }
       .mesh {
         fill: none;
-        stroke: $map_suburb-stroke-colour;
+        stroke: #000;
+        stroke-width: 0px;
         stroke-linecap: round;
         stroke-linejoin: round;
       }

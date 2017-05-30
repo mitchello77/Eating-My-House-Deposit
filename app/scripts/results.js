@@ -1,9 +1,11 @@
 
 var temp_sal = 70000;
 var temp_expenses = 1000;
-var temp_repayment = temp_sal * 0.2;
 
 function generate_incomegraph_percentage() {
+  var _salary = temp_sal;
+  var _expenses = temp_expenses;
+  var _repayments = _salary * 0.2; // 20% of salary
   var stack_container = $('#results .coin-container');
   var graph_container = $('#results .income-graph');
   var info_container = $('#results .income-graph .info');
@@ -12,20 +14,19 @@ function generate_incomegraph_percentage() {
   var repayment_count;
   var coin_side_height = 20.64; // in px
   var coin_svg_height = 81; // in px
-  var stack_top_padding = parseInt(stack_container.css('padding-top').slice(0, -2), 10);
   var max_coins = Math.floor((graph_container.height() -  (coin_svg_height * 0.5)) / coin_side_height);
-
+  var info_container_height = info_container.height();
   var max_offset = 8; // in px
   var coin_html = '<div class="coin %s" style="z-index: %s; margin-left: %spx"></div>';
-  var line_html = '<div class="line %s" style="bottom: %s;"><span class="label">%s</span><span class="percent">%s</span></div>';
+  var line_html = '<div class="line %s" style="bottom: %s;"><span class="label">%s</span><span class="value">$%s</span></div>';
   var zindex;
   var i;
 
-  var total = temp_sal + temp_expenses + temp_repayment;
+  var total = _salary + _expenses + _repayments;
 
-  var salary_percentage = (temp_sal / total) * 100;
-  var repay_percentage = (temp_repayment / total) * 100;
-  var expense_percentage = (temp_expenses / total) * 100;
+  var salary_percentage = (_salary / total) * 100;
+  var repay_percentage = (_repayments / total) * 100;
+  var expense_percentage = (_expenses / total) * 100;
 
   expensecoin_count = Math.round(max_coins * (expense_percentage / 100));
   salarycoin_count = Math.round(max_coins * (salary_percentage / 100));
@@ -52,18 +53,14 @@ function generate_incomegraph_percentage() {
 
   var coin_margin = parseInt($('#results .coin-container .coin:not(:last-child)').css('margin-bottom').slice(1, -2), 10);
 
-  // generate lines
-  info_container.append(sprintf(line_html, 'salary', getLineHeight(true, salarycoin_count, max_coins, coin_margin, graph_container), 'Salary', salary_percentage.toFixed(2)));
-  info_container.append(sprintf(line_html, 'repay', getLineHeight(false, repayment_count, max_coins, coin_margin, graph_container), 'Morgage Repayment', repay_percentage.toFixed(2)));
-    info_container.append(sprintf(line_html, 'expenses', getLineHeight(false, expensecoin_count, max_coins, coin_margin, graph_container), 'Expenses', expense_percentage.toFixed(2)));
+  // Generate Lines
+  info_container.append(sprintf(line_html, 'salary', getLineHeight(salarycoin_count, coin_svg_height, coin_margin, info_container_height) + '%', 'Salary', _salary))
+  info_container.append(sprintf(line_html, 'repay', getLineHeight(salarycoin_count + repayment_count, coin_svg_height, coin_margin, info_container_height) + '%', 'Morgage Repayment', _repayments))
+  info_container.append(sprintf(line_html, 'expenses', getLineHeight(salarycoin_count + repayment_count + expensecoin_count, coin_svg_height, coin_margin, info_container_height) + '%', 'Expenses', _expenses))
 }
 
-function getLineHeight(salary, coin_count, max_coins, coin_margin, graph_container) {
-  if (!salary) {
-    return (100 - (((coin_count / max_coins) * 100))) + '%'
-  } else {
-    return (((coin_count / max_coins) * 100) - (((coin_margin * 0.5) / graph_container.height()) * 100)) + '%'
-  }
+function getLineHeight(coin_count, coin_svg_height, coin_margin, info_container_height) {
+  return ((coin_count * (coin_svg_height - coin_margin)) / info_container_height) * 100;
 }
 
 function getCoinOffset(distance) {
