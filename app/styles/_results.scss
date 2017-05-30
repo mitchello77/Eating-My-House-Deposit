@@ -104,8 +104,11 @@
     font-weight: 400;
     padding: 1rem;
 
-    img {
+    .icon {
       width: 5rem;
+      height: 5rem;
+      background-size: contain;
+      background-repeat: no-repeat;
     }
 
     hr {
@@ -131,4 +134,11 @@
     font-weight: 600;
 
   }
+
+  // icons
+  .musicstream {background-image: url('../images/music.png');}
+  .moviestream {background-image: url('../images/flat-screen.png');}
+  .gym {background-image: url('../images/arm.png');}
+  .coffee {background-image: url('../images/coffee.png');}
+  .avo{background-image: url('../images/avo.png');}
 }

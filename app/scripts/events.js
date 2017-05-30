@@ -13,7 +13,58 @@ $(function() { // We are ready!
     $.fn.fullpage.moveTo($(this).val());
   });
 
-  $('.down-arrow-container svg, .proceed-button').click(function() {
+  $('.down-arrow-container:not(.questions) svg').click(function() {
+    $.fn.fullpage.moveSectionDown();
+  });
+
+  $('#questions .down-arrow-container svg, #questions .proceed-button').click(function() {
+    // handle results and move on
+    var idealloc;
+    var salary;
+    var propertytype;
+    var total = 0;
+    arrExpenses = []; // reset the array!
+    for (var property in userResults) {
+      if (userResults.hasOwnProperty(property)) {
+        if (property.toString() === "ideallocation") {
+          idealloc = userResults[property];
+        } else if (property.toString() === "salary") {
+          salary = userResults[property];
+        } else if (property.toString() === "propertytype") {
+          propertytype = userResults[property];
+        } else if (property.toString().substr(0, 3) === "use") {
+          var expense = property.toString().substr(4);
+          var price = expense_prices[expense]
+          if (price.toString().substr(0, 1) === 'i') {
+            // single item
+            var cost = price.toString().substr(1);
+            price = (cost * parseInt(userResults[property], 10)) * 4;
+          } else {
+            price = parseInt(price, 10)
+          }
+          console.log(expense);
+          console.log(price);
+          // push obj to expenses
+          var obj = {};
+          obj.name = expense;
+          obj.monthcost = price;
+          arrExpenses.push(obj);
+          total = total + price;
+        }
+      }
+    }
+    console.log("-----");
+    console.log(idealloc);
+    console.log(salary);
+    console.log(propertytype);
+    console.log(arrExpenses);
+    // after finished with results
+    userResults = {};
+    build_results(); //reset the inputs
+    $.fn.fullpage.moveSlideRight();
+    build_expenselist();
+    generate_incomegraph(salary, total);
+    // move on
     $.fn.fullpage.moveSectionDown();
   });
 
@@ -76,7 +127,7 @@ $(function() { // We are ready!
       var slider = $(parentslider).find(".slider");
       value = slider[0].noUiSlider.get();
     }
-    userResults[$(parentslider).attr('data-context')] = value || null;
+    userResults[$(parentslider).attr('data-context')] = value;
     // Move on
     $.fn.fullpage.moveSlideRight();
   });

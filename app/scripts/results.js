@@ -1,10 +1,6 @@
-
-var temp_sal = 10000;
-var temp_expenses = 1000;
-
-function generate_incomegraph_percentage() {
-  var _salary = temp_sal;
-  var _expenses = temp_expenses;
+function generate_incomegraph(sal, total_expenses) {
+  var _salary = parseInt(sal, 10);
+  var _expenses = parseInt(total_expenses, 10);
   var _repayments = _salary * 0.2; // 20% of salary
   var stack_container = $('#results .coin-container');
   var graph_container = $('#results .income-graph');
@@ -93,3 +89,15 @@ function getCoinOffset(distance) {
   }
   return value;
 }
+
+var build_expenselist = function() {
+  var container = $('#results .expenses-list');
+  var html = '<div class="expense"><div class="icon %s"></div><hr><div class="amount">$%s</div></div>';
+  var total_html = '<div class="expense"><div class="total-label">Total:</div><div class="total-amount">$%s</div></div>';
+  var total = 0;
+  $.each(arrExpenses, function(index, item) {
+    container.append(sprintf(html, item.name, item.monthcost));
+    total = total + item.monthcost;
+  });
+  container.append(sprintf(total_html, total));
+};
