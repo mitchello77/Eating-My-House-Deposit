@@ -1,6 +1,6 @@
 
-var temp_sal = 70000;
-var temp_expenses = 500;
+var temp_sal = 10000;
+var temp_expenses = 1000;
 
 function generate_incomegraph_percentage() {
   var _salary = temp_sal;
@@ -14,9 +14,8 @@ function generate_incomegraph_percentage() {
   var repayment_count;
   var coin_side_height = 20.64; // in px
   var coin_svg_height = 81; // in px
-  var stack_top_padding = parseInt(stack_container.css('padding-top').slice(0, -2), 10);
   var max_coins = Math.floor((graph_container.height() -  (coin_svg_height * 0.5)) / coin_side_height);
-
+  var info_container_height = info_container.height();
   var max_offset = 8; // in px
   var coin_html = '<div class="coin %s" style="z-index: %s; margin-left: %spx"></div>';
   var line_html = '<div class="line %s" style="bottom: %s;"><span class="label">%s</span><span class="value">$%s</span></div>';
@@ -54,18 +53,14 @@ function generate_incomegraph_percentage() {
 
   var coin_margin = parseInt($('#results .coin-container .coin:not(:last-child)').css('margin-bottom').slice(1, -2), 10);
 
-  // generate lines
-  info_container.append(sprintf(line_html, 'salary', getLineHeight(true, salarycoin_count, max_coins, coin_margin, graph_container), 'Salary', _salary));
-  info_container.append(sprintf(line_html, 'repay', getLineHeight(false, repayment_count, max_coins, coin_margin, graph_container), 'Morgage Repayment', _repayments));
-  info_container.append(sprintf(line_html, 'expenses', getLineHeight(false, expensecoin_count, max_coins, coin_margin, graph_container), 'Expenses', _expenses));
+  // Generate Lines
+  info_container.append(sprintf(line_html, 'salary', getLineHeight(salarycoin_count, coin_svg_height, coin_margin, info_container_height) + '%', 'Salary', _salary))
+  info_container.append(sprintf(line_html, 'repay', getLineHeight(salarycoin_count + repayment_count, coin_svg_height, coin_margin, info_container_height) + '%', 'Morgage Repayment', _repayments))
+  info_container.append(sprintf(line_html, 'expenses', getLineHeight(salarycoin_count + repayment_count + expensecoin_count, coin_svg_height, coin_margin, info_container_height) + '%', 'Expenses', _expenses))
 }
 
-function getLineHeight(salary, coin_count, max_coins, coin_margin, graph_container) {
-  if (!salary) {
-    return (100 - (((coin_count / max_coins) * 100))) + '%'
-  } else {
-    return (((coin_count / max_coins) * 100) - (((coin_margin * 0.5) / graph_container.height()) * 100)) + '%'
-  }
+function getLineHeight(coin_count, coin_svg_height, coin_margin, info_container_height) {
+  return ((coin_count * (coin_svg_height - coin_margin)) / info_container_height) * 100;
 }
 
 function getCoinOffset(distance) {
