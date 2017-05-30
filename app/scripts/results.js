@@ -1,5 +1,5 @@
 
-var temp_sal = 10000;
+var temp_sal = 70000;
 var temp_expenses = 1000;
 var temp_repayment = temp_sal * 0.2;
 

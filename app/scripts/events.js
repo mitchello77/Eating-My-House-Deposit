@@ -14,6 +14,13 @@ $(function() { // We are ready!
   });
 
   $('.down-arrow-container svg, .proceed-button').click(function() {
+    // handle results and move on
+
+    // after finished with results
+    userResults = {};
+    build_results();
+    $.fn.fullpage.moveSlideRight();
+    // move on
     $.fn.fullpage.moveSectionDown();
   });
 
