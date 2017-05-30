@@ -32,6 +32,7 @@
     border-bottom: 2px solid #000;
     border-left: 2px solid #000;
     .line {
+      z-index: 99;
       position: absolute;
       display: flex;
       justify-content: flex-end;
@@ -39,6 +40,8 @@
       left: 0;
       background-color: skyblue;
       border-bottom: 2px solid #000;
+      border-right: 2px solid #000;
+      padding-right: 0.2rem;
       span {
         display: inline-block;
       }
@@ -53,10 +56,10 @@
       width: 100%;
     }
     .line.repay {
-      width: 90%;
+      width: 95%;
     }
     .line.expenses {
-      width: 80%;
+      width: 90%;
     }
   }
 
