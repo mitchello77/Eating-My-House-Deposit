@@ -88,7 +88,7 @@
         padding: 2rem;
         box-sizing: border-box;
         h2 {
-          text-align: center;
+          text-align: left;
         }
         .close {
           position: absolute;
@@ -97,6 +97,17 @@
           margin: 2rem;
           font-size: 4rem;
           cursor: pointer;
+          width: 25px;
+          height: 25px;
+
+          svg {
+            fill: $colour;
+            transition: .2s;
+
+            &:hover {
+              fill: $red;
+            }
+          }
         }
       }
       .information.loading{
@@ -136,7 +147,7 @@
         }
 
         &.dull {
-          opacity: .2;
+          opacity: .1;
         }
       }
       .mesh {

@@ -1,0 +1,50 @@
+.toggle {
+  width: 40px;
+  background: $action_green;
+  height: 22px;
+  border-radius: 11pt;
+  position: relative;
+  box-shadow: inset 0 0 0 1.5px $grey;
+  transition: box-shadow 0.3s cubic-bezier(0.41, 0.99, 0.87, 1), opacity 0.3s;
+  cursor: pointer;
+
+  &::after {
+    display: block;
+    position: absolute;
+    content: '';
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    left: 1.5px;
+    top: 1.5px;
+    box-shadow: 0 3px 0 rgba($colour, 0.1);
+    background: #fff;
+    transition: transform 0.3s cubic-bezier(0.1, 1, 0.85, 1.25);
+  }
+
+    &.off {
+     box-shadow: inset 0 0 0 12pt $grey;
+
+     &::after {
+      transform: translateX(13pt);
+    }
+  }
+}
+
+.toggle-container {
+  display: flex;
+  align-items: center;
+
+  h4 {
+    margin: 0 .5rem;
+  }
+}
+
+.expense-switch {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 100px;
+  height: 50px;
+}
