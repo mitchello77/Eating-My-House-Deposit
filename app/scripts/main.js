@@ -7,10 +7,12 @@ var userResults = {};
 var arrAnchors = []; // Stores anchor strings for FullPage.js nav
 var arrToolTips = []; // Stores tooltips for FullPage.js nav
 var SuburbKmFilter = 5.0; // (decimal) filter active suburbs by this
-var arrMapFillColours = ['#EEEEEE', '#0092CA', '#222831'];
-var arrMapStrokeColours = ['#F2EEE3', '#FFB563'];
-// var arrMapFillColours = ['#EDEDED', '#68868C', '#405559'];
+// var arrMapFillColours = ['#EEEEEE', '#0092CA', '#222831'];
+// var arrMapStrokeColours = ['#F2EEE3', '#FF8D68'];
+// var arrMapFillColours = ['#EDEDED', '#90B2E4', '#405559'];
 // var arrMapStrokeColours = ['#F2EEE3', '#BAAF92'];
+var arrMapFillColours = ['#EEEEEE', '#90B2E4', '#222831'];
+var arrMapStrokeColours = ['#FFD7E9', '#8B2F97', '#F03861'];
 var suburbcombo;
 
 var build_results = function() {
