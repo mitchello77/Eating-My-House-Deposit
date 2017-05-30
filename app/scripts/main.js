@@ -167,10 +167,10 @@ var emphasise_selected_suburb = function() {
     var rangeAvo = document.getElementById('rangeAvo');
 
     noUiSlider.create(rangeSalary, {
-      start: 5000,
-      step: 5000,
+      start: 10000,
+      step: 10000,
       range: {
-        min: 5000,
+        min: 10000,
         max: 200000
       },
       pips: {
