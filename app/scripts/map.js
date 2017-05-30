@@ -148,12 +148,12 @@ var build_map = function(destroy) {
     .on("mouseout", hideTooltip)
     .on("click", OnSuburbClick);
 
-    /* g.append("path")
+    g.append("path")
     .datum(topojson.mesh(map, map.objects.collection, function(a, b) {
       return a !== b;
     }))
     .attr("class", "mesh")
-    .attr("d", path); */
+    .attr("d", path);
 
     g.append("path") // Merge brisbane CBD. Oringally its split up.
     .datum(topojson.merge(map, map.objects.collection.geometries.filter(function(d) {
