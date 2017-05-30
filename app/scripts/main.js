@@ -270,6 +270,7 @@ var emphasise_selected_suburb = function() {
     get_suburb_data();
     build_results();
     build_sliders();
+    generate_incomegraph_percentage();
     emphasise_selected_suburb();
   });
 })();
