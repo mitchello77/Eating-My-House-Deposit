@@ -1,9 +1,11 @@
 
-var temp_sal = 10000;
-var temp_expenses = 1000;
-var temp_repayment = temp_sal * 0.2;
+var temp_sal = 70000;
+var temp_expenses = 500;
 
 function generate_incomegraph_percentage() {
+  var _salary = temp_sal;
+  var _expenses = temp_expenses;
+  var _repayments = _salary * 0.2; // 20% of salary
   var stack_container = $('#results .coin-container');
   var graph_container = $('#results .income-graph');
   var info_container = $('#results .income-graph .info');
@@ -17,15 +19,15 @@ function generate_incomegraph_percentage() {
 
   var max_offset = 8; // in px
   var coin_html = '<div class="coin %s" style="z-index: %s; margin-left: %spx"></div>';
-  var line_html = '<div class="line %s" style="bottom: %s;"><span class="label">%s</span><span class="percent">%s</span></div>';
+  var line_html = '<div class="line %s" style="bottom: %s;"><span class="label">%s</span><span class="value">$%s</span></div>';
   var zindex;
   var i;
 
-  var total = temp_sal + temp_expenses + temp_repayment;
+  var total = _salary + _expenses + _repayments;
 
-  var salary_percentage = (temp_sal / total) * 100;
-  var repay_percentage = (temp_repayment / total) * 100;
-  var expense_percentage = (temp_expenses / total) * 100;
+  var salary_percentage = (_salary / total) * 100;
+  var repay_percentage = (_repayments / total) * 100;
+  var expense_percentage = (_expenses / total) * 100;
 
   expensecoin_count = Math.round(max_coins * (expense_percentage / 100));
   salarycoin_count = Math.round(max_coins * (salary_percentage / 100));
@@ -53,9 +55,9 @@ function generate_incomegraph_percentage() {
   var coin_margin = parseInt($('#results .coin-container .coin:not(:last-child)').css('margin-bottom').slice(1, -2), 10);
 
   // generate lines
-  info_container.append(sprintf(line_html, 'salary', getLineHeight(true, salarycoin_count, max_coins, coin_margin, graph_container), 'Salary', salary_percentage.toFixed(2)));
-  info_container.append(sprintf(line_html, 'repay', getLineHeight(false, repayment_count, max_coins, coin_margin, graph_container), 'Morgage Repayment', repay_percentage.toFixed(2)));
-    info_container.append(sprintf(line_html, 'expenses', getLineHeight(false, expensecoin_count, max_coins, coin_margin, graph_container), 'Expenses', expense_percentage.toFixed(2)));
+  info_container.append(sprintf(line_html, 'salary', getLineHeight(true, salarycoin_count, max_coins, coin_margin, graph_container), 'Salary', _salary));
+  info_container.append(sprintf(line_html, 'repay', getLineHeight(false, repayment_count, max_coins, coin_margin, graph_container), 'Morgage Repayment', _repayments));
+  info_container.append(sprintf(line_html, 'expenses', getLineHeight(false, expensecoin_count, max_coins, coin_margin, graph_container), 'Expenses', _expenses));
 }
 
 function getLineHeight(salary, coin_count, max_coins, coin_margin, graph_container) {
@@ -95,31 +97,4 @@ function getCoinOffset(distance) {
     value = 0;
   }
   return value;
-}
-
-// Old function
-function generate_incomegraph_symbolic() {
-  var stack_container = $('#results .coin-container');
-  var graph_container = $('#results .income-graph');
-  var expensecoin_count;
-  var salarycoin_count;
-  var expense_mod = 100;
-  var salary_mod = 5000;
-  var max_offset = 5; // in px
-  var coin_html = '<div class="coin %s" style="z-index: %s; margin-left: %spx"></div>'
-  var zindex;
-  var i;
-
-  expensecoin_count = Math.floor(temp_expenses / expense_mod);
-  salarycoin_count = Math.floor(temp_sal / salary_mod);
-  zindex = expensecoin_count + salarycoin_count - 1;
-
-  for (i = 0; i < expensecoin_count; i++) {
-    stack_container.append(sprintf(coin_html, 'expense', zindex, getCoinOffset(max_offset)));
-    zindex --;
-  }
-  for (i = 0; i < salarycoin_count; i++) {
-    stack_container.append(sprintf(coin_html, '', zindex, getCoinOffset(max_offset)));
-    zindex --;
-  }
 }
