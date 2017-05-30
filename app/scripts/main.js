@@ -30,6 +30,12 @@ var hide_preloader = function() {
   $('#pre-loader').addClass('hidden');
 };
 
+var handle_toggle = function() {
+  $('.toggle').click(function(e) {
+    $(this).toggleClass('off');
+  })
+}
+
 var emphasise_selected_suburb = function() {
   var selected_suburb = $('.suburb.active').not()
   var other_suburbs = $('.suburb.active')
@@ -276,5 +282,6 @@ var emphasise_selected_suburb = function() {
     build_sliders();
     generate_incomegraph_percentage();
     emphasise_selected_suburb();
+    handle_toggle();
   });
 })();
