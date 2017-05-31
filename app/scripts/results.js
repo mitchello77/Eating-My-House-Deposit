@@ -109,14 +109,26 @@ function getCoinOffset(distance) {
 
 var build_expenselist = function() {
   var container = $('#results .expenses-list');
-  var html = '<div class="expense"><div class="icon %s"></div><hr><div class="amount">$%s</div></div>';
-  var total_html = '<div class="expense"><div class="total-label">Total:</div><div class="total-amount">$%s</div></div>';
+  var html = '<div class="expense"><div class="icon %s"></div><hr> %s <span class="times">x</span> %s <div class="equal"> = </div><div class="amount"> %s</div></div>';
+  var total_html = '<div class="expense"><div class="total-label">Total:</div><div class="total-amount">%s</div></div>';
   var total = 0;
+
   $.each(arrExpenses, function(index, item) {
-    container.append(sprintf(html, item.name, item.monthcost));
+    var unitprice = item.unitprice;
+    var count = item.count;
+
+    if (unitprice.toString().substr(0, 1) === 'i') {
+      // single item
+      var cost = unitprice.toString().substr(1);
+      unitprice = cost * parseInt(count, 10);
+    } else {
+      unitprice = parseInt(unitprice, 10)
+    }
+
+    container.append(sprintf(html, item.name, count, moneyFormat.to(unitprice), moneyFormat.to(parseInt(item.monthcost, 10))));
     total = total + item.monthcost;
   });
-  container.append(sprintf(total_html, total));
+  container.append(sprintf(total_html, moneyFormat.to(total)));
 };
 
 function showResultsLoader() {
