@@ -17,7 +17,7 @@
     justify-content: space-between;
     position: relative;
     height: 70vh;
-    width: 60rem;
+    width: 75rem;
   }
 
   .income-graph {
@@ -94,16 +94,17 @@
   .expenses-list {
     display: flex;
     flex-direction: column;
-    width: 40%;
     justify-content: space-between;
 
     .expense {
       display: flex;
       align-items: flex-end;
       justify-content: space-between;
+      flex-direction: row;
       font-size: 3.5rem;
       font-weight: 400;
       padding: 1rem;
+      width: 40rem;
 
       .icon {
         width: 5rem;
@@ -117,7 +118,13 @@
         border: 0;
         border-bottom: 2px solid lighten($colour, 50%);
       }
-
+      .equal {
+        color: lighten($colour, 50%);
+        margin: 0 2rem;
+      }
+      .times {
+        color: lighten($colour, 50%);
+      }
     }
 
     .expense:last-of-type {
@@ -127,8 +134,9 @@
     }
 
     .total-label, .total-amount {
-      display: flex;;
+      display: flex;
       align-items: center;
+      margin-left: 3rem;
     }
 
     .total-amount {
