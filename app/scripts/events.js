@@ -35,26 +35,29 @@ $(function() { // We are ready!
         } else if (property.toString().substr(0, 3) === "use") {
           var expense = property.toString().substr(4);
           var price = expense_prices[expense]
+          var countselected = 1;
           if (price.toString().substr(0, 1) === 'i') {
             // single item
             var cost = price.toString().substr(1);
             price = (cost * parseInt(userResults[property], 10)) * 4;
+            countselected = parseInt(userResults[property], 10) * 4;
           } else {
-            price = parseInt(price, 10)
+            price = parseInt(price, 10);
           }
           // push obj to expenses
           var obj = {};
           obj.name = expense;
           obj.monthcost = price;
+          obj.unitprice = expense_prices[expense];
+          obj.count = countselected;
           arrExpenses.push(obj);
           total = total + price;
         }
       }
     }
-    // after finished with results
-    userResults = {};
-    build_results(); //reset the inputs
-    $.fn.fullpage.moveSlideRight();
+
+    // save userResults[] to sessionStorage
+    sessionStorage.setItem(ss_userResults, JSON.stringify(userResults));
     hideResultsInactive();
     showResultsLoader();
     build_expenselist();
@@ -70,6 +73,9 @@ $(function() { // We are ready!
 
   $('#questions .reset-button').click(function() {
     userResults = {};
+    if (sessionStorage.getItem(ss_userResults)) {
+      sessionStorage.removeItem(ss_userResults);
+    }
     build_results();
     $.fn.fullpage.moveSlideRight();
   });

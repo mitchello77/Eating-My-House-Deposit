@@ -18,6 +18,7 @@ var salaryRepaymentPercentage = 0.4 // %
 var arrMapFillColours = ['#EEEEEE', '#90B2E4', '#222831'];
 var arrMapStrokeColours = ['#FFD7E9', '#8B2F97', '#F03861'];
 var suburbcombo;
+var ss_userResults = 'ss_userResults'; // sessionStorage key for user results
 
 var moneyFormat = wNumb({
 	mark: '.',
@@ -151,9 +152,22 @@ var emphasise_selected_suburb = function() {
          arrSuburbs.push(obj);
        });
        // Dropdown validation
-       setup_validation();
-       build_map(false); // init Map
-       hide_preloader();
+				setup_validation();
+				if (sessionStorage.getItem(ss_userResults)) {
+					userResults = JSON.parse(sessionStorage.getItem(ss_userResults));
+					results_ready = true;
+					console.log(userResults);
+					// move slider to results page
+					$.fn.fullpage.silentMoveTo('Section-2', 8);
+					$.fn.fullpage.silentMoveTo('Section-1');
+				} else {
+					build_results();
+				}
+				build_sliders();
+				emphasise_selected_suburb();
+				handle_toggle();
+				build_map(false); // init Map
+				hide_preloader();
      });
    };
 
@@ -298,12 +312,8 @@ var emphasise_selected_suburb = function() {
         scrollBar: true,
         slidesNavigation: true,
         controlArrows: false,
-        loopHorizontal: true
+        loopHorizontal: true,
     });
     get_suburb_data();
-    build_results();
-    build_sliders();
-    emphasise_selected_suburb();
-    handle_toggle();
   });
 })();
