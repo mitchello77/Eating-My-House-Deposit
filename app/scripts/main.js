@@ -156,10 +156,10 @@ var emphasise_selected_suburb = function() {
 				if (sessionStorage.getItem(ss_userResults)) {
 					userResults = JSON.parse(sessionStorage.getItem(ss_userResults));
 					results_ready = true;
-					console.log(userResults);
 					// move slider to results page
 					$.fn.fullpage.silentMoveTo('Section-2', 8);
 					$.fn.fullpage.silentMoveTo('Section-1');
+					
 				} else {
 					build_results();
 				}

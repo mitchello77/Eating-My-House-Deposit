@@ -44,6 +44,9 @@ $(function() { // We are ready!
           } else {
             price = parseInt(price, 10);
           }
+          // make annual
+          price = price * 12;
+          countselected = countselected * 12;
           // push obj to expenses
           var obj = {};
           obj.name = expense;
@@ -77,6 +80,8 @@ $(function() { // We are ready!
       sessionStorage.removeItem(ss_userResults);
     }
     build_results();
+    results_ready = false;
+    build_map(true);
     $.fn.fullpage.moveSlideRight();
   });
 
