@@ -8,7 +8,6 @@ var path;
 var svg;
 var g;
 var tooltip;
-var values;
 var fillcolours;
 var strokecolours;
 
@@ -36,9 +35,16 @@ var showTooltip = function(d) {
   var houseprice = d3.select(this).attr("data-houseprice");
   var unitprice = d3.select(this).attr("data-unitprice");
   var medianprice = d3.select(this).attr("data-medianprice");
-  var payofftime = d3.select(this).attr("data-payoff");
-
-  tooltip.style("display", "block").text(suburbname + " " + postcode + ": $" + medianprice + " - PayOff: " + payofftime);
+  var payofftime = d3.select(this).attr("data-payofftime");
+  var html_onlyprice = '<span class="suburb-name">%s </span><span class="postcode">%s</span>:<span class="price"> %s</span>';
+  var html_payyof = '<span class="suburb-name">%s </span><span class="postcode">%s</span>:<span class="payofftime"> %s</span><span class="price"> (%s)</span>';
+  tooltip.style("display", "block");
+  if (results_ready) {
+    var payofftime_string = getTimeFromYears(parseFloat(payofftime));
+    $('#map .map-container .tooltip').html(sprintf(html_payyof, suburbname, postcode, payofftime_string, moneyFormat.to(parseInt(medianprice, 10))));
+  } else {
+    $('#map .map-container .tooltip').html(sprintf(html_onlyprice, suburbname, postcode, moneyFormat.to(parseInt(medianprice, 10))));
+  }
 };
 
 var hideTooltip = function(d) {
@@ -107,7 +113,7 @@ var OnSuburbClick = function(d) {
 var build_map = function(destroy) {
   show_maploader();
   if (destroy) {
-    d3.select("#map .fp-tableCell .map-container svg").remove();
+    d3.select("#map .fp-tableCell .map-container #map_obj").remove();
     d3.select("#map .fp-tableCell .map-container .tooltip").remove();
   }
   // set vars
@@ -119,7 +125,7 @@ var build_map = function(destroy) {
   .scale(190 * width)
   .translate([width / 2, height / 2]);
   path = d3.geo.path().projection(projection);
-  svg = d3.select("#map .fp-tableCell .map-container").append("svg").attr("width", width).attr("height", height); // make svg tag
+  svg = d3.select("#map .fp-tableCell .map-container").append("svg").attr("width", width).attr("height", height).attr("id", "map_obj"); // make svg tag
   svg.append("rect").attr("class", "background").attr("width", width).attr("height", height).on("click", reset_map); // add background
   g = svg.append("g").attr("class", "suburbs"); // add path group
   var selected = d3.set([305011143, 305011146]);
@@ -211,6 +217,7 @@ var build_map = function(destroy) {
       $(this).attr("data-houseprice", HousePrice);
       $(this).attr("data-unitprice", UnitPrice);
       $(this).attr("data-index", currentindex);
+      $(this).attr("data-payofftime", payofftime);
       $(this).attr("data-payoffHouse", payofftimeHouse);
       $(this).attr("data-payoffUnit", payofftimeUnit);
     });
@@ -223,7 +230,6 @@ var build_map = function(destroy) {
 
     // sort paytimevalues in order
     paytimevalues.sort(sortValues);
-
     // generate colours
     // create 1 colour for every active suburb
     if (!destroy) {
@@ -241,7 +247,13 @@ var build_map = function(destroy) {
     if (fillcolours.length === price_values.length) {
       var i;
       for (i = 0; i < fillcolours.length; i++) {
-        var obj = arrSuburbs[price_values[i].index];
+        var obj;
+        if (results_ready) {
+          // user has compleated the questionair.
+          obj = arrSuburbs[paytimevalues[i].index]
+        } else {
+          obj = arrSuburbs[price_values[i].index]
+        }
         obj.fillcolor = fillcolours[i];
       }
     } else {
@@ -252,8 +264,14 @@ var build_map = function(destroy) {
     if (strokecolours.length === paytimevalues.length) {
       var i;
       for (i = 0; i < strokecolours.length; i++) {
-        var obj = arrSuburbs[paytimevalues[i].index];
-        obj.strokecolor = strokecolours[i];
+        var obj;
+        obj = arrSuburbs[price_values[i].index];
+        if (results_ready) {
+          // user has compleated the questionair.
+          obj.strokecolor = strokecolours[i];
+        } else {
+          obj.strokecolor = '#ffffff';
+        }
       }
     } else {
       console.log("colours.length !== paytimevalues.length");
@@ -275,15 +293,47 @@ var build_map = function(destroy) {
       $(this).css("stroke", strokecolor);
     });
 
-    // Make the legend!
-    var ranges = $('#map .map-container .overlay .legend .range');
-    $(ranges["0"]).html('$' + price_values[0].value);
-    $(ranges["1"]).html('$' + price_values[price_values.length - 1].value);
-    // Fill colour bar
-    var bar_width = 100 / price_values.length;
-    $.each(fillcolours, function(d, i) {
-      $('#map .map-container .overlay .legend .bar').append('<span style="width: ' + bar_width + '%; background-color: ' + i + '"></span>');
-    });
+    if (results_ready) {
+      // display both legends. Fill = pay off
+      $('#map .map-container .overlay .stroke').removeClass('hidden');
+      {
+        var ranges = $('#map .map-container .overlay .legend.stroke .range');
+        $(ranges["0"]).html(moneyFormat.to(price_values[0].value));
+        $(ranges["1"]).html(moneyFormat.to(price_values[price_values.length - 1].value));
+        // Fill colour bar
+        var bar_width = 100 / price_values.length;
+        $('#map .map-container .overlay .legend.stroke .bar').html('');
+        $.each(strokecolours, function(d, i) {
+          $('#map .map-container .overlay .legend.stroke .bar').append('<span style="width: ' + bar_width + '%; background-color: ' + i + '"></span>');
+        });
+        $('#map .map-container .overlay .legend.stroke .label').html('Price');
+      }
+      {
+        var ranges = $('#map .map-container .overlay .legend.fill .range');
+        $(ranges["0"]).html(parseInt(paytimevalues[0].value, 10));
+        $(ranges["1"]).html(parseInt(paytimevalues[paytimevalues.length - 1].value, 10));
+        // Fill colour bar
+        var bar_width = 100 / paytimevalues.length;
+        $('#map .map-container .overlay .legend.fill .bar').html('');
+        $.each(fillcolours, function(d, i) {
+          $('#map .map-container .overlay .legend.fill .bar').append('<span style="width: ' + bar_width + '%; background-color: ' + i + '"></span>');
+        });
+        $('#map .map-container .overlay .legend.fill .label').html('Pay Off Time (Years)');
+      }
+    } else {
+      // ensure stroke legend is hidden.
+      $('#map .map-container .overlay .stroke').addClass('hidden');
+      var ranges = $('#map .map-container .overlay .legend.fill .range');
+      $(ranges["0"]).html(moneyFormat.to(price_values[0].value));
+      $(ranges["1"]).html(moneyFormat.to(price_values[price_values.length - 1].value));
+      // Fill colour bar
+      var bar_width = 100 / price_values.length;
+      $('#map .map-container .overlay .legend.fill .bar').html('');
+      $.each(fillcolours, function(d, i) {
+        $('#map .map-container .overlay .legend.fill .bar').append('<span style="width: ' + bar_width + '%; background-color: ' + i + '"></span>');
+      });
+      $('#map .map-container .overlay .legend.fill .label').html('Price ($)');
+    }
 
     // Map Ready!
     hide_maploader();

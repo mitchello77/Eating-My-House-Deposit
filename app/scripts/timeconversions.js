@@ -7,7 +7,7 @@ function getTimeFromYears( _years ) {
         , _hoursInGalacticYear = 2016138600000     // galactic year = 230,000,000 years (230 million)
         , _hoursInEpoch        =    8765820000     // epoch =           1,000,000 years (million)
         , _hoursInMillenium    =       8765820     // millenium =           1,000 years
-        , _hoursInCentury      =        876582   
+        , _hoursInCentury      =        876582
         , _hoursInYear         =          8765.82  // often cited as 8760, or 730 * 12  // 365.2425 days in year
         , _hoursInMonth        =           730.485 // hours average per month for a 4-year period which includes 1 leap year
                                                    // average month has 30.436875 days, Gregorian calendar
@@ -22,19 +22,19 @@ function getTimeFromYears( _years ) {
         , totalHours = _years * _hoursInYear
 
         , eons   = Math.floor(   totalHours
-                    / _hoursInEon )
+                    / _hoursInEon ) * 0
 
         , gyears = Math.floor( ( totalHours - ( eons * _hoursInEon ) )
                     / _hoursInGalacticYear ) * 0
 
         , epochs = Math.floor( ( totalHours - ( eons * _hoursInEon ) - ( gyears * _hoursInGalacticYear ) )
-                    / _hoursInEpoch )
+                    / _hoursInEpoch ) * 0
 
         , mills  = Math.floor( ( totalHours - ( eons * _hoursInEon ) - ( gyears * _hoursInGalacticYear ) - ( epochs * _hoursInEpoch ) )
-                    / _hoursInMillenium )
+                    / _hoursInMillenium ) * 0
 
         , cents  = Math.floor( ( totalHours - ( eons * _hoursInEon ) - ( gyears * _hoursInGalacticYear ) - ( epochs * _hoursInEpoch ) - ( mills * _hoursInMillenium ) )
-                    / _hoursInCentury )
+                    / _hoursInCentury ) * 0
 
         , years  = Math.floor( ( totalHours - ( eons * _hoursInEon ) - ( gyears * _hoursInGalacticYear ) - ( epochs * _hoursInEpoch ) - ( mills * _hoursInMillenium ) - ( cents * _hoursInCentury ) )
                     / _hoursInYear )
@@ -46,19 +46,19 @@ function getTimeFromYears( _years ) {
                     / _hoursInDay )
 
         , hours  = Math.floor( ( totalHours - ( eons * _hoursInEon ) - ( gyears * _hoursInGalacticYear ) - ( epochs * _hoursInEpoch ) - ( mills * _hoursInMillenium ) - ( cents * _hoursInCentury ) - ( years * _hoursInYear ) - ( months * _hoursInMonth ) - ( days * _hoursInDay ) )
-                    / _hoursInHour )
+                    / _hoursInHour ) * 0
 
         , mins  = Math.floor( ( totalHours - ( eons * _hoursInEon ) - ( gyears * _hoursInGalacticYear ) - ( epochs * _hoursInEpoch ) - ( mills * _hoursInMillenium ) - ( cents * _hoursInCentury ) - ( years * _hoursInYear ) - ( months * _hoursInMonth ) - ( days * _hoursInDay ) - ( hours * _hoursInHour ) )
-                    / _hoursInMinute )
+                    / _hoursInMinute ) * 0
 
         , secs  = Math.floor( ( totalHours - ( eons * _hoursInEon ) - ( gyears * _hoursInGalacticYear ) - ( epochs * _hoursInEpoch ) - ( mills * _hoursInMillenium ) - ( cents * _hoursInCentury ) - ( years * _hoursInYear ) - ( months * _hoursInMonth ) - ( days * _hoursInDay ) - ( hours * _hoursInHour ) - ( mins * _hoursInMinute ) )
-                    / _hoursInSecond )
+                    / _hoursInSecond ) * 0
 
         , msecs = Math.floor( ( totalHours - ( eons * _hoursInEon ) - ( gyears * _hoursInGalacticYear ) - ( epochs * _hoursInEpoch ) - ( mills * _hoursInMillenium ) - ( cents * _hoursInCentury ) - ( years * _hoursInYear ) - ( months * _hoursInMonth ) - ( days * _hoursInDay ) - ( hours * _hoursInHour ) - ( mins * _hoursInMinute ) - ( secs * _hoursInSecond ) )
-                    / _hoursInMillisecond )
+                    / _hoursInMillisecond ) * 0
 
         , nsecs = Math.floor( ( totalHours - ( eons * _hoursInEon ) - ( gyears * _hoursInGalacticYear ) - ( epochs * _hoursInEpoch ) - ( mills * _hoursInMillenium ) - ( cents * _hoursInCentury ) - ( years * _hoursInYear ) - ( months * _hoursInMonth ) - ( days * _hoursInDay ) - ( hours * _hoursInHour ) - ( mins * _hoursInMinute ) - ( secs * _hoursInSecond ) - ( msecs * _hoursInMillisecond ) )
-                    / _hoursInNanosecond )
+                    / _hoursInNanosecond ) * 0
 
 
         , _eonsPhrase   = ( eons   < 1 ? '' : eons   === 1 ? '1 eon'           : addCommas( eons   ) + ' eons'           )

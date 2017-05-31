@@ -20,6 +20,18 @@
       padding: 4px 8px;
       display: none;
       z-index: 1000;
+      .suburb-name {
+
+      }
+      .postcode {
+
+      }
+      .price {
+
+      }
+      .payofftime {
+        
+      }
     }
     .overlay {
       z-index: 100;
@@ -49,8 +61,10 @@
         width: 8%;
         min-width: 100px;
         min-height: 30px;
-        right: 5%;
-        bottom: 5%;
+        .label {
+          text-align: center;
+          display: block;
+        }
         .bar {
           border: 1px solid #fff;
           padding: 0;
@@ -73,6 +87,14 @@
           }
         }
       }
+      .legend.fill {
+        right: 5%;
+        bottom: 5%;
+      }
+      .legend.stroke {
+        left: 5%;
+        bottom: 5%;
+      }
       .information {
         pointer-events: auto;
         //background-color: rgba(255,255,255,0.8);
@@ -92,18 +114,16 @@
           top: 0;
           right: 0;
           margin: 2rem;
-          font-size: 4rem;
+          background-color: $colour;
+          mask: url('../images/cross.svg');
+          mask-repeat: no-repeat;
+          mask-size: contain;
           cursor: pointer;
-          width: 25px;
-          height: 25px;
-
-          svg {
-            fill: $colour;
-            transition: .2s;
-
-            &:hover {
-              fill: $red;
-            }
+          width: 40px;
+          height: 40px;
+          transition: .2s;
+          &:hover {
+            background-color: $red;
           }
         }
       }

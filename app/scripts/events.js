@@ -63,6 +63,9 @@ $(function() { // We are ready!
     $.fn.fullpage.moveSectionDown();
     // generate pay off time for each suburb
     calculate_payofftime(salary);
+    results_ready = true; // results have finished processing
+    // make the map again but pay time!
+    build_map(true);
   });
 
   $('#questions .reset-button').click(function() {
