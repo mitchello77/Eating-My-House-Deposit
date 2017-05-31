@@ -65,16 +65,30 @@ var reset_map = function(d) {
 
 var load_suburbprofile = function(item) {
     var objSuburb = arrSuburbs[item.index];
-    // animate box in
-    $('#map .overlay .information').removeClass('hidden');
+    getAPIData(sprintf('/profile/suburb/%s/postcode/%s', objSuburb.SuburbName, objSuburb.Postcode), function(jqXHR, settings) {
+      /* beforeSend */
+      setTimeout(function(){
+        show_maploader();
+      }, 750);
+    }, function(data, textStatus, jqXHR) {
+      /* success */
+      // handle data
+      console.log(data);
+      $.each(data, function(index, item) {
 
-    // make a request and show loading animation on pre-thingo. Also add the class for css stuff
+      });
+
+      // animate box in
+      hide_maploader()
+      $('#map .overlay .information').removeClass('hidden');
+    });
 };
-var show_maploader = function() {
+
+function show_maploader() {
   $('#map .map-container .overlay .loader').removeClass('hidden');
 };
 
-var hide_maploader = function() {
+function hide_maploader() {
   $('#map .map-container .overlay .loader').addClass('hidden');
 };
 
@@ -108,6 +122,7 @@ var OnSuburbClick = function(d) {
   item.index = active.attr('data-index');
   load_suburbprofile(item);
   other_suburbs.addClass('dull');
+
 };
 
 var build_map = function(destroy) {

@@ -14,14 +14,14 @@
     <link rel="manifest" href="manifest.json">
 
     <!-- Add to homescreen for Chrome on Android -->
-    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="No">
     <meta name="application-name" content="Eating My House Deposit">
     <link rel="icon" sizes="192x192" href="images/touch/chrome-touch-icon-192x192.png">
 
     <!-- Add to homescreen for Safari on iOS -->
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <meta name="apple-mobile-web-app-title" content="Web Starter Kit">
+    <meta name="apple-mobile-web-app-capable" content="No">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#78A4C0">
+    <meta name="apple-mobile-web-app-title" content="Eating My House Deposit">
     <link rel="apple-touch-icon" href="images/touch/apple-touch-icon.png">
 
     <!-- Tile icon for Win8 (144x144 + tile color) -->
@@ -354,15 +354,47 @@
               </div>
               <div class="information hidden">
                 <span class="close"></span>
-                <h2>Suburb!</h2>
-
-                <div class="expense-switch">
-                  <div class="label">Expenses</div>
+                <h2 class="suburb-name">Suburb!</h2>
+                <div class="price-container">
+                  <h3>Suburb Sell Price</h3>
+                  <div class="house">
+                    <h4>House:</h4>
+                    <div class="price">$ 1000,000</div>
+                  </div>
+                  <div class="unit">
+                    <h4>Unit:</h4>
+                    <div class="price">$ 1000,000</div>
+                  </div>
+                </div>
+                <div class="payoff-container">
+                  <h3>How long will it take you to Pay Off this suburb?</h3>
+                  <p>Toggle the expenses to see the difference.</p>
+                  <div class="expense-switch">
+                    <div class="label">Expenses</div>
                     <div class="toggle-container">
                       <h4>On</h4>
                       <div class="toggle"></div>
                       <h4>Off</h4>
                     </div>
+                  </div>
+                  <div class="property-container">
+                    <div class="property house">
+                      <h3>House</h3>
+                      <div class="time">10 Years, 3 Months, 2 Days</div>
+                    </div>
+                    <div class="property unit">
+                      <h3>Unit</h3>
+                      <div class="time">10 Years, 3 Months, 3 Days</div>
+                    </div>
+                  </div>
+                  <div class="comparison">
+                    <p>With your lifestyle, its going to take you an extra ...<p>
+                    <div class="extra-time">0 Years, 3 Months, 4 Days</div>
+                    <p>to pay off this suburb. Let's be honest. When compared against the full term of the morgage... the extra time is hardly significant.</p>
+                  </div>
+                </div>
+                <div class="chart-container" style="position: relative"> <!-- This has to be position: relative. You can set the value in css Kel -->
+                  <canvas id="chartSuburbProfile"></canvas> <!-- Must only contain a canvas element -->
                 </div>
               </div>
               <div class="legend fill">
