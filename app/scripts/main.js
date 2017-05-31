@@ -10,6 +10,7 @@ var arrAnchors = []; // Stores anchor strings for FullPage.js nav
 var arrToolTips = []; // Stores tooltips for FullPage.js nav
 var resuls_ready = false; // Bool wheather results page has been processed or not
 var SuburbKmFilter = 5.0; // (decimal) filter active suburbs by this
+var salaryRepaymentPercentage = 0.4 // %
 // var arrMapFillColours = ['#EEEEEE', '#0092CA', '#222831'];
 // var arrMapStrokeColours = ['#F2EEE3', '#FF8D68'];
 // var arrMapFillColours = ['#EDEDED', '#90B2E4', '#405559'];
@@ -135,6 +136,12 @@ var emphasise_selected_suburb = function() {
          obj.active = false;
          obj.fillcolor = "#000";
          obj.strokecolor = "#000";
+         obj.payofftimeHouse = 0.0;
+         obj.payofftimeUnit = 0.0;
+         obj.payofftime = 0.0;
+         obj.payofftimeHouseExpense = 0.0;
+         obj.payofftimeUnitExpense  = 0.0;
+         obj.payofftimeExpense  = 0.0;
          arrSuburbs.push(obj);
        });
        // Dropdown validation

@@ -177,13 +177,13 @@ var build_map = function(destroy) {
       var UnitPrice = "0";
       var MedianPrice = "0";
       var currentindex = 0;
-      var payofftime = 0;
-      var temp_paytime;
+      var payofftime = 0.0;
+      var payofftimeHouse = 0.0;
+      var payofftimeUnit = 0.0;
       var obj = arrSuburbs.filter(function(obj) {
         return obj.SuburbName === name;
       })[0];
       if (obj !== undefined) {
-        temp_paytime = (Math.random() * 11).toFixed(2);
         // suburb exists!
         currentindex = arrSuburbs.findIndex(function(x) {
           return x.SuburbName === name;
@@ -193,7 +193,9 @@ var build_map = function(destroy) {
         HousePrice = obj.HousePrice;
         UnitPrice = obj.UnitPrice;
         MedianPrice = obj.MedianPrice;
-        payofftime = temp_paytime; // replace with object
+        payofftimeHouse = obj.payofftimeHouse;
+        payofftimeUnit = obj.payofftimeUnit;
+        payofftime = obj.payofftime;
         obj.active = true;
         var obj2 = new Object();
         obj2.value = MedianPrice;
@@ -209,7 +211,8 @@ var build_map = function(destroy) {
       $(this).attr("data-houseprice", HousePrice);
       $(this).attr("data-unitprice", UnitPrice);
       $(this).attr("data-index", currentindex);
-      $(this).attr("data-payoff", payofftime);
+      $(this).attr("data-payoffHouse", payofftimeHouse);
+      $(this).attr("data-payoffUnit", payofftimeUnit);
     });
 
     function sortValues(a, b) {

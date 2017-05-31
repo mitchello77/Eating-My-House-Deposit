@@ -125,7 +125,8 @@ gulp.task('scripts', () =>
         './app/scripts/ajax.js',
         './app/scripts/map.js',
         './app/scripts/events.js',
-        './app/scripts/results.js'
+        './app/scripts/results.js',
+        './app/scripts/timeconversions.js'
 
         // Other scripts
       ]),
