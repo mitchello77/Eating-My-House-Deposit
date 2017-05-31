@@ -57,7 +57,7 @@ $(function() { // We are ready!
     }
 
     // save userResults[] to sessionStorage
-    console.log(userResults);
+    sessionStorage.setItem(ss_userResults, JSON.stringify(userResults));
     hideResultsInactive();
     showResultsLoader();
     build_expenselist();
@@ -73,6 +73,9 @@ $(function() { // We are ready!
 
   $('#questions .reset-button').click(function() {
     userResults = {};
+    if (sessionStorage.getItem(ss_userResults)) {
+      sessionStorage.removeItem(ss_userResults);
+    }
     build_results();
     $.fn.fullpage.moveSlideRight();
   });
