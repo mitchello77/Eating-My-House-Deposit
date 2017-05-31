@@ -1,144 +1,170 @@
-.results-title {
-  font-size: 2rem;
-  font-weight: bold;
-}
-
-.result-hr {
-  width: 5rem;
-  border: 0;
-  border-bottom: 1px solid #bfbeba;
-  margin-top: 1.5rem;
-  margin-bottom: 1.5rem;
-}
-
-.expense-container {
-  display: flex;
-  justify-content: space-between;
-  position: relative;
-  height: 70vh;
-  width: 60rem;
-}
-
-.income-graph {
-  width: 60%;
-  height: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
-  .info {
-    position: relative;
-    width: 14rem;
-    height: 100%;
-    font-size: 1rem;
-    .line {
-      z-index: 99;
-      position: absolute;
-      display: flex;
-      justify-content: flex-end;
-      min-height: 15px;
-      left: 0;
-      border-bottom: 1px solid rgba($grey, .8);
-      border-right: 1px solid rgba($grey, .8);
-      padding-right: 0.2rem;
-      span {
-        display: inline-block;
-      }
-      .label {
-        color: $grey;
-      }
-      .value {
-        color: $colour;
-        font-weight: bold;
-        margin-left: .5rem;
-        margin-right: .25rem;
-
-      }
-    }
-    .line.salary {
-      width: 100%;
-    }
-    .line.repay {
-      width: 95%;
-    }
-    .line.expenses {
-      width: 90%;
-    }
+#results {
+  .results-title {
+    font-size: 2rem;
+    font-weight: bold;
   }
 
-  .coin-container {
-    position: relative;
-    padding-top: 4px; // must = drop shadow bottom length
-    .coin {
-      position: relative;
-      background-image: url('../images/coin_gold.svg');
-      background-size: contain;
-      background-position: bottom;
-      background-repeat: no-repeat;
-      width: 183px;
-      height: 81px;
-      filter: drop-shadow(2px 4px 2px rgba(0,0,0,0.3));
-    }
-    .coin:not(:last-child) {
-      margin-bottom: -61px;
-    }
-    .coin.expense {
-      background-image: url('../images/coin.svg');
-    }
-    .coin.repay {
-      background-image: url('../images/coin_silver.svg');
-    }
+  .result-hr {
+    width: 5rem;
+    border: 0;
+    border-bottom: 1px solid #bfbeba;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
   }
-}
 
-.expenses-list {
-  display: flex;
-  flex-direction: column;
-  width: 40%;
-  justify-content: space-between;
-
-  .expense {
+  .expense-container {
     display: flex;
-    align-items: flex-end;
     justify-content: space-between;
-    font-size: 3.5rem;
-    font-weight: 400;
-    padding: 1rem;
+    position: relative;
+    height: 70vh;
+    width: 60rem;
+  }
 
-    .icon {
-      width: 5rem;
-      height: 5rem;
-      background-size: contain;
-      background-repeat: no-repeat;
+  .income-graph {
+    width: 60%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    .info {
+      position: relative;
+      width: 14rem;
+      height: 100%;
+      font-size: 1rem;
+      .line {
+        z-index: 99;
+        position: absolute;
+        display: flex;
+        justify-content: flex-end;
+        min-height: 15px;
+        left: 0;
+        border-bottom: 1px solid rgba($grey, .8);
+        border-right: 1px solid rgba($grey, .8);
+        padding-right: 0.2rem;
+        span {
+          display: inline-block;
+        }
+        .label {
+          color: $grey;
+        }
+        .value {
+          color: $colour;
+          font-weight: bold;
+          margin-left: .5rem;
+          margin-right: .25rem;
+
+        }
+      }
+      .line.salary {
+        width: 100%;
+      }
+      .line.repay {
+        width: 95%;
+      }
+      .line.expenses {
+        width: 90%;
+      }
     }
 
-    hr {
-      width: 1rem;
-      border: 0;
+    .coin-container {
+      position: relative;
+      padding-top: 4px; // must = drop shadow bottom length
+      .coin {
+        position: relative;
+        background-image: url('../images/coin_gold.svg');
+        background-size: contain;
+        background-position: bottom;
+        background-repeat: no-repeat;
+        width: 183px;
+        height: 81px;
+        filter: drop-shadow(2px 4px 2px rgba(0,0,0,0.3));
+      }
+      .coin:not(:last-child) {
+        margin-bottom: -61px;
+      }
+      .coin.expense {
+        background-image: url('../images/coin.svg');
+      }
+      .coin.repay {
+        background-image: url('../images/coin_silver.svg');
+      }
+    }
+  }
+
+  .expenses-list {
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    justify-content: space-between;
+
+    .expense {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      font-size: 3.5rem;
+      font-weight: 400;
+      padding: 1rem;
+
+      .icon {
+        width: 5rem;
+        height: 5rem;
+        background-size: contain;
+        background-repeat: no-repeat;
+      }
+
+      hr {
+        width: 1rem;
+        border: 0;
+        border-bottom: 2px solid lighten($colour, 50%);
+      }
+
+    }
+
+    .expense:last-of-type {
+      border-top: 2px solid lighten($colour, 50%);
       border-bottom: 2px solid lighten($colour, 50%);
+      align-items: flex-start;
     }
 
+    .total-label, .total-amount {
+      display: flex;;
+      align-items: center;
+    }
+
+    .total-amount {
+      font-weight: 600;
+
+    }
+
+    // icons
+    .musicstream {background-image: url('../images/music.png');}
+    .moviestream {background-image: url('../images/flat-screen.png');}
+    .gym {background-image: url('../images/arm.png');}
+    .coffee {background-image: url('../images/coffee.png');}
+    .avo{background-image: url('../images/avo.png');}
   }
-
-  .expense:last-of-type {
-    border-top: 2px solid lighten($colour, 50%);
-    border-bottom: 2px solid lighten($colour, 50%);
-    align-items: flex-start;
+  .overlay {
+    z-index: 100;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    box-sizing: border-box;
+    background-color: $background;
+    .not-ready, .loader {
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      background-color: $background;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      position: absolute;
+    }
   }
-
-  .total-label, .total-amount {
-    display: flex;;
-    align-items: center;
-  }
-
-  .total-amount {
-    font-weight: 600;
-
-  }
-
-  // icons
-  .musicstream {background-image: url('../images/music.png');}
-  .moviestream {background-image: url('../images/flat-screen.png');}
-  .gym {background-image: url('../images/arm.png');}
-  .coffee {background-image: url('../images/coffee.png');}
-  .avo{background-image: url('../images/avo.png');}
 }

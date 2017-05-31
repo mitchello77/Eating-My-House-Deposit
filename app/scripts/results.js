@@ -1,10 +1,25 @@
+var temp_sal, temp_expense;
 function generate_incomegraph(sal, total_expenses) {
+  showResultsLoader();
+  if (sal === undefined && total_expenses === undefined) {
+    // called to only rebuild casue of view port change
+    if (!$('#results .not-ready').parent().hasClass('hidden')) {
+      return
+    }
+    sal = temp_sal;
+    total_expenses = temp_expense;
+  }
+
+  temp_sal = sal;
+  temp_expense = total_expenses;
   var _salary = parseInt(sal, 10);
   var _expenses = parseInt(total_expenses, 10);
   var _repayments = _salary * 0.2; // 20% of salary
   var stack_container = $('#results .coin-container');
+  stack_container.html(''); // remove any html inside
   var graph_container = $('#results .income-graph');
   var info_container = $('#results .income-graph .info');
+  info_container.html(''); // remove any html inside
   var expensecoin_count;
   var salarycoin_count;
   var repayment_count;
@@ -53,6 +68,8 @@ function generate_incomegraph(sal, total_expenses) {
   info_container.append(sprintf(line_html, 'salary', getLineHeight(salarycoin_count, coin_svg_height, coin_margin, info_container_height) + '%', 'Salary', _salary))
   info_container.append(sprintf(line_html, 'repay', getLineHeight(salarycoin_count + repayment_count, coin_svg_height, coin_margin, info_container_height) + '%', 'Morgage Repayment', _repayments))
   info_container.append(sprintf(line_html, 'expenses', getLineHeight(salarycoin_count + repayment_count + expensecoin_count, coin_svg_height, coin_margin, info_container_height) + '%', 'Expenses', _expenses))
+
+  hideResultsLoader();
 }
 
 function getLineHeight(coin_count, coin_svg_height, coin_margin, info_container_height) {
@@ -101,3 +118,15 @@ var build_expenselist = function() {
   });
   container.append(sprintf(total_html, total));
 };
+
+function showResultsLoader() {
+  $('#results .loader').parent().removeClass('hidden');
+}
+
+function hideResultsLoader() {
+  $('#results .loader').parent().addClass('hidden');
+}
+
+function hideResultsInactive() {
+  $('#results .not-ready').parent().addClass('hidden');
+}
