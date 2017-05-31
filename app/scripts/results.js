@@ -14,7 +14,7 @@ function generate_incomegraph(sal, total_expenses) {
   temp_expense = total_expenses;
   var _salary = parseInt(sal, 10);
   var _expenses = parseInt(total_expenses, 10);
-  var _repayments = _salary * 0.2; // 20% of salary
+  var _repayments = _salary * salaryRepaymentPercentage; // % of salary
   var stack_container = $('#results .coin-container');
   stack_container.html(''); // remove any html inside
   var graph_container = $('#results .income-graph');
@@ -129,4 +129,29 @@ function hideResultsLoader() {
 
 function hideResultsInactive() {
   $('#results .not-ready').parent().addClass('hidden');
+}
+
+function calculate_payofftime(salary) {
+  var payoff = 0;
+  $.each(arrSuburbs, function(index, item) {
+    item.payofftime = getPayTime(salary, item.MedianPrice, false);
+    item.payofftimeHouse = getPayTime(salary, item.HousePrice, false);
+    item.payofftimeUnit = getPayTime(salary, item.UnitPrice, false);
+    item.payofftimeExpense = getPayTime(salary, item.MedianPrice, true);
+    item.payofftimeHouseExpense = getPayTime(salary, item.HousePrice, true);
+    item.payofftimeUnitExpense = getPayTime(salary, item.UnitPrice, true);
+  });
+}
+
+function getPayTime(salary, suburb_price, expense) {
+  suburb_price = parseInt(suburb_price, 10)
+  var total_expense = 0;
+  var total_cost = suburb_price + (suburb_price * 0.04);
+  if (expense) {
+    $.each(arrExpenses, function(index, item) {
+      total_expense = total_expense + item.monthcost;
+    });
+  }
+  var annual_repayment = (salary - total_expense) * salaryRepaymentPercentage;
+  return (total_cost / annual_repayment).toFixed(3);
 }

@@ -42,8 +42,6 @@ $(function() { // We are ready!
           } else {
             price = parseInt(price, 10)
           }
-          console.log(expense);
-          console.log(price);
           // push obj to expenses
           var obj = {};
           obj.name = expense;
@@ -53,11 +51,6 @@ $(function() { // We are ready!
         }
       }
     }
-    console.log("-----");
-    console.log(idealloc);
-    console.log(salary);
-    console.log(propertytype);
-    console.log(arrExpenses);
     // after finished with results
     userResults = {};
     build_results(); //reset the inputs
@@ -68,6 +61,11 @@ $(function() { // We are ready!
     generate_incomegraph(salary, total);
     // move on
     $.fn.fullpage.moveSectionDown();
+    // generate pay off time for each suburb
+    calculate_payofftime(salary);
+    results_ready = true; // results have finished processing
+    // make the map again but pay time!
+    build_map(true);
   });
 
   $('#questions .reset-button').click(function() {

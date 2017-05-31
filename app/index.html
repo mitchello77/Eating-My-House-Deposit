@@ -338,8 +338,8 @@
         </div>
         <div class="section" id="map" data-tooltip="Map" data-navcolour="#78A4C0">
           <header>
-            <h2>Suburb Overview!</h2>
-            <span class="subheading">Maps and stuff. Suburb profile. Hover = average of house price and unit sold price. Explain what the map does!</span>
+            <h2>Suburb Overview</h2>
+            <span class="subheading">Welcome to the suburb overview. Here you can explore the profile of each suburb, as well as the median sell price (for both houses and units together) for each suburb. If you completed the questionnaire above, you’ll also see how long it will take you to pay off property! <br /> Clicking on a suburb will expand its profile.</span>
           </header>
           <div class="map-container">
             <div class="overlay">
@@ -353,30 +353,7 @@
                 </div>
               </div>
               <div class="information hidden">
-                <span class="close">
-                  <?xml version="1.0" encoding="iso-8859-1"?>
-                  <!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-                  <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-                  <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                  	 width="40px" height="40px" viewBox="0 0 612 612" style="enable-background:new 0 0 612 612;" xml:space="preserve">
-                  <g>
-                  	<g id="Error">
-                  		<g>
-                  			<path d="M420.501,218.79c-0.286-6.942-2.868-13.827-8.186-19.125c-5.297-5.298-12.183-7.898-19.125-8.186
-                  				c-7.726-0.325-15.548,2.276-21.438,8.186L306,265.436l-65.752-65.771c-5.909-5.91-13.712-8.492-21.439-8.186
-                  				c-6.942,0.287-13.827,2.869-19.125,8.186c-5.297,5.298-7.898,12.183-8.186,19.125c-0.325,7.727,2.276,15.529,8.186,21.439
-                  				L265.436,306l-65.752,65.752c-5.91,5.909-8.492,13.713-8.186,21.438c0.287,6.942,2.869,13.828,8.186,19.125
-                  				c5.298,5.298,12.183,7.899,19.125,8.186c7.727,0.325,15.53-2.275,21.439-8.186L306,346.564l65.771,65.771
-                  				c5.91,5.909,13.713,8.491,21.439,8.186c6.942-0.287,13.827-2.869,19.125-8.186c5.298-5.298,7.898-12.183,8.186-19.125
-                  				c0.325-7.727-2.276-15.529-8.186-21.439L346.564,306l65.751-65.752C418.226,234.339,420.826,226.536,420.501,218.79z M306,0
-                  				C137.012,0,0,137.012,0,306s137.012,306,306,306s306-137.012,306-306S474.988,0,306,0z M306,554.625
-                  				C168.912,554.625,57.375,443.088,57.375,306S168.912,57.375,306,57.375S554.625,168.912,554.625,306S443.088,554.625,306,554.625
-                  				z"/>
-                  		</g>
-                  	</g>
-                  </g>
-                  </svg>
-                </span>
+                <span class="close"></span>
                 <h2>Suburb!</h2>
 
                 <div class="expense-switch">
@@ -388,7 +365,14 @@
                     </div>
                 </div>
               </div>
-              <div class="legend">
+              <div class="legend fill">
+                <span class="label"></span>
+                <div class="bar"></div>
+                <span class="range"></span>
+                <span class="range"></span>
+              </div>
+              <div class="legend stroke hidden">
+                <span class="label"></span>
                 <div class="bar"></div>
                 <span class="range"></span>
                 <span class="range"></span>
@@ -405,7 +389,7 @@
           <div class="wrap">
             <h2>About</h2>
             <p>Eating My House Deposit (reference to Smashed Avocado on Toast and its ludicrous price) is a data Visualisation that aims to debunk the allegations suggesting that millennials lifestyles are to blame for the inability to afford property in the Brisbane Market. The user is asked various lifestyle questions and a mortgage repayment period is calculated with and without these lifestyle expenses. The difference in time between both values is likely to be insignificant when compared against the usual term of a mortgage and therefore suggests that lifestyle, cannot be blamed for the inability to purchase property.
-            <br />This piece has also formed a formal piece of assessment for the course <a href=https://www.student.qut.edu.au/enrolment/units/unit?unitCode=DXB502&year=2017>DXB502 – Visual Information</a> Design taught at The Queensland University of Technology.
+            <br />This piece has also formed a formal piece of assessment for the course <a href="https://www.student.qut.edu.au/enrolment/units/unit?unitCode=DXB502&year=2017">DXB502 – Visual Information</a> Design taught at The Queensland University of Technology.
             </p>
             <div class="technologies">
               <h3>Technologies Used</h3>
@@ -480,6 +464,7 @@
     <script src="scripts/map.js"></script>
     <script src="scripts/events.js"></script>
     <script src="scripts/results.js"></script>
+    <script src="scripts/timeconversions.js"></script>
     <!-- endbuild -->
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
