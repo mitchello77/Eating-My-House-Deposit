@@ -357,18 +357,21 @@
                 <h2 class="suburb-name">Suburb!</h2>
                 <div class="price-container">
                   <h3>Suburb Sell Price</h3>
+                  <div class="last-updated">1/06/2017</div>
                   <div class="house">
                     <h4>House:</h4>
-                    <div class="price">$ 1000,000</div>
+                    <div class="current">Current: <div class="price">$ 1000,000</div></div>
+                    <div class="current">5 years ago: <div class="price">$ 1000,000</div></div>
                   </div>
                   <div class="unit">
                     <h4>Unit:</h4>
-                    <div class="price">$ 1000,000</div>
+                    <div class="current">Current: <div class="price">$ 1000,000</div></div>
+                    <div class="current">5 years ago: <div class="price">$ 1000,000</div></div>
                   </div>
                 </div>
                 <div class="payoff-container">
                   <h3>How long will it take you to Pay Off this suburb?</h3>
-                  <p>Toggle the expenses to see the difference.</p>
+                  <p>Toggle the expenses to see the difference. (Note: some assuptions were made to calculate the time. See them <a class="toggle-assumptions">here</a>)</p>
                   <div class="expense-switch">
                     <div class="label">Expenses</div>
                     <div class="toggle-container">
@@ -395,6 +398,16 @@
                 </div>
                 <div class="chart-container" style="position: relative"> <!-- This has to be position: relative. You can set the value in css Kel -->
                   <canvas id="chartSuburbProfile"></canvas> <!-- Must only contain a canvas element -->
+                </div>
+                <div class="assumptions"> <!-- Centeral overlay (modial) jsut listing the assumptions when calculating pay off time.  -->
+                  <span class="close"></span>
+                  <h2>Assumptions:</h2>
+                  <ul>
+                    <li>Blah blah</li>
+                    <li>Blah blah</li>
+                    <li>Blah blah</li>
+                    <li>Blah blah</li>
+                  </ul>
                 </div>
               </div>
               <div class="legend fill">
