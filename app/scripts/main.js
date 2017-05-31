@@ -8,6 +8,7 @@ var expense_prices = {};
 var arrExpenses = []; // array of objects that hold the expenses for the user
 var arrAnchors = []; // Stores anchor strings for FullPage.js nav
 var arrToolTips = []; // Stores tooltips for FullPage.js nav
+var resuls_ready = false; // Bool wheather results page has been processed or not
 var SuburbKmFilter = 5.0; // (decimal) filter active suburbs by this
 // var arrMapFillColours = ['#EEEEEE', '#0092CA', '#222831'];
 // var arrMapStrokeColours = ['#F2EEE3', '#FF8D68'];

@@ -62,6 +62,8 @@ $(function() { // We are ready!
     userResults = {};
     build_results(); //reset the inputs
     $.fn.fullpage.moveSlideRight();
+    hideResultsInactive();
+    showResultsLoader();
     build_expenselist();
     generate_incomegraph(salary, total);
     // move on
@@ -154,6 +156,7 @@ $(function() { // We are ready!
 
   $(window).bind('resizeEnd', function() {
     build_map(true);
+    generate_incomegraph();
   });
 
   $(window).resize(function() {
