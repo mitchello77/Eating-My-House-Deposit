@@ -67,6 +67,8 @@ $(function() { // We are ready!
     generate_incomegraph(salary, total);
     // move on
     $.fn.fullpage.moveSectionDown();
+    $('#questions .proceed-button').addClass('hidden');
+    $('#questions .down-arrow-container svg, #questions .proceed-button').off('click');
     // generate pay off time for each suburb
     calculate_payofftime(salary);
     results_ready = true; // results have finished processing
