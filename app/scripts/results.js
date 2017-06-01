@@ -73,7 +73,7 @@ function generate_incomegraph(sal, total_expenses) {
 }
 
 function getLineHeight(coin_count, coin_svg_height, coin_margin, info_container_height) {
-  return ((coin_count * (coin_svg_height - coin_margin)) / info_container_height) * 100;
+  return ((coin_count * (coin_svg_height - coin_margin)) / (info_container_height)) * 100;
 }
 
 function getCoinOffset(distance) {
