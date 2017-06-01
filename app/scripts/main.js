@@ -149,6 +149,8 @@ var emphasise_selected_suburb = function() {
          obj.payofftimeHouseExpense = 0.0;
          obj.payofftimeUnitExpense  = 0.0;
          obj.payofftimeExpense  = 0.0;
+				 obj.lastupdated = '';
+				 obj.profile = null;
          arrSuburbs.push(obj);
        });
        // Dropdown validation
@@ -159,7 +161,7 @@ var emphasise_selected_suburb = function() {
 					// move slider to results page
 					$.fn.fullpage.silentMoveTo('Section-2', 8);
 					$.fn.fullpage.silentMoveTo('Section-1');
-					
+
 				} else {
 					build_results();
 				}

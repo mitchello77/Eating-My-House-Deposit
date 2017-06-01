@@ -63,8 +63,19 @@ var reset_map = function(d) {
       .attr('style', null);
 };
 
+function build_overlay(objSuburb, objProfile) {
+  console.log('build_overlay');
+  // animate box in
+  hide_maploader()
+  $('#map .overlay .information').removeClass('hidden');
+}
+
 var load_suburbprofile = function(item) {
-    var objSuburb = arrSuburbs[item.index];
+  var objSuburb = arrSuburbs[item.index];
+  if (objSuburb.profile !== null) {
+    build_overlay(objSuburb, objSuburb.profile)
+  } else {
+    // need to query data
     getAPIData(sprintf('/profile/suburb/%s/postcode/%s', objSuburb.SuburbName, objSuburb.Postcode), function(jqXHR, settings) {
       /* beforeSend */
       setTimeout(function(){
@@ -73,15 +84,12 @@ var load_suburbprofile = function(item) {
     }, function(data, textStatus, jqXHR) {
       /* success */
       // handle data
-      console.log(data);
-      $.each(data, function(index, item) {
-
-      });
-
-      // animate box in
-      hide_maploader()
-      $('#map .overlay .information').removeClass('hidden');
+      var objProfile = data[objSuburb.SuburbName.toUpperCase() + - + objSuburb.Postcode];
+      objSuburb.lastupdated = objProfile.processed_date.sale;
+      objSuburb.profile = objProfile;
+      build_overlay(objSuburb, objSuburb.profile)
     });
+  }
 };
 
 function show_maploader() {
