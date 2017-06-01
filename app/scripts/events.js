@@ -24,6 +24,7 @@ $(function() { // We are ready!
     var propertytype;
     var total = 0;
     arrExpenses = []; // reset the array!
+    console.log(userResults);
     for (var property in userResults) {
       if (userResults.hasOwnProperty(property)) {
         if (property.toString() === "ideallocation") {
@@ -33,17 +34,23 @@ $(function() { // We are ready!
         } else if (property.toString() === "propertytype") {
           propertytype = userResults[property];
         } else if (property.toString().substr(0, 3) === "use") {
+          var result = userResults[property];
           var expense = property.toString().substr(4);
-          var price = expense_prices[expense]
-          var countselected = 1;
-          if (price.toString().substr(0, 1) === 'i') {
-            // single item
-            var cost = price.toString().substr(1);
-            price = (cost * parseInt(userResults[property], 10)) * 4;
-            countselected = parseInt(userResults[property], 10) * 4;
+          var price = expense_prices[expense];
+          var countselected;
+          console.log(result);
+          if (result === true) {
+            countselected = 1;
+          } else if (result === false) {
+            countselected = 0;
           } else {
-            price = parseInt(price, 10);
+            // count = result
+            countselected = parseInt(result, 10) * 4;
           }
+          price = price * countselected;
+          console.log(countselected);
+          console.log(price);
+
           // make annual
           price = price * 12;
           countselected = countselected * 12;
@@ -85,6 +92,8 @@ $(function() { // We are ready!
     results_ready = false;
     build_map(true);
     $.fn.fullpage.moveSlideRight();
+    $('#questions .proceed-button').removeClass('hidden');
+    $('#questions .down-arrow-container svg, #questions .proceed-button').on('click');
   });
 
   $('#questions .decision-button').click(function() {
