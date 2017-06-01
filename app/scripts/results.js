@@ -109,7 +109,7 @@ function getCoinOffset(distance) {
 
 var build_expenselist = function() {
   var container = $('#results .expenses-list');
-  var html = '<div class="expense"><div class="icon %s"></div><hr> %s <span class="times">x</span> %s <div class="equal"> = </div><div class="amount"> %s</div></div>';
+  var html = '<div class="expense"><div class="icon %s"></div> <div class="expense-values"> %s <span class="times">x</span> %s <div class="equal"> = </div><div class="amount"> %s</div></div></div>';
   var total_html = '<div class="expense"><div class="total-label">Total:</div><div class="total-amount">%s</div></div>';
   var total = 0;
 
