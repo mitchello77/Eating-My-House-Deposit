@@ -384,8 +384,10 @@
                     <p>to pay off this suburb. Let's be honest. When compared against the full term of the morgage... the extra time is hardly significant.</p>
                   </div>
                 </div>
-                <div class="chart-container" style="position: relative"> <!-- This has to be position: relative. You can set the value in css Kel -->
-                  <canvas id="chartSuburbProfile"></canvas> <!-- Must only contain a canvas element -->
+                <div style="position: absolute; top: 10%; right: 3%; width: 800px; height: 500px; background-color: #fff;">
+                  <div class="chart-container" style="position: relative"> <!-- This has to be position: relative. You can set the value in css Kel -->
+                    <canvas id="chartSuburbProfile"></canvas> <!-- Must only contain a canvas element -->
+                  </div>
                 </div>
                 <div class="assumptions"> <!-- Centeral overlay (modial) jsut listing the assumptions when calculating pay off time.  -->
                   <span class="close"></span>
@@ -415,7 +417,12 @@
         </div>
 
         <div class="section" id="conclusion" data-tooltip="Conclusion" data-navcolour="#78A4C0">
-          <p>closing thoughts. Stacked bar of housing/unit prices.</p>
+          <div class="thoughts">
+            <p>closing thoughts. Stacked bar of housing/unit prices.</p>
+          </div>
+          <div class="chart-container" style="position: relative; width: 700px;"> <!-- This has to be position: relative. You can set the value in css Kel -->
+            <canvas id="chartSuburbsPrice"></canvas> <!-- Must only contain a canvas element -->
+          </div>
         </div>
 
         <div class="section fp-auto-height" id="about" data-tooltip="About" data-navcolour="#78A4C0">

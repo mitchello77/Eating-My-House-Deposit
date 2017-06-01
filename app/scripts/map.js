@@ -65,6 +65,7 @@ var reset_map = function(d) {
 
 function build_overlay(objSuburb, objProfile) {
   console.log('build_overlay');
+  generateChart_SuburbOverview(objSuburb);
   // animate box in
   hide_maploader()
   $('#map .overlay .information').removeClass('hidden');

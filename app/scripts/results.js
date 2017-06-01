@@ -116,14 +116,7 @@ var build_expenselist = function() {
   $.each(arrExpenses, function(index, item) {
     var unitprice = item.unitprice;
     var count = item.count;
-
-    if (unitprice.toString().substr(0, 1) === 'i') {
-      // single item
-      var cost = unitprice.toString().substr(1);
-      unitprice = cost * parseInt(count, 10);
-    } else {
-      unitprice = parseInt(unitprice, 10)
-    }
+    unitprice = parseInt(unitprice, 10)
 
     container.append(sprintf(html, item.name, count, moneyFormat.to(unitprice), moneyFormat.to(parseInt(item.monthcost, 10))));
     total = total + item.monthcost;

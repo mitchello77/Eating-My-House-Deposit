@@ -31,8 +31,8 @@ var moneyFormat = wNumb({
 expense_prices['musicstream'] = 12;
 expense_prices['moviestream'] = 12;
 expense_prices['gym'] = 68;
-expense_prices['coffee'] = 'i4'; // single
-expense_prices['avo'] = 'i17'; // single
+expense_prices['coffee'] = 4; // single
+expense_prices['avo'] = 17; // single
 
 var build_results = function() {
   $('#questions .slide').each(function(index, item) {
@@ -169,6 +169,7 @@ var emphasise_selected_suburb = function() {
 				emphasise_selected_suburb();
 				handle_toggle();
 				build_map(false); // init Map
+				// generateChart_Conclusion();
 				hide_preloader();
      });
    };
