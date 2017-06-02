@@ -65,7 +65,7 @@ a {
   svg {
     fill: $selected_blue;
     position: absolute;
-    animation: bounceDown 1.5s ease infinite;
+    animation: bounceDown .75s ease alternate infinite;
     width: 25px;
     height: 25px;
     cursor: pointer;
@@ -91,7 +91,7 @@ a {
   svg {
     fill: $selected_blue;
     position: absolute;
-    animation: bounceRight 1.5s ease infinite;
+    animation: bounceRight .75s ease alternate infinite;
     width: 25px;
     height: 25px;
     cursor: pointer;
