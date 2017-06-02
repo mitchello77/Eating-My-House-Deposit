@@ -27,13 +27,13 @@ class suburbs {
 				"Distace" => $row['tblSuburbs_DistanceFromCBD'],
 				"HousePrice" => $row['tblSuburbs_HouseMedianPrice'],
 				"UnitPrice" => $row['tblSuburbs_UnitMedianPrice'],
+				"HousePricePast" => $row['tblSuburbs_HouseMedianPastPrice'],
+				"UnitPricePast" => $row['tblSuburbs_UnitMedianPastPrice'],
 				"Latitude" => $row['tblSuburbs_Latitude'],
 				"Longitude" => $row['tblSuburbs_Longitude']
 			);
 			array_push($result, $topush);
 		};
-
-
 		return json_decode(json_encode($result), FALSE);
 	}
 }
