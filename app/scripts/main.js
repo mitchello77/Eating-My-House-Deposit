@@ -130,10 +130,10 @@ var emphasise_selected_suburb = function() {
          var obj = new Object();
          obj.SuburbName = item.Suburb;
          obj.Postcode = item.Postcode;
-         obj.HousePrice = item.HousePricePast;
+         obj.HousePrice = item.HousePrice;
+ 				 obj.UnitPrice = item.UnitPrice;
          obj.UnitPastPrice = item.UnitPricePast;
-				 obj.HousePastPrice = item.HousePrice;
-				 obj.UnitPrice = item.UnitPrice;
+				 obj.HousePastPrice = item.HousePricePast;
          if (obj.HousePrice === 0 || obj.UnitPrice === 0) {
           obj.MedianPrice = toInteger(parseInt(obj.HousePrice, 10) + parseInt(obj.UnitPrice, 10));
          } else {

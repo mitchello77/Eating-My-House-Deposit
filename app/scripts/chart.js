@@ -43,7 +43,7 @@ function generateChart_SuburbOverview(objSuburb) {
           yAxisID: 'sold_count',
           type: 'line',
           backgroundColor: '#ffffff',
-          borderColor: chroma(colours[0]).alpha(0.7).css(),
+          borderColor: chroma(colours[0]).alpha(0.9).css(),
           borderWidth: 2,
           fill: false,
           data: data_presentsold
@@ -53,7 +53,7 @@ function generateChart_SuburbOverview(objSuburb) {
           yAxisID: 'sold_count',
           type: 'line',
           backgroundColor: '#ffffff',
-          borderColor: chroma(colours[1]).alpha(0.7).css(),
+          borderColor: chroma(colours[1]).alpha(0.9).css(),
           borderWidth: 2,
           fill: false,
           data: data_pastsold
@@ -62,14 +62,14 @@ function generateChart_SuburbOverview(objSuburb) {
           xAxisID: 'bedrooms',
           yAxisID: 'price',
           type: 'bar',
-          backgroundColor: chroma(colours[2]).alpha(0.7).css(),
+          backgroundColor: chroma(colours[2]).alpha(0.9).css(),
           data: data_presentprice
       }, {
           label: 'Past Price',
           xAxisID: 'bedrooms',
           yAxisID: 'price',
           type: 'bar',
-          backgroundColor: chroma(colours[3]).alpha(0.7).css(),
+          backgroundColor: chroma(colours[3]).alpha(0.9).css(),
           data: data_pastprice
       }]
 
@@ -170,34 +170,34 @@ function generateChart_Conclusion() {
           xAxisID: 'suburb',
           yAxisID: 'price',
           type: 'line',
-          borderColor: chroma(colours[0]).alpha(0.7).css(),
+          borderColor: chroma(colours[0]).alpha(0.9).css(),
           borderWidth: 2,
           fill: false,
           data: suburbs_house_Currentprice
-      }, {
-          label: 'Present Unit Price',
-          xAxisID: 'suburb',
-          yAxisID: 'price',
-          type: 'line',
-          borderColor: chroma(colours[1]).alpha(0.7).css(),
-          borderWidth: 2,
-          fill: false,
-          data: suburbs_unit_Currentprice
       }, {
           label: 'Past House Price',
           xAxisID: 'suburb',
           yAxisID: 'price',
           type: 'line',
-          borderColor: chroma(colours[2]).alpha(0.7).css(),
+          borderColor: chroma(colours[1]).alpha(0.9).css(),
           borderWidth: 2,
           fill: false,
           data: suburbs_house_Pastprice
+      }, {
+          label: 'Present Unit Price',
+          xAxisID: 'suburb',
+          yAxisID: 'price',
+          type: 'line',
+          borderColor: chroma(colours[2]).alpha(0.9).css(),
+          borderWidth: 2,
+          fill: false,
+          data: suburbs_unit_Currentprice
       }, {
           label: 'Past Unit Price',
           xAxisID: 'suburb',
           yAxisID: 'price',
           type: 'line',
-          borderColor: chroma(colours[3]).alpha(0.7).css(),
+          borderColor: chroma(colours[3]).alpha(0.9).css(),
           borderWidth: 2,
           fill: false,
           data: suburbs_unit_Pastprice
