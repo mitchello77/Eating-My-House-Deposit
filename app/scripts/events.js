@@ -24,7 +24,6 @@ $(function() { // We are ready!
     var propertytype;
     var total = 0;
     arrExpenses = []; // reset the array!
-    console.log(userResults);
     for (var property in userResults) {
       if (userResults.hasOwnProperty(property)) {
         if (property.toString() === "ideallocation") {
@@ -38,7 +37,6 @@ $(function() { // We are ready!
           var expense = property.toString().substr(4);
           var price = expense_prices[expense];
           var countselected;
-          console.log(result);
           if (result === true) {
             countselected = 1;
           } else if (result === false) {
@@ -48,9 +46,6 @@ $(function() { // We are ready!
             countselected = parseInt(result, 10) * 4;
           }
           price = price * countselected;
-          console.log(countselected);
-          console.log(price);
-
           // make annual
           price = price * 12;
           countselected = countselected * 12;

@@ -65,15 +65,22 @@ function generate_incomegraph(sal, total_expenses) {
   var coin_margin = parseInt($('#results .coin-container .coin:not(:last-child)').css('margin-bottom').slice(1, -2), 10);
 
   // Generate Lines
-  info_container.append(sprintf(line_html, 'salary', getLineHeight(salarycoin_count, coin_svg_height, coin_margin, info_container_height) + '%', 'Salary', _salary))
-  info_container.append(sprintf(line_html, 'repay', getLineHeight(salarycoin_count + repayment_count, coin_svg_height, coin_margin, info_container_height) + '%', 'Morgage Repayment', _repayments))
-  info_container.append(sprintf(line_html, 'expenses', getLineHeight(salarycoin_count + repayment_count + expensecoin_count, coin_svg_height, coin_margin, info_container_height) + '%', 'Expenses', _expenses))
+  info_container.append(sprintf(line_html, 'salary', getLineHeight(salarycoin_count, 0, coin_svg_height, coin_margin, info_container_height) + '%', 'Salary', _salary))
+  info_container.append(sprintf(line_html, 'repay', getLineHeight(salarycoin_count + repayment_count, salarycoin_count, coin_svg_height, coin_margin, info_container_height) + '%', 'Morgage Repayment', _repayments))
+  info_container.append(sprintf(line_html, 'expenses', getLineHeight(salarycoin_count + repayment_count + expensecoin_count, salarycoin_count + repayment_count, coin_svg_height, coin_margin, info_container_height) + '%', 'Expenses', _expenses))
 
   hideResultsLoader();
 }
 
-function getLineHeight(coin_count, coin_svg_height, coin_margin, info_container_height) {
-  return ((coin_count * (coin_svg_height - coin_margin)) / (info_container_height)) * 100;
+function getLineHeight(coin_count, prev_coin_count, coin_svg_height, coin_margin, info_container_height) {
+  var top = ((coin_count * (coin_svg_height - coin_margin)) / (info_container_height)) * 100;
+  var bottom;
+  if (prev_coin_count === 0) {
+    bottom = 0;
+  } else {
+    bottom = ((prev_coin_count * (coin_svg_height - coin_margin)) / (info_container_height)) * 100;
+  }
+  return ((top - bottom) * 0.5) + bottom; // Half way between coin stack + bottom
 }
 
 function getCoinOffset(distance) {
