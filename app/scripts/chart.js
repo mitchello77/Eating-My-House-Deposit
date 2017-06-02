@@ -6,6 +6,7 @@ function generateChart_SuburbOverview(objSuburb) {
   var data_presentsold = [];
   var data_pastsold = [];
   var labels = [];
+  var colours = chroma.scale('Spectral').mode('lch').colors(4);
 
   $.each(objSuburb.profile.property_types, function(index, item) {
     var ptype = capitalizeFirstLetter(index.toLowerCase());
@@ -42,7 +43,7 @@ function generateChart_SuburbOverview(objSuburb) {
           yAxisID: 'sold_count',
           type: 'line',
           backgroundColor: '#ffffff',
-          borderColor: color('rgb(255, 159, 64)').alpha(0.8).rgbString(),
+          borderColor: chroma(colours[0]).alpha(0.7).css(),
           borderWidth: 2,
           fill: false,
           data: data_presentsold
@@ -52,7 +53,7 @@ function generateChart_SuburbOverview(objSuburb) {
           yAxisID: 'sold_count',
           type: 'line',
           backgroundColor: '#ffffff',
-          borderColor: color('rgb(255, 205, 86)').alpha(0.8).rgbString(),
+          borderColor: chroma(colours[1]).alpha(0.7).css(),
           borderWidth: 2,
           fill: false,
           data: data_pastsold
@@ -61,14 +62,14 @@ function generateChart_SuburbOverview(objSuburb) {
           xAxisID: 'bedrooms',
           yAxisID: 'price',
           type: 'bar',
-          backgroundColor: color('rgb(255, 99, 132)').alpha(0.8).rgbString(),
+          backgroundColor: chroma(colours[2]).alpha(0.7).css(),
           data: data_presentprice
       }, {
           label: 'Past Price',
           xAxisID: 'bedrooms',
           yAxisID: 'price',
           type: 'bar',
-          backgroundColor: color('rgb(75, 192, 192)').alpha(0.8).rgbString(),
+          backgroundColor: chroma(colours[3]).alpha(0.7).css(),
           data: data_pastprice
       }]
 
@@ -137,18 +138,107 @@ function generateChart_SuburbOverview(objSuburb) {
           }
       }
   });
-
 }
 
 function generateChart_Conclusion() {
   var ctx = document.getElementById("chartSuburbsPrice");
-  var suburbs = [];
+  var suburbs_house_Currentprice = [];
+  var suburbs_house_Pastprice = [];
+  var suburbs_unit_Currentprice = [];
+  var suburbs_unit_Pastprice = [];
   var labels = [];
-  var bg_colours = [];
+  var colours = chroma.scale('Spectral').mode('lch').colors(4);
 
   $.each(arrSuburbs, function(index, item) {
     var suburb_name = item.SuburbName;
-    var suburb_medprice = item.MedianPrice;
+    var suburb_presenthouseprice = item.HousePrice;
+    var suburb_presentunitprice = item.UnitPrice;
+    var suburb_pasthouseprice = item.HousePastPrice;
+    var suburb_pastunitprice = item.UnitPastPrice;
+
+    labels.push(suburb_name);
+    suburbs_house_Currentprice.push(suburb_presenthouseprice);
+    suburbs_unit_Currentprice.push(suburb_presentunitprice);
+    suburbs_house_Pastprice.push(suburb_pasthouseprice);
+    suburbs_unit_Pastprice.push(suburb_pastunitprice);
+  });
+
+  var chartData = {
+      labels: labels,
+      datasets: [{
+          label: 'Present House Price',
+          xAxisID: 'suburb',
+          yAxisID: 'price',
+          type: 'line',
+          borderColor: chroma(colours[0]).alpha(0.7).css(),
+          borderWidth: 2,
+          fill: false,
+          data: suburbs_house_Currentprice
+      }, {
+          label: 'Present Unit Price',
+          xAxisID: 'suburb',
+          yAxisID: 'price',
+          type: 'line',
+          borderColor: chroma(colours[1]).alpha(0.7).css(),
+          borderWidth: 2,
+          fill: false,
+          data: suburbs_unit_Currentprice
+      }, {
+          label: 'Past House Price',
+          xAxisID: 'suburb',
+          yAxisID: 'price',
+          type: 'line',
+          borderColor: chroma(colours[2]).alpha(0.7).css(),
+          borderWidth: 2,
+          fill: false,
+          data: suburbs_house_Pastprice
+      }, {
+          label: 'Past Unit Price',
+          xAxisID: 'suburb',
+          yAxisID: 'price',
+          type: 'line',
+          borderColor: chroma(colours[3]).alpha(0.7).css(),
+          borderWidth: 2,
+          fill: false,
+          data: suburbs_unit_Pastprice
+      }]
+
+  };
+
+  var chart = new Chart(ctx, {
+      type: 'line',
+      data: chartData,
+      options: {
+          title:{
+              display:true,
+              text:"Suburb Current Price vs Past"
+          },
+          tooltips: {
+              mode: 'index',
+              intersect: false
+          },
+          responsive: true,
+          scales: {
+              xAxes: [{
+                  id: 'suburb',
+                  stacked: false,
+                  ticks: {
+                    autoSkip: false
+                  }
+              }],
+              yAxes: [{
+                id: 'price',
+                stacked: false,
+                labelString: 'Price ($)',
+                ticks: {
+                    // Include a dollar sign in the ticks
+                    callback: function(value, index, values) {
+                        return '$' + value;
+                    }
+                }
+              }]
+          }
+      }
   });
 
 }
