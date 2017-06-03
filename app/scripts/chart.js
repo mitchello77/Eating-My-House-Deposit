@@ -162,7 +162,7 @@ function generateChart_Conclusion() {
     suburbs_house_Pastprice.push(suburb_pasthouseprice);
     suburbs_unit_Pastprice.push(suburb_pastunitprice);
   });
-
+Chart.defaults.global.defaultFontFamily = 'Hind Guntur';
   var chartData = {
       labels: labels,
       datasets: [{
