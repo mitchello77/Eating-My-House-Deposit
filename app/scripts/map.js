@@ -24,7 +24,7 @@ var isActiveSuburb = function(name) {
 };
 
 var moveTooltip = function(d) {
-  tooltip.style("left", (d3.event.pageX - 10) + "px").style("top", (d3.event.pageY - ($("#map .map-container").offset().top) - 5) + "px");
+  tooltip.style("left", (d3.event.pageX - 8) + "px").style("top", (d3.event.pageY - ($("#map .map-container").offset().top) - 25) + "px");
 };
 
 // Create a tooltip, hidden at the start
