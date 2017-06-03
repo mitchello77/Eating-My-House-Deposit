@@ -18,64 +18,7 @@ $(function() { // We are ready!
   });
 
   $('#questions .down-arrow-container svg, #questions .proceed-button').click(function() {
-    // handle results and move on
-    var idealloc;
-    var salary;
-    var propertytype;
-    var total = 0;
-    arrExpenses = []; // reset the array!
-    for (var property in userResults) {
-      if (userResults.hasOwnProperty(property)) {
-        if (property.toString() === "ideallocation") {
-          idealloc = userResults[property];
-        } else if (property.toString() === "salary") {
-          salary = userResults[property];
-        } else if (property.toString() === "propertytype") {
-          propertytype = userResults[property];
-        } else if (property.toString().substr(0, 3) === "use") {
-          var result = userResults[property];
-          var expense = property.toString().substr(4);
-          var price = expense_prices[expense];
-          var countselected;
-          if (result === true) {
-            countselected = 1;
-          } else if (result === false) {
-            countselected = 0;
-          } else {
-            // count = result
-            countselected = parseInt(result, 10) * 4;
-          }
-          price = price * countselected;
-          // make annual
-          price = price * 12;
-          countselected = countselected * 12;
-          // push obj to expenses
-          var obj = {};
-          obj.name = expense;
-          obj.monthcost = price;
-          obj.unitprice = expense_prices[expense];
-          obj.count = countselected;
-          arrExpenses.push(obj);
-          total = total + price;
-        }
-      }
-    }
-
-    // save userResults[] to sessionStorage
-    sessionStorage.setItem(ss_userResults, JSON.stringify(userResults));
-    hideResultsInactive();
-    showResultsLoader();
-    build_expenselist();
-    generate_incomegraph(salary, total);
-    // move on
-    $.fn.fullpage.moveSectionDown();
-    $('#questions .proceed-button').addClass('hidden');
-    $('#questions .down-arrow-container svg, #questions .proceed-button').off('click');
-    // generate pay off time for each suburb
-    calculate_payofftime(salary);
-    results_ready = true; // results have finished processing
-    // make the map again but pay time!
-    build_map(true);
+    handleResults(true);
   });
 
   $('#questions .reset-button').click(function() {
