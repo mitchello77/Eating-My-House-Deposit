@@ -167,3 +167,69 @@ function getPayTime(salary, suburb_price, expense) {
   var annual_repayment = (salary - total_expense) * salaryRepaymentPercentage;
   return (total_cost / annual_repayment).toFixed(3);
 }
+
+function handleResults(fromevent) {
+  // handle results and move on
+  var idealloc;
+  var salary;
+  var propertytype;
+  var total = 0;
+  arrExpenses = []; // reset the array!
+  for (var property in userResults) {
+    if (userResults.hasOwnProperty(property)) {
+      if (property.toString() === "ideallocation") {
+        idealloc = userResults[property];
+      } else if (property.toString() === "salary") {
+        salary = userResults[property];
+      } else if (property.toString() === "propertytype") {
+        propertytype = userResults[property];
+      } else if (property.toString().substr(0, 3) === "use") {
+        var result = userResults[property];
+        var expense = property.toString().substr(4);
+        var price = expense_prices[expense];
+        var countselected;
+        if (result === true) {
+          countselected = 1;
+        } else if (result === false) {
+          countselected = 0;
+        } else {
+          // count = result
+          countselected = parseInt(result, 10) * 4;
+        }
+        price = price * countselected;
+        // make annual
+        price = price * 12;
+        countselected = countselected * 12;
+        // push obj to expenses
+        var obj = {};
+        obj.name = expense;
+        obj.monthcost = price;
+        obj.unitprice = expense_prices[expense];
+        obj.count = countselected;
+        arrExpenses.push(obj);
+        total = total + price;
+      }
+    }
+  }
+  if (fromevent) {
+    // save userResults[] to sessionStorage
+    sessionStorage.setItem(ss_userResults, JSON.stringify(userResults));
+  }
+  hideResultsInactive();
+  showResultsLoader();
+  build_expenselist();
+  generate_incomegraph(salary, total);
+  if (fromevent) {
+    // move on
+    $.fn.fullpage.moveSectionDown();
+  }
+  $('#questions .proceed-button').addClass('hidden');
+  $('#questions .down-arrow-container svg, #questions .proceed-button').off('click');
+  // generate pay off time for each suburb
+  calculate_payofftime(salary);
+  results_ready = true; // results have finished processing
+  if (fromevent) {
+    // make the map again but pay time!
+    build_map(true);
+  }
+}

@@ -159,11 +159,10 @@ var emphasise_selected_suburb = function() {
 				setup_validation();
 				if (sessionStorage.getItem(ss_userResults)) {
 					userResults = JSON.parse(sessionStorage.getItem(ss_userResults));
-					results_ready = true;
 					// move slider to results page
 					$.fn.fullpage.silentMoveTo('Section-2', 8);
 					$.fn.fullpage.silentMoveTo('Section-1');
-
+					handleResults(false);
 				} else {
 					build_results();
 				}
