@@ -1,6 +1,17 @@
-.chart-container {
-  position: relative;
-  width: 80vw;
-  margin-left: auto;
-  margin-right: auto;
+#conclusion {
+
+  .thoughts {
+    width: 70rem;
+  }
+
+  hr {
+    width: 10rem;
+    margin: 1rem 0;
+  }
+  .chart-container {
+    position: relative;
+    width: 80rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
