@@ -1,16 +1,17 @@
 #about {
   .wrap {
-    width: 60vw;
+    width: 80vw;
     height: 90vh;
     margin: 0 auto;
     margin-bottom: 3rem;
     display: flex;
+    justify-content: space-around;
   }
   .about-section {
-    margin: 3rem;
+    width: 45rem;
   }
   .technology-container {
-    margin: 2rem;
+    width: 25rem;
   }
   .technologies {
     .tech {
