@@ -167,3 +167,7 @@ function getPayTime(salary, suburb_price, expense) {
   var annual_repayment = (salary - total_expense) * salaryRepaymentPercentage;
   return (total_cost / annual_repayment).toFixed(3);
 }
+
+function handleResults(fromevent) {
+
+}
