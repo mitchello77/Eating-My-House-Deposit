@@ -315,12 +315,6 @@
                 <div class="info"></div>
               </div>
             </div>
-            <div class="down-arrow-container">
-              <div>
-                <svg width="512" height="512" viewbox="0 0 512 512" preservea xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M 96.00,96.00l-96.00,96.00l 256.00,256.00l 256.00-256.00l-96.00-96.00L 256.00,256.00L 96.00,96.00z" >
-                </path></svg>
-              </div>
-            </div>
           </div>
 
         </div>
@@ -417,75 +411,92 @@
         </div>
 
         <div class="section" id="conclusion" data-tooltip="Conclusion" data-navcolour="#78A4C0">
-          <div class="thoughts">
-            <p>closing thoughts. Stacked bar of housing/unit prices.</p>
-          </div>
-          <div class="chart-container" style="position: relative; width: 80%;"> <!-- This has to be position: relative. You can set the value in css Kel -->
-            <canvas id="chartSuburbsPrice"></canvas> <!-- Must only contain a canvas element -->
+          <div class="container">
+            <div class="thoughts">
+              <h2>Your lifestyle isn’t the real reason you can’t afford a home</h2>
+              <p>Next time you read an article complaining about millennials complaining about
+                not be able to afford a home remember that in the long run your lifestyle choices aren't the main reasons you can't afford a home.
+                Houses and units are becoming unaffordable because
+              of the increasing price bubble. One day it will burst and we might just get an apology. . .</p>
+            </div>
+            <hr>
+            <div class="chart-container" style="position: relative;"> <!-- This has to be position: relative. You can set the value in css Kel -->
+              <canvas id="chartSuburbsPrice"></canvas> <!-- Must only contain a canvas element -->
+            </div>
           </div>
         </div>
 
         <div class="section fp-auto-height" id="about" data-tooltip="About" data-navcolour="#78A4C0">
           <div class="wrap">
-            <h2>About</h2>
-            <p>Eating My House Deposit (reference to Smashed Avocado on Toast and its ludicrous price) is a data Visualisation that aims to debunk the allegations suggesting that millennials lifestyles are to blame for the inability to afford property in the Brisbane Market. The user is asked various lifestyle questions and a mortgage repayment period is calculated with and without these lifestyle expenses. The difference in time between both values is likely to be insignificant when compared against the usual term of a mortgage and therefore suggests that lifestyle, cannot be blamed for the inability to purchase property.
-            <br />This piece has also formed a formal piece of assessment for the course <a href="https://www.student.qut.edu.au/enrolment/units/unit?unitCode=DXB502&year=2017">DXB502 – Visual Information</a> Design taught at The Queensland University of Technology.
-            </p>
-            <div class="technologies">
-              <h3>Technologies Used</h3>
-              <ul class="tech">
-                <li><a href="#">HTML5</a></li>
-                <li><a href="#">CSS3</a></li>
-                <li><a href="http://php.net/">PHP</a></li>
-                <li><a href="https://www.javascript.com/">JavaScript</a></li>
-                <li><a href="https://jquery.com/">JQuery</a></li>
-                <li><a href="https://github.com/Luracast/Restler">Restler</a></li>
-                <li><a href="https://www.mysql.com/">MySQL</a></li>
-                <li><a href="https://nodejs.org/en/">NodeJS</a></li>
-                <li><a href="https://d3js.org/">D3JS</a></li>
-                <li><a href="https://github.com/topojson/topojson">TopoJSON</a></li>
-                <li><a href="https://github.com/gka/chroma.js/">ChromaJS</a></li>
-                <li><a href="https://github.com/LeaVerou/awesomplete">Awesomplete</a></li>
-                <li><a href="https://github.com/moment/moment/">MomentJS</a></li>
-                <li><a href="http://www.chartjs.org/">ChartJS</a></li>
-              </ul>
-            </div>
-            <h3>Source</h3>
-            <div class="source">
-              <p>Please feel free to check out the sourcecode of the project:</p>
-              <div>
-                <a href="https://github.com/mitchello77/Eating-My-House-Deposit"><i class="fa fa-github fa-4x" aria-hidden="true"></i>github.com/mitchello77/Eating-My-House-Deposit</a>
-              </div>
-            </div>
-            <h3><i class="fa fa-code fa-2x" aria-hidden="true"></i> with <i class="fa fa-heart fa-2x" aria-hidden="true"></i> by</h3>
-            <div class="authors">
-              <div class="author">
-                <div class="pic">
-                  <img src="https://cdn.mitchell-williams.com.au/photos/mitchell-profile-sq_400px.png" alt="Mitchell Portrait">
+            <div class="about-section">
+                <div class="about">
+                  <h2>About</h2>
+                  <p>Eating My House Deposit (reference to Smashed Avocado on Toast and its ludicrous price) is a data Visualisation that aims to debunk the allegations suggesting that millennials lifestyles are to blame for the inability to afford property in the Brisbane Market. The user is asked various lifestyle questions and a mortgage repayment period is calculated with and without these lifestyle expenses. The difference in time between both values is likely to be insignificant when compared against the usual term of a mortgage and therefore suggests that lifestyle, cannot be blamed for the inability to purchase property.
+                  <br />This piece has also formed a formal piece of assessment for the course <a href="https://www.student.qut.edu.au/enrolment/units/unit?unitCode=DXB502&year=2017">DXB502 – Visual Information</a> Design taught at The Queensland University of Technology.
+                  </p>
                 </div>
-                <div class="bio">
-                  <div><i class="fa fa-user" aria-hidden="true"></i>Mitchel Williams</div>
-                  <div><i class="fa fa-desktop" aria-hidden="true"></i><a href="https://mitchell-williams.com.au">mitchell-williams.com.au</a></div>
-                  <div><i class="fa fa-github" aria-hidden="true"></i><a href="https://github.com/mitchello77">github.com/mitchello77</a></div>
-                  <div><i class="fa fa-envelope" aria-hidden="true"></i><a href="mailto:me@mitchell-williams.com.au">me@mitchell-williams.com.au</a></div>
+                <h3><i class="fa fa-code" aria-hidden="true"></i> with <i class="fa fa-heart" aria-hidden="true"></i> by</h3>
+
+                <div class="authors">
+                  <div class="author">
+                    <div class="pic">
+                      <img src="https://cdn.mitchell-williams.com.au/photos/mitchell-profile-sq_400px.png" alt="Mitchell Portrait">
+                    </div>
+                    <div class="bio">
+                      <div><i class="fa fa-user" aria-hidden="true"></i>Mitchel Williams</div>
+                      <div><i class="fa fa-desktop" aria-hidden="true"></i><a href="https://mitchell-williams.com.au">mitchell-williams.com.au</a></div>
+                      <div><i class="fa fa-github" aria-hidden="true"></i><a href="https://github.com/mitchello77">github.com/mitchello77</a></div>
+                      <div><i class="fa fa-envelope" aria-hidden="true"></i><a href="mailto:me@mitchell-williams.com.au">me@mitchell-williams.com.au</a></div>
+                    </div>
+                  </div>
+                  <div class="author">
+                    <div class="pic">
+                      <img src="../images/kelvin.jpg" alt="Kelvin Portrait">
+                    </div>
+                    <div class="bio">
+                      <div><i class="fa fa-user" aria-hidden="true"></i>Kelvin O'Shea</div>
+                      <div><i class="fa fa-desktop" aria-hidden="true"></i><a href="http://kelvinoshea.com/">kelvinoshea.com</a></div>
+                      <div><i class="fa fa-github" aria-hidden="true"></i><a href="https://github.com/kelvinoshea">github.com/kelvinoshea</a></div>
+                      <div><i class="fa fa-twitter" aria-hidden="true"></i><a href="https://twitter.com/kelvin__oshea">@kelvin__oshea</a></div>
+                    </div>
+                  </div>
                 </div>
               </div>
-              <div class="author">
-                <div class="pic">
-                  <img src="https://www.fillmurray.com/200/200" alt="Kelvin Portrait">
+              <div class="technology-container">
+                <div class="technologies">
+                  <h3>Technologies Used</h3>
+                  <ul class="tech">
+                    <li><a href="#">HTML5</a></li>
+                    <li><a href="#">CSS3</a></li>
+                    <li><a href="http://php.net/">PHP</a></li>
+                    <li><a href="https://www.javascript.com/">JavaScript</a></li>
+                    <li><a href="https://jquery.com/">JQuery</a></li>
+                    <li><a href="https://github.com/Luracast/Restler">Restler</a></li>
+                    <li><a href="https://www.mysql.com/">MySQL</a></li>
+                    <li><a href="https://nodejs.org/en/">NodeJS</a></li>
+                    <li><a href="https://d3js.org/">D3JS</a></li>
+                    <li><a href="https://github.com/topojson/topojson">TopoJSON</a></li>
+                    <li><a href="https://github.com/gka/chroma.js/">ChromaJS</a></li>
+                    <li><a href="https://github.com/LeaVerou/awesomplete">Awesomplete</a></li>
+                    <li><a href="https://github.com/moment/moment/">MomentJS</a></li>
+                    <li><a href="http://www.chartjs.org/">ChartJS</a></li>
+                  </ul>
                 </div>
-                <div class="bio">
-                  <div><i class="fa fa-user" aria-hidden="true"></i>Calvon 0'Shae</div>
-                  <div><i class="fa fa-desktop" aria-hidden="true"></i><a href="http://kelvinoshea.com/">kelvinoshea.com</a></div>
-                  <div><i class="fa fa-github" aria-hidden="true"></i><a href="https://github.com/kelvinoshea">github.com/kelvinoshea</a></div>
-                  <div><i class="fa fa-twitter" aria-hidden="true"></i><a href="https://github.com/kelvinoshea">@daboiis</a></div>
+                <h3>Source</h3>
+                <div class="source">
+                  <p>Please feel free to check out the sourcecode of the project:</p>
+                  <div>
+                    <a href="https://github.com/mitchello77/Eating-My-House-Deposit"><i class="fa fa-github fa-4x" aria-hidden="true"></i>github.com/mitchello77/Eating-My-House-Deposit</a>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      </div>
-      <a target="_blank" href="https://github.com/mitchello77/Eating-My-House-Deposit"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>
+          <a target="_blank" href="https://github.com/mitchello77/Eating-My-House-Deposit"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>
+
+              </div>
+            </div>
+
 
     <!-- full page js -->
 

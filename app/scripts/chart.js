@@ -162,7 +162,7 @@ function generateChart_Conclusion() {
     suburbs_house_Pastprice.push(suburb_pasthouseprice);
     suburbs_unit_Pastprice.push(suburb_pastunitprice);
   });
-
+Chart.defaults.global.defaultFontFamily = 'Hind Guntur';
   var chartData = {
       labels: labels,
       datasets: [{
@@ -170,8 +170,10 @@ function generateChart_Conclusion() {
           xAxisID: 'suburb',
           yAxisID: 'price',
           type: 'line',
-          borderColor: '#5A3662',
-          borderWidth: 2,
+          borderColor: '#00AD7C',
+          pointBackgroundColor: '#00AD7C',
+          borderWidth: 3,
+          backgroundColor: '#00AD7C',
           fill: false,
           data: suburbs_house_Currentprice
       }, {
@@ -179,8 +181,10 @@ function generateChart_Conclusion() {
           xAxisID: 'suburb',
           yAxisID: 'price',
           type: 'line',
-          borderColor: chroma(colours[1]).alpha(0.9).css(),
-          borderWidth: 2,
+          borderColor: 'rgba(0, 173, 124, .2)',
+          pointBackgroundColor: 'rgba(0, 173, 124, .2)',
+          backgroundColor: 'rgba(0, 173, 124, .2)',
+          borderWidth: 3,
           fill: false,
           data: suburbs_house_Pastprice
       }, {
@@ -188,8 +192,10 @@ function generateChart_Conclusion() {
           xAxisID: 'suburb',
           yAxisID: 'price',
           type: 'line',
-          borderColor: chroma(colours[2]).alpha(0.9).css(),
-          borderWidth: 2,
+          borderColor: '#E8AA8C',
+          pointBackgroundColor: '#E8AA8C',
+          backgroundColor: '#E8AA8C',
+          borderWidth: 3,
           fill: false,
           data: suburbs_unit_Currentprice
       }, {
@@ -197,8 +203,10 @@ function generateChart_Conclusion() {
           xAxisID: 'suburb',
           yAxisID: 'price',
           type: 'line',
-          borderColor: chroma(colours[3]).alpha(0.9).css(),
-          borderWidth: 2,
+          borderColor: 'rgba(232, 170, 140, .3)',
+          pointBackgroundColor: 'rgba(232, 170, 140, .3)',
+          backgroundColor: 'rgba(232, 170, 140, .3)',
+          borderWidth: 3,
           fill: false,
           data: suburbs_unit_Pastprice
       }]
