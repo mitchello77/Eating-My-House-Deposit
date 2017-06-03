@@ -21,9 +21,16 @@
     box-sizing: border-box;
   }
   .map-container {
-    height: 80%;
+    height: 100%;
     width: 100%;
     position: relative;
+    header {
+      position: absolute;
+      .subheading {
+        width: 20rem;
+        font-size: .9rem;
+      }
+    }
     .tooltip {
       position: absolute;
       background-color: rgba(0, 0, 0, .8);
