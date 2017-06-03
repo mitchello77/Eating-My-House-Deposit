@@ -54,7 +54,7 @@ var hideTooltip = function(d) {
 var reset_map = function(d) {
   active.classed("selected", false);
   active = d3.select(null);
-  $('#map .map-container .overlay .information').addClass('hidden');
+  $('#map .map-container .overlay').addClass('hidden');
   $('.suburb.active').removeClass("dull")
   g.transition()
       .duration(750)
@@ -68,7 +68,7 @@ function build_overlay(objSuburb, objProfile) {
   generateChart_SuburbOverview(objSuburb);
   // animate box in
   hide_maploader()
-  $('#map .overlay .information').removeClass('hidden');
+  $('#map .overlay').removeClass('hidden');
 }
 
 var load_suburbprofile = function(item) {
@@ -94,11 +94,11 @@ var load_suburbprofile = function(item) {
 };
 
 function show_maploader() {
-  $('#map .map-container .overlay .loader').removeClass('hidden');
+  $('#map .map-container .loader').removeClass('hidden');
 };
 
 function hide_maploader() {
-  $('#map .map-container .overlay .loader').addClass('hidden');
+  $('#map .map-container .loader').addClass('hidden');
 };
 
 function round_number(num, dec) {

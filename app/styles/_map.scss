@@ -2,6 +2,19 @@
 // vars
 
 #map {
+  .loader{
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background-color: $background;
+    z-index: 99999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+  }
   header {
     height: 20%;
     padding: 1rem;
@@ -45,18 +58,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      pointer-events: none;
       box-sizing: border-box;
-      .loader{
-        width: 100%;
-        height: 100%;
-        background-color: $background;
-        z-index: 99999;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-      }
       .legend {
         position: absolute;
         width: 8%;
@@ -97,7 +99,6 @@
         bottom: 5%;
       }
       .information {
-        pointer-events: auto;
         //background-color: rgba(255,255,255,0.8);
         border-radius: 2rem;
         min-width: 300px;
@@ -135,17 +136,16 @@
     svg {
       .background {
         fill: $background;
-        pointer-events: all;
       }
       .suburbs {
 
       }
       .suburb {
-        padding: 1rem;
         fill: $map_suburb-fill;
         stroke-width: 2px;
         stroke-linecap: round;
         stroke-linejoin: round;
+        pointer-events: all;
         // cursor: not-allowed;
         // &:hover {
         //   fill: $map_suburb-hover-colour !important;
