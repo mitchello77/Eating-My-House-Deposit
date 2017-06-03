@@ -170,8 +170,9 @@ function generateChart_Conclusion() {
           xAxisID: 'suburb',
           yAxisID: 'price',
           type: 'line',
-          borderColor: '#5A3662',
-          borderWidth: 2,
+          borderColor: '#00AD7C',
+          pointBackgroundColor: '#00AD7C',
+          borderWidth: 3,
           fill: false,
           data: suburbs_house_Currentprice
       }, {
@@ -179,8 +180,9 @@ function generateChart_Conclusion() {
           xAxisID: 'suburb',
           yAxisID: 'price',
           type: 'line',
-          borderColor: chroma(colours[1]).alpha(0.9).css(),
-          borderWidth: 2,
+          borderColor: 'rgba(0, 173, 124, .2)',
+          pointBackgroundColor: 'rgba(0, 173, 124, .2)',
+          borderWidth: 3,
           fill: false,
           data: suburbs_house_Pastprice
       }, {
@@ -188,8 +190,9 @@ function generateChart_Conclusion() {
           xAxisID: 'suburb',
           yAxisID: 'price',
           type: 'line',
-          borderColor: chroma(colours[2]).alpha(0.9).css(),
-          borderWidth: 2,
+          borderColor: '#E8AA8C',
+          pointBackgroundColor: '#E8AA8C',
+          borderWidth: 3,
           fill: false,
           data: suburbs_unit_Currentprice
       }, {
@@ -197,8 +200,9 @@ function generateChart_Conclusion() {
           xAxisID: 'suburb',
           yAxisID: 'price',
           type: 'line',
-          borderColor: chroma(colours[3]).alpha(0.9).css(),
-          borderWidth: 2,
+          borderColor: 'rgba(232, 170, 140, .3)',
+          pointBackgroundColor: 'rgba(232, 170, 140, .3)',
+          borderWidth: 3,
           fill: false,
           data: suburbs_unit_Pastprice
       }]
