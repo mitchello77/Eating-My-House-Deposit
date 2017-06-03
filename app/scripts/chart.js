@@ -173,6 +173,7 @@ function generateChart_Conclusion() {
           borderColor: '#00AD7C',
           pointBackgroundColor: '#00AD7C',
           borderWidth: 3,
+          backgroundColor: '#00AD7C',
           fill: false,
           data: suburbs_house_Currentprice
       }, {
@@ -182,6 +183,7 @@ function generateChart_Conclusion() {
           type: 'line',
           borderColor: 'rgba(0, 173, 124, .2)',
           pointBackgroundColor: 'rgba(0, 173, 124, .2)',
+          backgroundColor: 'rgba(0, 173, 124, .2)',
           borderWidth: 3,
           fill: false,
           data: suburbs_house_Pastprice
@@ -192,6 +194,7 @@ function generateChart_Conclusion() {
           type: 'line',
           borderColor: '#E8AA8C',
           pointBackgroundColor: '#E8AA8C',
+          backgroundColor: '#E8AA8C',
           borderWidth: 3,
           fill: false,
           data: suburbs_unit_Currentprice
@@ -202,6 +205,7 @@ function generateChart_Conclusion() {
           type: 'line',
           borderColor: 'rgba(232, 170, 140, .3)',
           pointBackgroundColor: 'rgba(232, 170, 140, .3)',
+          backgroundColor: 'rgba(232, 170, 140, .3)',
           borderWidth: 3,
           fill: false,
           data: suburbs_unit_Pastprice
