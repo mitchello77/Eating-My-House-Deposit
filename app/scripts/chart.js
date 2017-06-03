@@ -170,7 +170,7 @@ function generateChart_Conclusion() {
           xAxisID: 'suburb',
           yAxisID: 'price',
           type: 'line',
-          borderColor: chroma(colours[0]).alpha(0.9).css(),
+          borderColor: '#5A3662',
           borderWidth: 2,
           fill: false,
           data: suburbs_house_Currentprice
