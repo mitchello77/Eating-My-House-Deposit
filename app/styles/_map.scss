@@ -36,6 +36,17 @@
       line-height: 1rem;
       border-radius: .2rem;
 
+      &::after {
+        position: absolute;
+        left: -10px;
+        content: '';
+        width: 0;
+        height: 0;
+        border-top: 10px solid transparent;
+        border-bottom: 10px solid transparent;
+
+        border-right: 10px solid rgba(0, 0, 0, .8);
+      }
 
       .suburb-name {
         font-weight: 300;
