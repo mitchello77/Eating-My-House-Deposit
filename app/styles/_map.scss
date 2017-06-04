@@ -152,6 +152,17 @@
           opacity: 0;
         }
 
+        .suburb-information {
+          width: 20vw;
+          display: flex;
+          flex-direction: column;
+
+          .price-container {
+            display: flex;
+            justify-content: space-between;
+          }
+        }
+
         .close {
           position: absolute;
           top: 0;
