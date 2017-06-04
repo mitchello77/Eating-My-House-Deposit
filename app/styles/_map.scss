@@ -24,10 +24,9 @@
       box-sizing: border-box;
       position: absolute;
       opacity: 1;
-      transition: opacity .5s;
+      transition: opacity .2s;
 
       &.hide {
-
         opacity: 0;
       }
       .subheading {
@@ -142,9 +141,17 @@
         padding: 2rem;
         box-sizing: border-box;
         pointer-events: auto;
+        opacity: 1;
+        transition: .5s;
+        transition-delay: 1s;
         h2 {
           text-align: left;
         }
+
+        &.hide {
+          opacity: 0;
+        }
+
         .close {
           position: absolute;
           top: 0;

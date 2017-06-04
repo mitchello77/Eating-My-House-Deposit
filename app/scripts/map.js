@@ -54,7 +54,8 @@ var hideTooltip = function(d) {
 var reset_map = function(d) {
   active.classed("selected", false);
   active = d3.select(null);
-  $('#map .map-container .overlay .information').addClass('hidden');
+  $('#map .map-container .overlay .information').addClass('hide hidden');
+  $('.map-container .suburb-overview-header').removeClass('hide');
   $('.suburb.active').removeClass("dull")
   g.transition()
       .duration(750)
@@ -68,7 +69,8 @@ function build_overlay(objSuburb, objProfile) {
   generateChart_SuburbOverview(objSuburb);
   // animate box in
   hide_maploader()
-  $('#map .overlay .information').removeClass('hidden');
+  $('#map .overlay .information').removeClass('hide hidden');
+  $('.map-container .suburb-overview-header').addClass('hide');
 }
 
 var load_suburbprofile = function(item) {
