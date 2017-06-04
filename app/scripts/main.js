@@ -63,8 +63,21 @@ var emphasise_selected_suburb = function() {
 
   if (other_suburbs.has("selected")) {
     other_suburbs.addClass("dull")
-  } else { other_suburbs.removeClass("dull") }
+  } else {
+    other_suburbs.removeClass("dull")
+  }
 };
+
+var hide_overview_header = function() {
+  var suburb_overview_header = $('.suburb-overview-header')
+  var info = $('.information')
+  var suburbs = $('.suburb.active')
+
+  if (!info.hasClass('hidden')) {
+    suburb_overview_header.addClass('hide')
+  }
+};
+
 
 (function() {
   'use strict';
@@ -172,6 +185,7 @@ var emphasise_selected_suburb = function() {
 				build_map(false); // init Map
 				generateChart_Conclusion();
 				hide_preloader();
+        hide_overview_header();
      });
    };
 
