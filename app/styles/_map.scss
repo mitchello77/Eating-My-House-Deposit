@@ -224,7 +224,7 @@
           }
         }
 
-        .close {
+        .close, .close-small {
           position: absolute;
           top: 0;
           right: 0;
@@ -253,9 +253,15 @@
         top: 10%;
         right: 5%;
         width: 15rem;
+        border: 1px solid $background;
+        border-radius: .5rem;
 
         &.transform {
           transition: all 1s ease;
+        }
+
+        &:hover {
+          border-color: lighten($selected_blue, 10%)
         }
 
         &::after {
@@ -282,6 +288,14 @@
           &::after {
             display: none;
           }
+        }
+
+        .close-small {
+          display: none;
+          top: -2rem;
+          width: 20px;
+          height: 20px;
+          margin: 0;
         }
       }
     }
