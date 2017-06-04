@@ -89,6 +89,21 @@ var toggleOverlayOptions = function() {
   });
 };
 
+var expandOverlayGraph = function() {
+  var chart = $('.chart-container-global')
+  var close = $('.chart-container-global .close-small')
+
+  chart.click( function() {
+    chart.addClass('expand')
+    close.show()
+  })
+
+  close.click( function() {
+    chart.removeClass('expand')
+    close.hide()
+  })
+};
+
 
 
 (function() {
@@ -198,6 +213,7 @@ var toggleOverlayOptions = function() {
 				generateChart_Conclusion();
 				hide_preloader();
         toggleOverlayOptions();
+        expandOverlayGraph();
      });
    };
 
