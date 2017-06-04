@@ -173,6 +173,11 @@
           padding: 1rem;
           background: rgba(255, 255, 255, 0.7);
           margin: .75rem 0;
+
+          &:hover {
+            border-color: lighten($selected_blue, 10%);
+            transition: .3s;
+          }
         }
 
         .property-container {
@@ -197,6 +202,13 @@
         .price-container {
           .prices {
             display: none;
+            display: flex;
+            justify-content: space-between;
+          }
+
+          .price {
+            font-weight: bold;
+            padding: .2rem 0;
           }
         }
 
