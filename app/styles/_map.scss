@@ -158,17 +158,21 @@
 
           .price-container {
             display: flex;
+            flex-direction: column;
             justify-content: space-between;
           }
         }
 
-        .payoff-container {
+        .payoff-container, .price-container, .assumptions {
           display: flex;
+          font-size: .9rem;
           flex-direction: column;
           box-sizing: border-box;
-          border: 1px solid lighten($colour, 50%);
+          border: 1px solid lighten($colour, 70%);
           border-radius: .5rem;
-          padding: .5rem;
+          padding: 1rem;
+          background: rgba(255, 255, 255, 0.7);
+          margin: .75rem 0;
         }
 
         .property-container {
@@ -176,6 +180,29 @@
 
           .property {
             padding: 1rem;
+          }
+        }
+
+        .info-container-title {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          cursor: pointer;
+
+          h3 {
+            margin: .5rem 0;
+          }
+        }
+
+        .price-container {
+          .prices {
+            display: none;
+          }
+        }
+
+        .assumptions {
+          .assumptions-list {
+            display: none;
           }
         }
 
