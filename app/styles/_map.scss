@@ -131,7 +131,6 @@
         }
       }
       .information {
-        //background-color: rgba(255,255,255,0.8);
         border-radius: 2rem;
         min-width: 300px;
         min-height: 300px;
@@ -160,6 +159,23 @@
           .price-container {
             display: flex;
             justify-content: space-between;
+          }
+        }
+
+        .payoff-container {
+          display: flex;
+          flex-direction: column;
+          box-sizing: border-box;
+          border: 1px solid lighten($colour, 50%);
+          border-radius: .5rem;
+          padding: .5rem;
+        }
+
+        .property-container {
+          display: flex;
+
+          .property {
+            padding: 1rem;
           }
         }
 
