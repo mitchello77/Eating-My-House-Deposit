@@ -320,7 +320,7 @@
         </div>
         <div class="section" id="map" data-tooltip="Map" data-navcolour="#78A4C0">
           <div class="map-container">
-            <header>
+            <header class="suburb-overview-header">
               <h2>Suburb Overview</h2>
               <p class="subheading">Welcome to the suburb overview. Here you can explore the profile of each suburb, as well as the median sell price (for both houses and units together) for each suburb. If you completed the questionnaire above, you’ll also see how long it will take you to pay off property! <br /> <br /> Clicking on a suburb will expand its profile.</p>
             </header>
@@ -334,77 +334,96 @@
               </div>
             </div>
             <div class="overlay">
-              <div class="information hidden">
+              <div class="information hidden hide">
                 <span class="close"></span>
-                <h2 class="suburb-name">Suburb!</h2>
-                <div class="price-container">
-                  <h3>Suburb Sell Price</h3>
-                  <div class="last-updated">1/06/2017</div>
-                  <div class="house">
-                    <h4>House:</h4>
-                    <div class="current">Current: <div class="price">$ 1000,000</div></div>
-                    <div class="current">5 years ago: <div class="price">$ 1000,000</div></div>
+                <div class="suburb-information">
+                  <h2 class="suburb-name">Suburb!</h2>
+                  <div class="payoff-container">
+                    <div class="info-container-title">
+                      <h3>Mortgage length</h3>
+                      <i class="fa fa-angle-down"></i>
+                    </div>
+                    <div class="payoff-details">
+                      <p>Toggle the expenses to see the difference. (Note: some assuptions were made to calculate the time. See them <a class="toggle-assumptions">here</a>)</p>
+                      <div class="expense-switch">
+                        <div class="label">Expenses</div>
+                        <div class="toggle-container">
+                          <h4>On</h4>
+                          <div class="toggle"></div>
+                          <h4>Off</h4>
+                        </div>
+                      </div>
+                      <div class="property-container">
+                        <div class="property house">
+                          <h3>House</h3>
+                          <div class="time">10 Years, 3 Months, 2 Days</div>
+                        </div>
+                        <div class="property unit">
+                          <h3>Unit</h3>
+                          <div class="time">10 Years, 3 Months, 3 Days</div>
+                        </div>
+                      </div>
+                      <div class="comparison">
+                        <p>With your lifestyle, its going to take you an extra ...</p>
+                        <div class="extra-time">0 Years, 3 Months, 4 Days</div>
+                        <p>to pay off this suburb. Let's be honest. When compared against the full term of the morgage... the extra time is hardly significant.</p>
+                      </div>
+                    </div>
                   </div>
-                  <div class="unit">
-                    <h4>Unit:</h4>
-                    <div class="current">Current: <div class="price">$ 1000,000</div></div>
-                    <div class="current">5 years ago: <div class="price">$ 1000,000</div></div>
+                  <div class="price-container">
+                    <div class="info-container-title">
+                      <h3>Suburb Sell Price</h3>
+                      <i class="fa fa-angle-down"></i>
+                    </div>
+                    <div class="prices">
+                      <div class="prices-flex">
+                        <div class="house">
+                          <h4>House:</h4>
+                          <div class="current">Current: <div class="price">$ 1000,000</div></div>
+                          <div class="current">5 years ago: <div class="price">$ 1000,000</div></div>
+                        </div>
+                        <div class="unit">
+                          <h4>Unit:</h4>
+                          <div class="current">Current: <div class="price">$ 1000,000</div></div>
+                          <div class="current">5 years ago: <div class="price">$ 1000,000</div></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="assumptions"> <!-- Centeral overlay (modial) jsut listing the assumptions when calculating pay off time.  -->
+                    <div class="info-container-title">
+                      <h3>Assumptions</h3>
+                      <i class="fa fa-angle-down"></i>
+                    </div>
+                    <div class="assumptions-list">
+                      <ul>
+                        <li>Blah blah</li>
+                        <li>Blah blah</li>
+                        <li>Blah blah</li>
+                        <li>Blah blah</li>
+                      </ul>
+                    </div>
                   </div>
                 </div>
-                <div class="payoff-container">
-                  <h3>How long will it take you to Pay Off this suburb?</h3>
-                  <p>Toggle the expenses to see the difference. (Note: some assuptions were made to calculate the time. See them <a class="toggle-assumptions">here</a>)</p>
-                  <div class="expense-switch">
-                    <div class="label">Expenses</div>
-                    <div class="toggle-container">
-                      <h4>On</h4>
-                      <div class="toggle"></div>
-                      <h4>Off</h4>
-                    </div>
-                  </div>
-                  <div class="property-container">
-                    <div class="property house">
-                      <h3>House</h3>
-                      <div class="time">10 Years, 3 Months, 2 Days</div>
-                    </div>
-                    <div class="property unit">
-                      <h3>Unit</h3>
-                      <div class="time">10 Years, 3 Months, 3 Days</div>
-                    </div>
-                  </div>
-                  <div class="comparison">
-                    <p>With your lifestyle, its going to take you an extra ...</p>
-                    <div class="extra-time">0 Years, 3 Months, 4 Days</div>
-                    <p>to pay off this suburb. Let's be honest. When compared against the full term of the morgage... the extra time is hardly significant.</p>
-                  </div>
-                </div>
-                <div style="position: absolute; top: 10%; right: 3%; width: 800px; height: 500px; background-color: #fff;">
+                <div class="chart-container-global transform">
                   <div class="chart-container" style="position: relative"> <!-- This has to be position: relative. You can set the value in css Kel -->
                     <canvas id="chartSuburbProfile"></canvas> <!-- Must only contain a canvas element -->
                   </div>
                 </div>
-                <div class="assumptions"> <!-- Centeral overlay (modial) jsut listing the assumptions when calculating pay off time.  -->
-                  <span class="close"></span>
-                  <h2>Assumptions:</h2>
-                  <ul>
-                    <li>Blah blah</li>
-                    <li>Blah blah</li>
-                    <li>Blah blah</li>
-                    <li>Blah blah</li>
-                  </ul>
+              </div>
+              <div class="legend-container">
+                <div class="legend fill">
+                  <span class="label"></span>
+                  <div class="bar"></div>
+                  <span class="range"></span>
+                  <span class="range"></span>
                 </div>
-              </div>
-              <div class="legend fill">
-                <span class="label"></span>
-                <div class="bar"></div>
-                <span class="range"></span>
-                <span class="range"></span>
-              </div>
-              <div class="legend stroke hidden">
-                <span class="label"></span>
-                <div class="bar"></div>
-                <span class="range"></span>
-                <span class="range"></span>
+                <div class="legend stroke hidden">
+                  <span class="label"></span>
+                  <div class="bar"></div>
+                  <span class="range"></span>
+                  <span class="range"></span>
+                </div>
               </div>
             </div>
           </div>

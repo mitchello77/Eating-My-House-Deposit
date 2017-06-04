@@ -58,13 +58,38 @@ var handle_toggle = function() {
 }
 
 var emphasise_selected_suburb = function() {
-  var selected_suburb = $('.suburb.active').not()
-  var other_suburbs = $('.suburb.active')
+  var selected_suburb = $('.suburb.active').not();
+  var other_suburbs = $('.suburb.active');
 
   if (other_suburbs.has("selected")) {
     other_suburbs.addClass("dull")
-  } else { other_suburbs.removeClass("dull") }
+  } else {
+    other_suburbs.removeClass("dull")
+  }
 };
+
+var toggleOverlayOptions = function() {
+	var prices_heading = $('.price-container .info-container-title');
+	var prices_container = $('.prices');
+  var assumptions = $('.assumptions-list');
+  var assumptions_heading = $('.assumptions .info-container-title');
+  var payoff_heading = $('.payoff-container .info-container-title');
+  var payoff_details = $('.payoff-details');
+
+	prices_heading.click( function() {
+		prices_container.slideToggle(200)
+	});
+
+  assumptions_heading.click( function() {
+		assumptions.slideToggle(200)
+	});
+
+  payoff_heading.click( function() {
+    payoff_details.slideToggle(200)
+  });
+};
+
+
 
 (function() {
   'use strict';
@@ -172,6 +197,7 @@ var emphasise_selected_suburb = function() {
 				build_map(false); // init Map
 				generateChart_Conclusion();
 				hide_preloader();
+        toggleOverlayOptions();
      });
    };
 

@@ -15,17 +15,20 @@
     justify-content: center;
     position: absolute;
   }
-  header {
-    height: 20%;
-    padding: 1rem;
-    box-sizing: border-box;
-  }
   .map-container {
-    height: 100%;
+    height: 100vh;
     width: 100%;
     position: relative;
-    header {
+    .suburb-overview-header {
+      padding: 1.5rem;
+      box-sizing: border-box;
       position: absolute;
+      opacity: 1;
+      transition: opacity .2s;
+
+      &.hide {
+        opacity: 0;
+      }
       .subheading {
         width: 20rem;
         font-size: .9rem;
@@ -37,8 +40,8 @@
       border: 1px solid rgba(0, 0, 0, .8);
       color: #fff;
       font-weight: bold;
-      padding: 0.5rem;
-      padding-top: 0.6rem;
+      padding: 1rem;
+      padding-top: 1.1rem;
       display: none;
       z-index: 1000;
       line-height: 1rem;
@@ -84,14 +87,25 @@
       justify-content: center;
       box-sizing: border-box;
       pointer-events: none;
-      .legend {
+      .legend-container {
         position: absolute;
+        bottom: 5%;
+        right: 5%;
         width: 8%;
         min-width: 100px;
         min-height: 30px;
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+      }
+      .legend {
+        position: relative;
+
         .label {
           text-align: center;
           display: block;
+          font-weight: bold;
+          padding-bottom: .2rem;
         }
         .bar {
           border: 1px solid #fff;
@@ -110,21 +124,13 @@
           padding-top: 5px;
           margin-left: -25px;
           margin-right: -25px;
+          font-weight: 300;
           &:last-child {
             float: right;
           }
         }
       }
-      .legend.fill {
-        right: 5%;
-        bottom: 5%;
-      }
-      .legend.stroke {
-        left: 5%;
-        bottom: 5%;
-      }
       .information {
-        //background-color: rgba(255,255,255,0.8);
         border-radius: 2rem;
         min-width: 300px;
         min-height: 300px;
@@ -134,9 +140,90 @@
         padding: 2rem;
         box-sizing: border-box;
         pointer-events: auto;
+        opacity: 1;
+        transition: .5s;
+        transition-delay: 1s;
         h2 {
           text-align: left;
         }
+
+        &.hide {
+          opacity: 0;
+        }
+
+        .suburb-information {
+          width: 20vw;
+          display: flex;
+          flex-direction: column;
+
+          .price-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+          }
+        }
+
+        .payoff-container, .price-container, .assumptions {
+          display: flex;
+          font-size: .9rem;
+          flex-direction: column;
+          box-sizing: border-box;
+          border: 1px solid lighten($colour, 70%);
+          border-radius: .5rem;
+          padding: 1rem;
+          background: rgba(255, 255, 255, 0.7);
+          margin: .75rem 0;
+
+          &:hover {
+            border-color: lighten($selected_blue, 10%);
+            transition: .3s;
+          }
+        }
+
+        .property-container {
+          display: flex;
+
+          .property {
+            padding: 1rem;
+          }
+        }
+
+        .info-container-title {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          cursor: pointer;
+
+          h3 {
+            margin: .5rem 0;
+          }
+        }
+
+        .price-container {
+          .prices {
+            display: none;
+
+
+            .prices-flex {
+              display: flex;
+              justify-content: space-around;
+            }
+          }
+
+
+
+          .price {
+            font-weight: bold;
+            padding: .2rem 0;
+          }
+        }
+
+        .assumptions {
+          .assumptions-list {
+            display: none;
+          }
+        }
+
         .close {
           position: absolute;
           top: 0;
@@ -157,6 +244,45 @@
       }
       .information.loading{
         cursor: wait;
+      }
+
+      .chart-container-global {
+        background-color: #fffeff;
+        padding: 1rem;
+        position: absolute;
+        top: 10%;
+        right: 5%;
+        width: 15rem;
+
+        &.transform {
+          transition: all 1s ease;
+        }
+
+        &::after {
+          position: absolute;
+          color: $colour;
+          font-weight: bold;
+          font-size: 1rem;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          top: 0;
+          left: 0;
+          content: 'Click to view suburb performance';
+          width: 100%;
+          height: 100%;
+          background-color: rgba($background, .8);
+          cursor: pointer;
+        }
+
+        &.expand {
+          width: 50rem;
+          top: 20%;
+
+          &::after {
+            display: none;
+          }
+        }
       }
     }
     svg {
