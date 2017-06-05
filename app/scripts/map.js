@@ -64,8 +64,30 @@ var reset_map = function(d) {
       .attr('style', null);
 };
 
-function build_overlay(objSuburb, objProfile) {
-  console.log('build_overlay');
+function build_overlay(objSuburb, objProfile, index) {
+  currentOverviewFocus = index;
+  $('#map .overlay .suburb-name').html(objSuburb.SuburbName);
+  if (results_ready) {
+    $('#map .overlay .payoff-container').removeClass('hidden');
+    var expenses = $('#map .overlay .expense-switch .toggle').hasClass('off');
+    if (expenses) {
+      $('#map .overlay .payoff-container .property-container .house .time').html(getTimeFromYears(objSuburb.payofftimeHouseExpense));
+      $('#map .overlay .payoff-container .property-container .unit .time').html(getTimeFromYears(objSuburb.payofftimeUnitExpense));
+    } else {
+      $('#map .overlay .payoff-container .property-container .house .time').html(getTimeFromYears(objSuburb.payofftimeHouse));
+      $('#map .overlay .payoff-container .property-container .unit .time').html(getTimeFromYears(objSuburb.payofftimeUnit));
+    }
+    $('#map .overlay .payoff-container .comparison .house .time').html(getTimeFromYears(Math.abs(objSuburb.payofftimeHouse - objSuburb.payofftimeHouseExpense)));
+    $('#map .overlay .payoff-container .comparison .unit .time').html(getTimeFromYears(Math.abs(objSuburb.payofftimeUnit - objSuburb.payofftimeUnitExpense)));
+  } else {
+    $('#map .overlay .payoff-container').addClass('hidden');
+  }
+
+
+  $('#map .overlay .price-container .prices .house .current .price').html(moneyFormat.to(parseInt(objSuburb.HousePrice, 10)));
+  $('#map .overlay .price-container .prices .house .past .price').html(moneyFormat.to(parseInt(objSuburb.HousePastPrice, 10)));
+  $('#map .overlay .price-container .prices .unit .current .price').html(moneyFormat.to(parseInt(objSuburb.UnitPrice, 10)));
+  $('#map .overlay .price-container .prices .unit .past .price').html(moneyFormat.to(parseInt(objSuburb.UnitPastPrice, 10)));
   generateChart_SuburbOverview(objSuburb);
   // animate box in
   hide_maploader()
@@ -90,7 +112,7 @@ var load_suburbprofile = function(item) {
       var objProfile = data[objSuburb.SuburbName.toUpperCase() + - + objSuburb.Postcode];
       objSuburb.lastupdated = objProfile.processed_date.sale;
       objSuburb.profile = objProfile;
-      build_overlay(objSuburb, objSuburb.profile)
+      build_overlay(objSuburb, objSuburb.profile, item.index)
     });
   }
 };
@@ -258,16 +280,15 @@ var build_map = function(destroy) {
     paytimevalues.sort(sortValues);
     // generate colours
     // create 1 colour for every active suburb
-    if (!destroy) {
-      fillcolours = chroma.scale(arrMapFillColours)
-      .mode('lch').colors(arrSuburbs.filter(function(obj) {
-        return obj.active === true;
-      }).length);
-      strokecolours = chroma.scale(arrMapStrokeColours)
-      .mode('lch').colors(arrSuburbs.filter(function(obj) {
-        return obj.active === true;
-      }).length);
-    }
+    fillcolours = chroma.scale(arrMapFillColours)
+    .mode('lch').colors(arrSuburbs.filter(function(obj) {
+      return obj.active === true;
+    }).length);
+    strokecolours = chroma.scale(arrMapStrokeColours)
+    .mode('lch').colors(arrSuburbs.filter(function(obj) {
+      return obj.active === true;
+    }).length);
+
 
     // match fill colour to suburb!
     if (fillcolours.length === price_values.length) {

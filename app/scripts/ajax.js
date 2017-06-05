@@ -28,12 +28,14 @@ var getAPIData = function(query, bs, cb) {
             console.log(jqXHR.responseText);
             console.log(textStatus);
             console.log(error);
+            console.log("Query: " + query);
             console.log("--------------------");
           } else {
             console.log("Arax Request Failed:");
             console.log(jqXHR.responseText);
             console.log(textStatus);
             console.log(error);
+            console.log("Query: " + query);
             console.log("--------------------");
           }
         },
