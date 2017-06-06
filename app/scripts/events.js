@@ -8,10 +8,6 @@ $(function() { // We are ready!
     reset_map();
   });
 
-  $('#map .overlay .information .chart-container-global .close-small').click(function() {
-    $('#map .overlay .information .chart-container-global').removeClass('expand');
-  });
-
   // Nav button Event
   $('nav button').click(function() {
     $.fn.fullpage.moveTo($(this).val());
@@ -119,7 +115,7 @@ $(function() { // We are ready!
   $('.toggle').click(function(e) {
     $(this).toggleClass('off');
   	var expenses = $('#map .overlay .expense-switch .toggle').hasClass('off');
-  	if (expenses) {
+  	if (!expenses) {
   		$('#map .overlay .payoff-container .property-container .house .time').html(getTimeFromYears(arrSuburbs[currentOverviewFocus].payofftimeHouseExpense));
   		$('#map .overlay .payoff-container .property-container .unit .time').html(getTimeFromYears(arrSuburbs[currentOverviewFocus].payofftimeUnitExpense));
   	} else {

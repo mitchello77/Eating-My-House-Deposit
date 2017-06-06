@@ -70,7 +70,7 @@ function build_overlay(objSuburb, objProfile, index) {
   if (results_ready) {
     $('#map .overlay .payoff-container').removeClass('hidden');
     var expenses = $('#map .overlay .expense-switch .toggle').hasClass('off');
-    if (expenses) {
+    if (!expenses) {
       $('#map .overlay .payoff-container .property-container .house .time').html(getTimeFromYears(objSuburb.payofftimeHouseExpense));
       $('#map .overlay .payoff-container .property-container .unit .time').html(getTimeFromYears(objSuburb.payofftimeUnitExpense));
     } else {
