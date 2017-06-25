@@ -9,8 +9,8 @@ class DB_PDO_MySQL
         try {
             $options = array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8');
             $this->db = new PDO(
-                'mysql:host=localhost;dbname=mitch970_brisbanehousing',
-                'mitch970_ban',
+                'mysql:host=localhost;dbname=mitchell_brisbanehousing',
+                'mitchell_ban',
                 ',3XTPi4_gsS0',
                 $options
             );
