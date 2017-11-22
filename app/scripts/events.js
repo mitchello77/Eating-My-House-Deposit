@@ -11,8 +11,8 @@ $(function() { // We are ready!
   });
 
   $('#map .overlay .chart-container-global .close-small').click(function() {
-    $(this).css('display', 'none');
-    $('#map .overlay .chart-container-global').removeClass('expand');
+    $('.chart-container-global .close-small').css('display', 'none');
+    $('.chart-container-global').removeClass('expand');
   });
 
   // Nav button Event
