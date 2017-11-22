@@ -6,6 +6,13 @@ $(function() { // We are ready!
   // Suburb overlay close button Event
   $('#map .overlay .information .close').click(function() {
     reset_map();
+    $('#map .overlay .chart-container-global').removeClass('expand');
+    $('#map .overlay .chart-container-global .close-small').css('display', 'none');
+  });
+
+  $('#map .overlay .chart-container-global .close-small').click(function() {
+    $(this).css('display', 'none');
+    $('#map .overlay .chart-container-global').removeClass('expand');
   });
 
   // Nav button Event

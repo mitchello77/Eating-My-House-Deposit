@@ -103,16 +103,16 @@ var load_suburbprofile = function(item) {
     // need to query data
     getAPIData(sprintf('/profile/suburb/%s/postcode/%s', objSuburb.SuburbName, objSuburb.Postcode), function(jqXHR, settings) {
       /* beforeSend */
-      setTimeout(function(){
+      /*setTimeout(function(){
         show_maploader();
-      }, 750);
+      }, 750);*/
     }, function(data, textStatus, jqXHR) {
       /* success */
       // handle data
       var objProfile = data[objSuburb.SuburbName.toUpperCase() + - + objSuburb.Postcode];
       objSuburb.lastupdated = objProfile.processed_date.sale;
       objSuburb.profile = objProfile;
-      build_overlay(objSuburb, objSuburb.profile, item.index)
+      build_overlay(objSuburb, objSuburb.profile, item.index);
     });
   }
 };

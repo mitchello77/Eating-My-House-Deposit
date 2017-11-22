@@ -90,13 +90,8 @@ var expandOverlayGraph = function() {
   var close = $('.chart-container-global .close-small')
 
   chart.click( function() {
-    chart.addClass('expand')
-    close.show()
-  })
-
-  close.click( function() {
-    chart.removeClass('expand')
-    close.hide()
+    chart.addClass('expand');
+    close.show();
   })
 };
 
