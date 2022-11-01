@@ -6,7 +6,7 @@
     "browser-sync": "^2.14.0",
     "del": "^2.2.2",
     "eslint-config-google": "^0.7.1",
-    "gulp": "^3.9.1",
+    "gulp": "^4.0.2",
     "gulp-autoprefixer": "^4.0.0",
     "gulp-babel": "^6.1.2",
     "gulp-cache": "^0.4.5",
